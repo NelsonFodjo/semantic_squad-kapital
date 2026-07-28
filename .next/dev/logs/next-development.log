@@ -1,11 +1,15 @@
-{"timestamp":"00:00:01.432","source":"Server","level":"WARN","message":"⚠ Turbopack's filesystem cache has been deleted because we previously detected an internal error in Turbopack. Builds or page loads may be slower as a result."}
-{"timestamp":"00:00:02.172","source":"Server","level":"LOG","message":""}
-{"timestamp":"00:00:04.745","source":"Server","level":"ERROR","message":"Invalid DOM property `stop-color`. Did you mean `stopColor`?"}
-{"timestamp":"00:00:04.746","source":"Server","level":"ERROR","message":"Invalid DOM property `stroke-width`. Did you mean `strokeWidth`?"}
-{"timestamp":"00:00:04.746","source":"Server","level":"ERROR","message":"Invalid DOM property `stroke-linecap`. Did you mean `strokeLinecap`?"}
-{"timestamp":"00:00:04.746","source":"Server","level":"ERROR","message":"Invalid DOM property `stroke-linejoin`. Did you mean `strokeLinejoin`?"}
-{"timestamp":"00:00:05.878","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
-{"timestamp":"00:00:06.691","source":"Browser","level":"ERROR","message":"Invalid DOM property `%s`. Did you mean `%s`? stop-color stopColor"}
-{"timestamp":"00:00:06.691","source":"Browser","level":"ERROR","message":"Invalid DOM property `%s`. Did you mean `%s`? stroke-width strokeWidth"}
-{"timestamp":"00:00:06.691","source":"Browser","level":"ERROR","message":"Invalid DOM property `%s`. Did you mean `%s`? stroke-linecap strokeLinecap"}
-{"timestamp":"00:00:06.691","source":"Browser","level":"ERROR","message":"Invalid DOM property `%s`. Did you mean `%s`? stroke-linejoin strokeLinejoin"}
+{"timestamp":"00:00:05.146","source":"Server","level":"WARN","message":"⚠ Turbopack's filesystem cache has been deleted because we previously detected an internal error in Turbopack. Builds or page loads may be slower as a result."}
+{"timestamp":"00:00:08.502","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:11.632","source":"Server","level":"LOG","message":"○ Compiling / ..."}
+{"timestamp":"00:00:23.770","source":"Server","level":"ERROR","message":"Invalid DOM property `stop-color`. Did you mean `stopColor`?"}
+{"timestamp":"00:00:23.870","source":"Server","level":"ERROR","message":"Invalid DOM property `stroke-width`. Did you mean `strokeWidth`?"}
+{"timestamp":"00:00:23.945","source":"Server","level":"ERROR","message":"Invalid DOM property `stroke-linecap`. Did you mean `strokeLinecap`?"}
+{"timestamp":"00:00:24.017","source":"Server","level":"ERROR","message":"Invalid DOM property `stroke-linejoin`. Did you mean `strokeLinejoin`?"}
+{"timestamp":"00:00:24.402","source":"Server","level":"ERROR","message":"⨯ Error: Your project's URL and Key are required to create a Supabase client!\n\nCheck your Supabase project's API settings to find these values\n\nhttps://supabase.com/dashboard/project/_/settings/api"}
+{"timestamp":"00:00:25.890","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:00:27.121","source":"Browser","level":"ERROR","message":"Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template)."}
+{"timestamp":"00:00:27.121","source":"Browser","level":"ERROR","message":"Invalid DOM property `%s`. Did you mean `%s`? stop-color stopColor"}
+{"timestamp":"00:00:27.121","source":"Browser","level":"ERROR","message":"Invalid DOM property `%s`. Did you mean `%s`? stroke-width strokeWidth"}
+{"timestamp":"00:00:27.121","source":"Browser","level":"ERROR","message":"Invalid DOM property `%s`. Did you mean `%s`? stroke-linecap strokeLinecap"}
+{"timestamp":"00:00:27.121","source":"Browser","level":"ERROR","message":"Invalid DOM property `%s`. Did you mean `%s`? stroke-linejoin strokeLinejoin"}
+{"timestamp":"00:00:27.121","source":"Browser","level":"ERROR","message":"uncaughtError: Error: Your project's URL and Key are required to create a Supabase client!\n\nCheck your Supabase project's API settings to find these values\n\nhttps://supabase.com/dashboard/project/_/settings/api"}
