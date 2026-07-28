@@ -4,3 +4,35 @@
 node_modules
 .env
 .next
+
+# Next.js build output
+out
+build
+.dist
+
+# Local environment files
+.env.local
+.env.*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Package managers
+package-lock.json
+.pnpm-debug.log
+
+# Coverage
+coverage/
+*.lcov
+
+# Editor directories and files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
