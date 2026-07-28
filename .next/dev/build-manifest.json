@@ -1,6 +1,30 @@
 {
   "pages": {
-    "/_app": []
+    "/_app": [
+      "static/chunks/0ayh_next_dist_compiled_1ntbm2i._.js",
+      "static/chunks/0ayh_next_dist_shared_lib_176ygwp._.js",
+      "static/chunks/0ayh_next_dist_client_217jghv._.js",
+      "static/chunks/0ayh_next_dist_0wsxeak._.js",
+      "static/chunks/0ayh_next_app_0p9nipd.js",
+      "static/chunks/[next]_entry_page-loader_ts_11rphov._.js",
+      "static/chunks/0ayh_react-dom_0zy36v_._.js",
+      "static/chunks/0ayh_0783-tr._.js",
+      "static/chunks/[root-of-the-server]__0iodp8k._.js",
+      "static/chunks/semantic_squad-kapital_pages__app_0du2_q-._.js",
+      "static/chunks/turbopack-semantic_squad-kapital_pages__app_1hq5ble._.js"
+    ],
+    "/_error": [
+      "static/chunks/0ayh_next_dist_compiled_1ntbm2i._.js",
+      "static/chunks/0ayh_next_dist_shared_lib_1aw9kf_._.js",
+      "static/chunks/0ayh_next_dist_client_217jghv._.js",
+      "static/chunks/0ayh_next_dist_0fbhzia._.js",
+      "static/chunks/[next]_entry_page-loader_ts_1k2-m9q._.js",
+      "static/chunks/0ayh_react-dom_0zy36v_._.js",
+      "static/chunks/0ayh_0783-tr._.js",
+      "static/chunks/[root-of-the-server]__1lm518d._.js",
+      "static/chunks/semantic_squad-kapital_pages__error_0du2_q-._.js",
+      "static/chunks/turbopack-semantic_squad-kapital_pages__error_099mo75._.js"
+    ]
   },
   "devFiles": [],
   "polyfillFiles": [
