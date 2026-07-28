@@ -3,8 +3,8 @@
 // ============================================================
 
 import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
+import ShowcaseHeroImage from "@/components/showcase/ShowcaseHeroImage";
 import Tag, { TagRow } from "@/components/ui/Tag";
 import Button from "@/components/ui/Button";
 import { getShowcaseBySlug } from "@/lib/db/showcase";
@@ -55,21 +55,10 @@ export default async function ShowcaseItemPage({ params }: Props) {
         </div>
       </header>
 
-      {item.cover_image_url && (
-        <div className={styles.cover}>
-          <Image
-            src={item.cover_image_url}
-            alt=""
-            fill
-            // This image is the widest thing on the page, and it is
-            // above the fold. priority tells Next.js to load it first
-            // rather than lazily.
-            priority
-            sizes="(max-width: 800px) 100vw, 760px"
-            className={styles.coverImage}
-          />
-        </div>
-      )}
+      <ShowcaseHeroImage
+        src={item.cover_image_url}
+        alt={item.title || "Showcase case study"}
+      />
 
       {/* body is optional — some entries are just a summary. */}
       {item.body && <div className={styles.body}>{item.body}</div>}

@@ -114,6 +114,7 @@ export type Challenge = {
   status: ListingStatus;
   created_by: string;
   created_at: string;
+  cover_image_url?: string | null;
 };
 
 export type Application = {

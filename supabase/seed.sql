@@ -301,8 +301,7 @@ on conflict do nothing;
 -- ------------------------------------------------------------
 -- PART F — showcase
 -- ------------------------------------------------------------
--- Cover images use picsum.photos placeholders. Replace them with
--- real project images when you have them.
+-- Cover images use fast local SVG assets in /public/images/.
 
 insert into showcase_items (
   student_id, org_id, title, slug, summary, body,
@@ -314,7 +313,7 @@ values
    'Offline-first claims form', 'offline-first-claims-form-build',
    'Rebuilt a 40-field insurance form so it survives losing signal mid-entry.',
    E'The assessors were losing an average of two forms a week to dropped connections, and re-entering a claim takes eleven minutes.\n\nI moved the form to a local-first model: every keystroke persists to IndexedDB, and a service worker queues changes for when signal returns. Per-field timestamps mean two assessors editing different parts of the same claim never conflict.\n\nTested on a 2019 Android tablet on a throttled connection. Zero data loss across 200 simulated drops.',
-   'https://picsum.photos/seed/claims-form/1200/800',
+   '/images/claims-form.svg',
    '{React,"Offline First",IndexedDB}', true, now() - interval '9 days'),
 
   ('b2222222-2222-4222-8222-222222222222',
@@ -322,7 +321,7 @@ values
    'Solar lagoon sensor, revision three', 'solar-lagoon-sensor-rev-three',
    'Took a buoy sensor from nine months of battery life to nineteen.',
    E'The original board slept at 3.1 milliamps, which was the whole problem.\n\nI replaced the regulator, moved the radio to a duty cycle keyed to tide state rather than a fixed interval, and cut the sample rate at night when readings barely move. Sleep draw is now 41 microamps.\n\nNineteen months projected, measured on the bench over six weeks and confirmed on two units in the lagoon.',
-   'https://picsum.photos/seed/solar-sensor/1200/800',
+   '/images/solar-sensor.svg',
    '{"Embedded C",IoT,Electronics}', true, now() - interval '21 days'),
 
   ('b3333333-3333-4333-8333-333333333333',
@@ -330,7 +329,7 @@ values
    'Where the warehouse bill actually went', 'warehouse-cost-teardown',
    'Traced a doubled analytics bill to four dashboards nobody opened.',
    E'I started from the query logs rather than the schema, because the bill is charged on bytes scanned.\n\nFour scheduled dashboards accounted for 61% of spend. Two had no viewer in six months. Partitioning the two that mattered by claim date cut their scan volume by 88%.\n\nTotal saving: 54% of monthly spend, with no change to anything a person actually looks at.',
-   'https://picsum.photos/seed/warehouse-cost/1200/800',
+   '/images/warehouse-cost.svg',
    '{SQL,"Data Warehousing","Cost Optimisation"}', false, now() - interval '34 days'),
 
   ('b1111111-1111-4111-8111-111111111111',
@@ -338,7 +337,7 @@ values
    'Lab booking system for the ICT faculty', 'faculty-lab-booking',
    'Replaced a paper sign-up sheet used by 400 students.',
    E'The computer labs were booked on a clipboard by the door, which meant double bookings every week and no way to check availability without walking there.\n\nI built a booking app with a conflict-free slot model — the database rejects overlapping bookings rather than the app checking first, so a race between two students cannot double-book.\n\nIn use by four labs. Double bookings went to zero.',
-   'https://picsum.photos/seed/lab-booking/1200/800',
+   '/images/lab-booking.svg',
    '{React,PostgreSQL,"Full Stack"}', false, now() - interval '52 days'),
 
   ('b2222222-2222-4222-8222-222222222222',
@@ -346,7 +345,7 @@ values
    'Creole spelling variants for a geocoder', 'creole-geocoder-fuzzy-matching',
    'First open-source contribution: matching how people really write addresses.',
    E'"Bambous Virieux" appears in our test data eleven different ways.\n\nI added a matcher that handles the common Creole and French spelling variants rather than generic edit distance, which was matching unrelated villages to each other.\n\nMerged upstream. Match rate on the real posted-address test set went from 71% to 94%.',
-   'https://picsum.photos/seed/geocoder/1200/800',
+   '/images/geocoder.svg',
    '{Python,NLP,"Open Source"}', false, now() - interval '68 days'),
 
   ('b3333333-3333-4333-8333-333333333333',
@@ -354,6 +353,6 @@ values
    'Fisheries landings, five years in one chart', 'fisheries-landings-visual',
    'A visualisation the Ministry now uses in its quarterly briefing.',
    E'Five years of landing records across 14 sites, in spreadsheets with three different column layouts.\n\nMost of the work was reconciling the schemas and deciding which records to drop — about 4% were unusable and saying so mattered more than filling the gaps.\n\nThe final chart shows seasonal collapse at two sites that nobody had noticed because the sites were always looked at separately.',
-   'https://picsum.photos/seed/fisheries/1200/800',
+   '/images/fisheries.svg',
    '{"Data Visualisation",Python,Statistics}', false, now() - interval '80 days')
 on conflict (slug) do nothing;

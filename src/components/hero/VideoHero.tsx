@@ -175,13 +175,15 @@ export default function VideoHero() {
       <video
         ref={videoRef}
         className={styles.video}
-        src={VIDEO_SRC}
         muted
         autoPlay
         playsInline
         preload="auto"
         aria-hidden="true"
-      />
+      >
+        <source src="/videos/hero.mp4" type="video/mp4" />
+        <source src={VIDEO_SRC} type="video/mp4" />
+      </video>
 
       <div className={styles.scrim} aria-hidden="true" />
 
