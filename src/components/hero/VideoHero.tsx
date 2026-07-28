@@ -187,13 +187,14 @@ export default function VideoHero() {
 
       <div className={styles.content}>
         <h1 className={styles.title}>
-          Build and <em className={styles.titleEm}>Connect</em>.
+          Where Mauritius <em className={styles.titleEm}>builds</em>.
         </h1>
 
         <p className={styles.subtitle}>
           Kapital connects Mauritian university students with employers
-          offering internships, industry challenges and open-source work so
-          what you build here becomes a portfolio, not just a line on a CV.
+          offering internships, industry challenges and open-source work,
+          so what you build here becomes a portfolio, not just a line on
+          a CV.
         </p>
 
         <p className={styles.filterPrompt}>What are you looking for?</p>
