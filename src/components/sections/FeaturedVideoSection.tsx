@@ -33,6 +33,7 @@ export default function FeaturedVideoSection() {
             src="/images/collaboration.svg"
             alt="Collaborative Network"
             fill
+            unoptimized
             sizes="100vw"
             style={{ objectFit: "cover" }}
           />

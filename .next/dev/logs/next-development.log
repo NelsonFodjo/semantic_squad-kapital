@@ -1,21 +1,14 @@
-{"timestamp":"00:00:01.326","source":"Server","level":"LOG","message":""}
-{"timestamp":"00:00:05.180","source":"Server","level":"ERROR","message":"Invalid DOM property `stop-color`. Did you mean `stopColor`?"}
-{"timestamp":"00:00:05.181","source":"Server","level":"ERROR","message":"Invalid DOM property `stroke-width`. Did you mean `strokeWidth`?"}
-{"timestamp":"00:00:05.181","source":"Server","level":"ERROR","message":"Invalid DOM property `stroke-linecap`. Did you mean `strokeLinecap`?"}
-{"timestamp":"00:00:05.182","source":"Server","level":"ERROR","message":"Invalid DOM property `stroke-linejoin`. Did you mean `strokeLinejoin`?"}
-{"timestamp":"00:00:07.063","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
-{"timestamp":"00:00:07.313","source":"Browser","level":"ERROR","message":"Invalid DOM property `%s`. Did you mean `%s`? stop-color stopColor"}
-{"timestamp":"00:00:07.313","source":"Browser","level":"ERROR","message":"Invalid DOM property `%s`. Did you mean `%s`? stroke-width strokeWidth"}
-{"timestamp":"00:00:07.313","source":"Browser","level":"ERROR","message":"Invalid DOM property `%s`. Did you mean `%s`? stroke-linecap strokeLinecap"}
-{"timestamp":"00:00:07.313","source":"Browser","level":"ERROR","message":"Invalid DOM property `%s`. Did you mean `%s`? stroke-linejoin strokeLinejoin"}
-{"timestamp":"00:00:07.387","source":"Server","level":"ERROR","message":"[browser] \"Invalid DOM property `stop-color`. Did you mean `stopColor`?\" \"\""}
-{"timestamp":"00:00:07.388","source":"Browser","level":"ERROR","message":"Invalid DOM property `stop-color`. Did you mean `stopColor`? \"\""}
-{"timestamp":"00:00:07.388","source":"Server","level":"ERROR","message":"[browser] \"Invalid DOM property `stroke-width`. Did you mean `strokeWidth`?\" \"\""}
-{"timestamp":"00:00:07.388","source":"Browser","level":"ERROR","message":"Invalid DOM property `stroke-width`. Did you mean `strokeWidth`? \"\""}
-{"timestamp":"00:00:07.389","source":"Server","level":"ERROR","message":"[browser] \"Invalid DOM property `stroke-linecap`. Did you mean `strokeLinecap`?\" \"\""}
-{"timestamp":"00:00:07.389","source":"Browser","level":"ERROR","message":"Invalid DOM property `stroke-linecap`. Did you mean `strokeLinecap`? \"\""}
-{"timestamp":"00:00:07.389","source":"Server","level":"ERROR","message":"[browser] \"Invalid DOM property `stroke-linejoin`. Did you mean `strokeLinejoin`?\" \"\""}
-{"timestamp":"00:00:07.389","source":"Browser","level":"ERROR","message":"Invalid DOM property `stroke-linejoin`. Did you mean `strokeLinejoin`? \"\""}
-{"timestamp":"00:00:10.688","source":"Browser","level":"WARN","message":"Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior"}
-{"timestamp":"00:00:10.715","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mDetected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\\\"smooth\\\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior\\u001b[39m\""}
-{"timestamp":"00:00:10.716","source":"Browser","level":"WARN","message":"\u001b[33mDetected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior\u001b[39m"}
+{"timestamp":"00:00:03.073","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:03.703","source":"Server","level":"ERROR","message":"Invalid DOM property `stop-color`. Did you mean `stopColor`?"}
+{"timestamp":"00:00:03.704","source":"Server","level":"ERROR","message":"Invalid DOM property `stroke-width`. Did you mean `strokeWidth`?"}
+{"timestamp":"00:00:03.704","source":"Server","level":"ERROR","message":"Invalid DOM property `stroke-linecap`. Did you mean `strokeLinecap`?"}
+{"timestamp":"00:00:03.705","source":"Server","level":"ERROR","message":"Invalid DOM property `stroke-linejoin`. Did you mean `strokeLinejoin`?"}
+{"timestamp":"00:00:06.091","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:00:06.563","source":"Browser","level":"ERROR","message":"Invalid DOM property `%s`. Did you mean `%s`? stop-color stopColor"}
+{"timestamp":"00:00:06.563","source":"Browser","level":"ERROR","message":"Invalid DOM property `%s`. Did you mean `%s`? stroke-width strokeWidth"}
+{"timestamp":"00:00:06.563","source":"Browser","level":"ERROR","message":"Invalid DOM property `%s`. Did you mean `%s`? stroke-linecap strokeLinecap"}
+{"timestamp":"00:00:06.563","source":"Browser","level":"ERROR","message":"Invalid DOM property `%s`. Did you mean `%s`? stroke-linejoin strokeLinejoin"}
+{"timestamp":"00:00:06.563","source":"Browser","level":"WARN","message":"Image with src \"/images/collaboration.svg\" has \"fill\" prop and \"sizes\" prop of \"100vw\", but image is not rendered at full viewport width. Please adjust \"sizes\" to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes"}
+{"timestamp":"00:00:06.828","source":"Server","level":"LOG","message":"✓ Compiled in 38ms"}
+{"timestamp":"00:00:14.735","source":"Server","level":"LOG","message":"✓ Compiled in 22ms"}
+{"timestamp":"00:00:21.739","source":"Server","level":"LOG","message":"✓ Compiled in 33ms"}

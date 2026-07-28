@@ -81,6 +81,7 @@ export default function AboutPage() {
                   src="/images/challenges.svg"
                   alt="Solving routing challenges"
                   fill
+                  unoptimized
                   style={{ objectFit: "cover" }}
                   className={styles.image}
                 />
@@ -116,6 +117,7 @@ export default function AboutPage() {
                   src="/images/placements.svg"
                   alt="Mauritius internships and jobs"
                   fill
+                  unoptimized
                   style={{ objectFit: "cover" }}
                   className={styles.image}
                 />

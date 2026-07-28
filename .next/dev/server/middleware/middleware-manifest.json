@@ -3,15 +3,15 @@
   "middleware": {
     "/": {
       "files": [
-        "server/edge/chunks/0ayh_next_dist_0q8ao7d._.js",
-        "server/edge/chunks/0ayh_@supabase_auth-js_dist_module_088qw8c._.js",
-        "server/edge/chunks/0ayh_0ut_tqp._.js",
-        "server/edge/chunks/[root-of-the-server]__1nrqo9b._.js",
-        "server/edge/chunks/0u92_next_dist_esm_build_templates_edge-wrapper_0hmcjqm.js"
+        "server/edge/chunks/node_modules_next_dist_0d6nttc._.js",
+        "server/edge/chunks/node_modules_@supabase_auth-js_dist_module_0focj3n._.js",
+        "server/edge/chunks/node_modules_0f1xtf7._.js",
+        "server/edge/chunks/[root-of-the-server]__0lwcf8h._.js",
+        "server/edge/chunks/turbopack-node_modules_next_dist_esm_build_templates_edge-wrapper_0dqrtpa.js"
       ],
       "name": "middleware",
       "page": "/",
-      "entrypoint": "server/edge/chunks/0u92_next_dist_esm_build_templates_edge-wrapper_0hmcjqm.js",
+      "entrypoint": "server/edge/chunks/turbopack-node_modules_next_dist_esm_build_templates_edge-wrapper_0dqrtpa.js",
       "matchers": [
         {
           "regexp": "/:nextData(_next/data/[^/]{1,})?/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|avif|ico)$).*){(\\.json|\\.rsc|\\.segments/.+\\.segment\\.rsc)}?",
@@ -23,9 +23,9 @@
       "env": {
         "__NEXT_BUILD_ID": "development",
         "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "r1lQZi03Wft3hM+gXiRcRE/1eG3amhCHv1HMmivqdfk=",
-        "__NEXT_PREVIEW_MODE_ID": "b9a99ce0987f7a0711e100faf23169df",
-        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "b28320a2fefe914deeffaf8e90cc3a52a7f6bb020629457ebc242a1123af609c",
-        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "1e76ba78ba9b249123e6aee2121b5eaa61e708d6b92a0deab603979261efae7f"
+        "__NEXT_PREVIEW_MODE_ID": "9be890ffa374b12aabb101bd1d30e7d6",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "e2b1821372ed20b88cf6f04d85c4503254de405a1b45d51b902eab9e5022b3e7",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "cad770fa226cb1b84cd1ee2aa706853d004e1a216e7381dcb88fb6a0c11bfdba"
       }
     }
   },
