@@ -8,7 +8,7 @@
    margin. */
 .header {
   position: sticky;
-  top: var(--space-5);
+  top: var(--space-4);
   left: 0;
   right: 0;
   height: 0;
@@ -16,18 +16,29 @@
   z-index: var(--z-header);
 }
 
-/* The glass pill itself. The header handles the vertical gap now, so
-   the pill only needs horizontal centering. */
+/* The glass pill itself — compact capsule that wraps around links cleanly. */
 .pill {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-5);
-  width: calc(100% - var(--space-5) * 2);
-  max-width: 64rem;
-  margin: 0 auto 0;
-  padding: var(--space-3) var(--space-5);
+  gap: var(--space-4);
+  width: fit-content;
+  max-width: calc(100vw - var(--space-5) * 2);
+  margin: 0 auto;
+  padding: 0.45rem var(--space-4);
   border-radius: var(--radius-full);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+  transition: padding var(--duration) var(--ease-out),
+    background-color var(--duration) var(--ease-out),
+    box-shadow var(--duration) var(--ease-out);
+}
+
+.pillScrolled {
+  padding: 0.32rem 1.1rem;
+  background-color: var(--glass-header-backing);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
 }
 
 /* ---------- Left group ---------- */
@@ -42,7 +53,7 @@
   gap: var(--space-2);
   color: var(--ink);
   font-family: var(--font-body);
-  font-size: var(--step-1);
+  font-size: var(--step-0);
   font-weight: 600;
   letter-spacing: -0.01em;
   white-space: nowrap;
@@ -52,8 +63,8 @@
 .links {
   display: none;
   align-items: center;
-  gap: var(--space-6);
-  margin-left: var(--space-6);
+  gap: var(--space-4);
+  margin-left: var(--space-4);
 }
 
 @media (min-width: 900px) {

@@ -238,9 +238,11 @@ button:disabled {
   padding-inline: var(--space-5);
 }
 
-/* Standard vertical rhythm between big page sections. */
+/* Standard vertical rhythm between big page sections.
+   Extra top padding ensures headings never collide with the sticky navbar pill. */
 .section {
-  padding-block: var(--space-9);
+  padding-top: calc(var(--space-9) + 2rem);
+  padding-bottom: var(--space-9);
 }
 
 /* Visible to screen readers, invisible on screen. Use it to label

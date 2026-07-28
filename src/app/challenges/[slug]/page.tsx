@@ -58,6 +58,7 @@ export default async function ChallengePage({ params }: Props) {
           src={challenge.cover_image_url}
           alt={challenge.title}
           kind={challenge.kind}
+          slug={challenge.slug}
         />
 
         <p className={styles.org}>

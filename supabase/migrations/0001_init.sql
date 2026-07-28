@@ -211,6 +211,7 @@ create table challenges (
   team_size_max smallint not null default 1,
   deadline    date not null,
   status      listing_status not null default 'draft',
+  cover_image_url text,
   created_by  uuid not null references profiles on delete cascade,
   created_at  timestamptz not null default now(),
 

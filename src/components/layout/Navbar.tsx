@@ -39,29 +39,36 @@ export default function Navbar() {
 
   // Undefined = "still checking", so the bar renders neither state
   // until we actually know — avoids a flash of the wrong links.
-  const [user, setUser] = useState<User | null | undefined>(undefined);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const close = () => setIsOpen(false);
 
   useEffect(() => {
+    function handleScroll() {
+      setIsScrolled(window.scrollY > 30);
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
     if (!isSupabaseConfigured()) {
       setUser(null);
-      return;
+      return () => window.removeEventListener("scroll", handleScroll);
     }
 
     const supabase = createClient();
 
     supabase.auth.getUser().then(({ data }) => setUser(data.user));
 
-    // Keeps the bar in sync when auth state changes in another tab,
-    // or right after this page signs in or out.
     const { data: subscription } = supabase.auth.onAuthStateChange(
       (_event, session) => {
         setUser(session?.user ?? null);
       },
     );
 
-    return () => subscription.subscription.unsubscribe();
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      subscription.subscription.unsubscribe();
+    };
   }, []);
 
   async function handleLogOut() {
@@ -76,7 +83,7 @@ export default function Navbar() {
 
   return (
     <header className={styles.header}>
-      <div className={`liquid-glass ${styles.pill}`}>
+      <div className={`liquid-glass ${styles.pill} ${isScrolled ? styles.pillScrolled : ""}`}>
         <div className={styles.left}>
           <Link href="/" className={styles.brand}>
             <Logo size={24} />

@@ -8,7 +8,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Tag, { TagRow } from "@/components/ui/Tag";
-import { formatDeadline, labelChallengeKind } from "@/lib/format";
+import { formatDeadline, labelChallengeKind, getChallengeCoverImage } from "@/lib/format";
 import type { ChallengeWithOrg } from "@/types/database";
 import styles from "./ChallengeCard.module.css";
 
@@ -21,7 +21,7 @@ export default function ChallengeCard({ challenge }: Props) {
   const isOpenSource = challenge.kind === "open_source";
   const defaultImage = isOpenSource ? "/images/opensource.svg" : "/images/challenges.svg";
 
-  const [imgSrc, setImgSrc] = useState(challenge.cover_image_url || defaultImage);
+  const [imgSrc, setImgSrc] = useState(getChallengeCoverImage(challenge));
 
   const deadlineText = formatDeadline(challenge.deadline);
   const isUrgent =

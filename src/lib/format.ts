@@ -110,7 +110,40 @@ export function labelMode(mode: WorkMode): string {
 }
 
 export function labelChallengeKind(kind: ChallengeKind): string {
-  return challengeKindLabels[kind] ?? kind;
+  switch (kind) {
+    case "open_source":
+      return "Open source";
+    default:
+      return "Industry challenge";
+  }
+}
+
+/**
+ * Resolves the cover image for a challenge, falling back to a dedicated local SVG based on slug or kind.
+ */
+export function getChallengeCoverImage(challenge: {
+  slug?: string;
+  kind?: string;
+  cover_image_url?: string | null;
+}): string {
+  if (challenge.cover_image_url) return challenge.cover_image_url;
+
+  switch (challenge.slug) {
+    case "predict-lagoon-water-quality":
+      return "/images/lagoon-water-quality.svg";
+    case "offline-first-claims-form":
+      return "/images/claims-form.svg";
+    case "cut-warehouse-query-costs":
+      return "/images/warehouse-cost.svg";
+    case "creole-place-name-geocoder":
+      return "/images/geocoder.svg";
+    case "accessible-date-picker":
+      return "/images/date-picker.svg";
+    default:
+      return challenge.kind === "open_source"
+        ? "/images/opensource.svg"
+        : "/images/challenges.svg";
+  }
 }
 
 /** "applied" -> "Applied". Used for status badges. */

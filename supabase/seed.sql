@@ -205,7 +205,7 @@ on conflict (slug) do nothing;
 
 insert into challenges (
   id, org_id, title, slug, summary, brief, kind, sector, repo_url,
-  skills, reward, team_size_max, deadline, status, created_by
+  skills, reward, team_size_max, deadline, status, cover_image_url, created_by
 )
 values
   ('d1111111-1111-4111-8111-111111111111',
@@ -217,6 +217,7 @@ values
    'challenge', 'Ocean Economy', null,
    '{Python,"Machine Learning","Time Series"}',
    'Rs 30,000 and a paid internship offer', 3, '2026-10-31', 'open',
+   '/images/lagoon-water-quality.svg',
    'a2222222-2222-4222-8222-222222222222'),
 
   ('d2222222-2222-4222-8222-222222222222',
@@ -228,6 +229,7 @@ values
    'challenge', 'ICT & Software', null,
    '{JavaScript,"Service Workers",IndexedDB,"Offline First"}',
    'Rs 25,000', 2, '2026-09-20', 'open',
+   '/images/claims-form.svg',
    'a1111111-1111-4111-8111-111111111111'),
 
   ('d3333333-3333-4333-8333-333333333333',
@@ -240,6 +242,7 @@ values
    'https://github.com/lagoon-analytics/creole-geocoder',
    '{Python,NLP,"Open Source",GIS}',
    'Mentorship and a written reference', 4, '2026-12-15', 'open',
+   '/images/geocoder.svg',
    'a2222222-2222-4222-8222-222222222222'),
 
   ('d4444444-4444-4444-8444-444444444444',
@@ -247,10 +250,11 @@ values
    'Cut our warehouse query costs in half',
    'cut-warehouse-query-costs',
    'Our analytics bill doubled in a year. Find the waste.',
-   E'THE PROBLEM\nWe run roughly 4,000 analytical queries a day. The bill has doubled while the data has grown maybe 20%.\n\nWHAT WE WILL GIVE YOU\nAnonymised query logs with runtimes and bytes scanned, plus the table schemas.\n\nWHAT WE WANT\nWhere the money is going, and the three changes that would save the most. Partitioning, materialised views, or just deleting the dashboard nobody opens — we do not mind which, as long as you show the working.\n\nWHAT TO SUBMIT\nHow you would investigate, and what you would measure to prove it worked.',
+   E'THE PROBLEM\nWe run roughly 4,000 analytical queries a day. The bill has doubled while the data has grown maybe 20%.\n\nWHAT WE WILL GIVE YOU\nAnonymised query logs with runtimes and bytes scanned, plus the table schemas.\n\nWHAT WE WANT\nWhere the money is going, and the three changes that would save the most. Partitioning, materialised views, or just deleting the dashboard nobody opens — we do not mind which, as long as you show the working.\n\nWHAT TO SUBMIT\nHow you would investigate, and what you would need from us.',
    'challenge', 'ICT & Software', null,
    '{SQL,"Query Optimisation","Data Warehousing"}',
    'Rs 20,000', 2, '2026-11-15', 'open',
+   '/images/warehouse-cost.svg',
    'a1111111-1111-4111-8111-111111111111'),
 
   ('d5555555-5555-4555-8555-555555555555',
@@ -263,6 +267,7 @@ values
    'https://github.com/cloudfactory-mu/a11y-datepicker',
    '{TypeScript,Accessibility,"Open Source",Testing}',
    'Mentorship and conference ticket', 3, '2026-10-01', 'open',
+   '/images/date-picker.svg',
    'a1111111-1111-4111-8111-111111111111')
 on conflict (slug) do nothing;
 
