@@ -35,7 +35,7 @@ export default function Footer() {
             </p>
             <p className={styles.tagline}>
               Internships, industry challenges, and open-source projects for
-              Mauritian students.
+              Mauritius-based students.
             </p>
           </div>
 
