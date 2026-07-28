@@ -126,6 +126,15 @@ Access the live site at: **[https://semantic-squad-kapital.vercel.app/](https://
 Contributions, issues, and feature requests are welcome!  
 Feel free to open an issue or submit a pull request to help build the future of tech talent in Mauritius.
 
+## 👥 Authors & Team
+
+This project is developed and maintained by **Semantic Squad**:
+- **Chrys Elisee Gnagne**
+- **Nelson Fodjo Kamdoum**
+- **Abdulkadir Abduljabar Oshoke**
+- **Nkusi Teta Lovella**
+- **Sampson Ofotsu Foli**
+
 ---
 
 ## 📄 License

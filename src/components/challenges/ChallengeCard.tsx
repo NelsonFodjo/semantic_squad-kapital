@@ -1,7 +1,10 @@
+"use client";
+
 // ============================================================
 // ChallengeCard — one industry challenge or open-source project.
 // ============================================================
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Tag, { TagRow } from "@/components/ui/Tag";
@@ -16,6 +19,9 @@ type Props = {
 export default function ChallengeCard({ challenge }: Props) {
   const org = challenge.organizations;
   const isOpenSource = challenge.kind === "open_source";
+  const defaultImage = isOpenSource ? "/images/opensource.svg" : "/images/challenges.svg";
+
+  const [imgSrc, setImgSrc] = useState(challenge.cover_image_url || defaultImage);
 
   const deadlineText = formatDeadline(challenge.deadline);
   const isUrgent =
@@ -30,10 +36,11 @@ export default function ChallengeCard({ challenge }: Props) {
     >
       <div className={styles.imageFrame}>
         <Image
-          src={challenge.cover_image_url || (isOpenSource ? "/images/opensource.svg" : "/images/challenges.svg")}
+          src={imgSrc}
           alt={challenge.title}
           fill
           unoptimized
+          onError={() => setImgSrc(defaultImage)}
           style={{ objectFit: "cover" }}
           className={styles.image}
         />

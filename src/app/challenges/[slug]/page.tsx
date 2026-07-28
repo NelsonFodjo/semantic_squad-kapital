@@ -4,7 +4,7 @@
 
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Image from "next/image";
+import ChallengeHeroImage from "@/components/challenges/ChallengeHeroImage";
 import Tag, { TagRow } from "@/components/ui/Tag";
 import Button from "@/components/ui/Button";
 import ProposalForm from "@/components/challenges/ProposalForm";
@@ -54,16 +54,11 @@ export default async function ChallengePage({ params }: Props) {
       </Link>
 
       <header className={styles.header}>
-        <div className={`liquid-glass ${styles.heroImageFrame}`} data-hue={challenge.kind === "open_source" ? "palm" : "coral"}>
-          <Image
-            src={challenge.cover_image_url || (challenge.kind === "open_source" ? "/images/opensource.svg" : "/images/challenges.svg")}
-            alt={challenge.title}
-            fill
-            unoptimized
-            style={{ objectFit: "cover" }}
-            className={styles.heroImage}
-          />
-        </div>
+        <ChallengeHeroImage
+          src={challenge.cover_image_url}
+          alt={challenge.title}
+          kind={challenge.kind}
+        />
 
         <p className={styles.org}>
           {org?.name ?? "Organisation"}

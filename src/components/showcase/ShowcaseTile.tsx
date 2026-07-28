@@ -1,9 +1,10 @@
+"use client";
+
 // ============================================================
 // ShowcaseTile — one piece of published work in the gallery.
 // ============================================================
-// Everything interesting is in the CSS: the image zooms, a dark veil
-// fades in, and the prompt slides up. The markup stays plain.
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { formatDate } from "@/lib/format";
@@ -23,18 +24,18 @@ export default function ShowcaseTile({
   sizes = "(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw",
   wide = false,
 }: Props) {
+  const defaultImage = "/images/showcase.svg";
+  const [imgSrc, setImgSrc] = useState(item.cover_image_url || defaultImage);
+
   return (
     <Link href={`/showcase/${item.slug}`} className={styles.tile}>
       <div className={`${styles.frame} ${wide ? styles.frameWide : ""}`}>
-        {/* next/image serves a resized, modern-format version of the
-            picture, which matters a lot on mobile data. It needs
-            either width/height or `fill` — fill makes the image cover
-            its container, which is what we want here. */}
         <Image
-          src={item.cover_image_url || "/images/showcase.svg"}
+          src={imgSrc}
           alt={item.title || "Showcase case study"}
           fill
           unoptimized
+          onError={() => setImgSrc(defaultImage)}
           sizes={sizes}
           className={styles.image}
         />
