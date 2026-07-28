@@ -55,6 +55,7 @@ export default function PhilosophySection() {
               src="/images/innovation.svg"
               alt="Innovation x Vision"
               fill
+              unoptimized
               sizes="(max-width: 768px) 100vw, 50vw"
               style={{ objectFit: "cover" }}
             />

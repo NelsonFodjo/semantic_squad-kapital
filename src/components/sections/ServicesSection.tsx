@@ -85,6 +85,7 @@ export default function ServicesSection() {
                   src={card.image}
                   alt={card.title}
                   fill
+                  unoptimized
                   sizes="(max-width: 768px) 100vw, 50vw"
                   style={{ objectFit: "cover" }}
                 />

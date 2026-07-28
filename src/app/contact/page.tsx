@@ -36,6 +36,7 @@ export default function ContactPage() {
                 src="/images/opensource.svg"
                 alt="Collaborative networks"
                 fill
+                unoptimized
                 style={{ objectFit: "cover" }}
                 className={styles.image}
               />

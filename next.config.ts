@@ -3,6 +3,8 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   devIndicators: false,
   images: {
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     // next/image refuses to optimise images from hosts that are not
     // listed here. Without this, any remote cover image throws
     // "hostname is not configured under images".
