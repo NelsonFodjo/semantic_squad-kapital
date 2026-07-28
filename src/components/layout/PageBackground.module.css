@@ -1,0 +1,235 @@
+/* Styling for the dynamic page background wrapper */
+
+.wrapper {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1; /* Placed behind the rest of the application content */
+  background-color: var(--paper);
+  /* Luminous, highly premium deep midnight space mesh background instead of flat black */
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(56, 217, 232, 0.07) 0px, transparent 45%),
+    radial-gradient(at 100% 0%, rgba(181, 140, 255, 0.06) 0px, transparent 45%),
+    radial-gradient(at 50% 100%, rgba(255, 122, 144, 0.05) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(56, 217, 232, 0.04) 0px, transparent 40%);
+}
+
+/* Structural fine grid backdrop */
+.gridOverlay {
+  position: absolute;
+  inset: 0;
+  background-size: 56px 56px;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+  /* A radial vignette gradient that keeps the grid prominent in the center/aurora zones and fades it to the edges */
+  mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 85%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 85%);
+  opacity: 0.85;
+}
+
+/* Floating soft light blobs (aurora elements) */
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0;
+  transition: 
+    background-color var(--duration-slow) var(--ease-in-out),
+    opacity var(--duration-slow) var(--ease-in-out);
+  mix-blend-mode: screen;
+}
+
+.glow1 {
+  width: 55vw;
+  height: 55vw;
+  top: -15%;
+  left: -10%;
+  animation: float1 45s ease-in-out infinite alternate;
+}
+
+.glow2 {
+  width: 50vw;
+  height: 50vw;
+  bottom: -15%;
+  right: -10%;
+  animation: float2 50s ease-in-out infinite alternate;
+}
+
+.glow3 {
+  width: 38vw;
+  height: 38vw;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+/* Organic drifting animations using hardware-accelerated transforms */
+@keyframes float1 {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(4vw, 6vh) scale(1.1);
+  }
+  100% {
+    transform: translate(-4vw, 10vh) scale(0.9);
+  }
+}
+
+@keyframes float2 {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(-5vw, -6vh) scale(0.95);
+  }
+  100% {
+    transform: translate(3vw, -10vh) scale(1.15);
+  }
+}
+
+/* ---------- Theme settings per route ---------- */
+
+/* About Page (Warm, waves and glow elements) */
+.wrapper[data-theme="about"] {
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(255, 179, 71, 0.12) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(255, 122, 144, 0.12) 0px, transparent 50%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1200' width='100%' height='100%'%3E%3Cg stroke='%23ff7a90' stroke-opacity='0.24' stroke-width='2' fill='none'%3E%3Ccircle cx='800' cy='600' r='410' stroke-dasharray='12 12' /%3E%3Ccircle cx='800' cy='600' r='290' /%3E%3Ccircle cx='800' cy='600' r='150' stroke-dasharray='6 6' /%3E%3Cline x1='800' y1='180' x2='800' y2='1020' /%3E%3Cline x1='380' y1='600' x2='1220' y2='600' /%3E%3Cline x1='500' y1='300' x2='1100' y2='900' stroke-dasharray='10 10' /%3E%3Cline x1='500' y1='900' x2='1100' y2='300' stroke-dasharray='10 10' /%3E%3Cg transform='translate(670, 410) scale(2.0)' stroke-width='1.5'%3E%3Ccircle cx='20' cy='30' r='6' fill='rgba(255, 122, 144, 0.35)' /%3E%3Ccircle cx='35' cy='50' r='8' fill='rgba(255, 122, 144, 0.35)' stroke-width='2' stroke='%23ffb347' stroke-opacity='0.2' /%3E%3Ccircle cx='45' cy='45' r='5' stroke='%23ffb347' stroke-opacity='0.2' /%3E%3Ccircle cx='40' cy='75' r='6' stroke='%23ffb347' stroke-opacity='0.2' /%3E%3Ccircle cx='55' cy='10' r='5' stroke='%23ffb347' stroke-opacity='0.2' /%3E%3Ccircle cx='95' cy='50' r='5' stroke='%23ffb347' stroke-opacity='0.2' /%3E%3Ccircle cx='85' cy='95' r='6' stroke='%23ffb347' stroke-opacity='0.2' /%3E%3Cpath d='M 20 30 L 35 50' /%3E%3Cpath d='M 35 50 L 45 45' /%3E%3Cpath d='M 35 50 L 40 75' /%3E%3Cpath d='M 45 45 L 55 10' /%3E%3Cpath d='M 45 45 L 95 50' /%3E%3Cpath d='M 40 75 L 85 95' /%3E%3Cpath d='M 95 50 L 85 95' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: cover;
+}
+.wrapper[data-theme="about"] .glow1 {
+  background-color: var(--mango-glow);
+  opacity: 0.5;
+}
+.wrapper[data-theme="about"] .glow2 {
+  background-color: var(--coral-glow);
+  opacity: 0.5;
+}
+
+/* The wave fill above is baked as a literal dark hex inside the SVG
+   data URI, since url()-embedded SVGs can't reference CSS variables.
+   In light mode that dark wave would read as a smudge over the pale
+   paper, so swap in a light-paper-coloured version of the same SVG. */
+html[data-color-scheme="light"] .wrapper[data-theme="about"] {
+  background-image:
+    radial-gradient(at 0% 0%, rgba(255, 179, 71, 0.12) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(255, 122, 144, 0.12) 0px, transparent 50%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1200' width='100%' height='100%'%3E%3Cg stroke='%23ff7a90' stroke-opacity='0.24' stroke-width='2' fill='none'%3E%3Ccircle cx='800' cy='600' r='410' stroke-dasharray='12 12' /%3E%3Ccircle cx='800' cy='600' r='290' /%3E%3Ccircle cx='800' cy='600' r='150' stroke-dasharray='6 6' /%3E%3Cline x1='800' y1='180' x2='800' y2='1020' /%3E%3Cline x1='380' y1='600' x2='1220' y2='600' /%3E%3Cline x1='500' y1='300' x2='1100' y2='900' stroke-dasharray='10 10' /%3E%3Cline x1='500' y1='900' x2='1100' y2='300' stroke-dasharray='10 10' /%3E%3Cg transform='translate(670, 410) scale(2.0)' stroke-width='1.5'%3E%3Ccircle cx='20' cy='30' r='6' fill='rgba(255, 122, 144, 0.35)' /%3E%3Ccircle cx='35' cy='50' r='8' fill='rgba(255, 122, 144, 0.35)' stroke-width='2' stroke='%23ffb347' stroke-opacity='0.2' /%3E%3Ccircle cx='45' cy='45' r='5' stroke='%23ffb347' stroke-opacity='0.2' /%3E%3Ccircle cx='40' cy='75' r='6' stroke='%23ffb347' stroke-opacity='0.2' /%3E%3Ccircle cx='55' cy='10' r='5' stroke='%23ffb347' stroke-opacity='0.2' /%3E%3Ccircle cx='95' cy='50' r='5' stroke='%23ffb347' stroke-opacity='0.2' /%3E%3Ccircle cx='85' cy='95' r='6' stroke='%23ffb347' stroke-opacity='0.2' /%3E%3Cpath d='M 20 30 L 35 50' /%3E%3Cpath d='M 35 50 L 45 45' /%3E%3Cpath d='M 35 50 L 40 75' /%3E%3Cpath d='M 45 45 L 55 10' /%3E%3Cpath d='M 45 45 L 95 50' /%3E%3Cpath d='M 40 75 L 85 95' /%3E%3Cpath d='M 95 50 L 85 95' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: cover;
+}
+
+/* Challenges Page (Tech/Dynamic: tech nodes and coordinate circuit grid) */
+.wrapper[data-theme="challenges"] {
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(56, 217, 232, 0.12) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(74, 222, 155, 0.12) 0px, transparent 50%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1200' width='100%' height='100%'%3E%3Cg stroke='%234ade9b' stroke-opacity='0.24' stroke-width='2' fill='none'%3E%3Cpath d='M 800 200 L 950 286 L 950 458 L 800 544 L 650 458 L 650 286 Z' stroke-dasharray='10 10' /%3E%3Cpath d='M 800 544 L 950 630 L 950 802 L 800 888 L 650 802 L 650 630 Z' /%3E%3Cpath d='M 500 372 L 650 286 M 950 286 L 1100 372 M 950 458 L 1100 544 M 650 458 L 500 544' /%3E%3Cpath d='M 250 150 C 200 150 170 170 170 220 L 170 320 C 170 350 150 370 120 370 C 150 370 170 390 170 420 L 170 520 C 170 570 200 590 250 590' stroke-width='3' /%3E%3Cpath d='M 1350 150 C 1400 150 1430 170 1430 220 L 1430 320 C 1430 350 1450 370 1480 370 C 1450 370 1430 390 1430 420 L 1430 520 C 1430 570 1400 590 1350 590' stroke-width='3' /%3E%3Cline x1='230' y1='240' x2='370' y2='240' /%3E%3Cline x1='230' y1='290' x2='420' y2='290' /%3E%3Cline x1='270' y1='340' x2='400' y2='340' /%3E%3Cline x1='270' y1='390' x2='470' y2='390' stroke-dasharray='6 6' /%3E%3Ccircle cx='800' cy='200' r='10' fill='rgba(74, 222, 155, 0.15)' stroke='%2338d9e8' stroke-opacity='0.2' /%3E%3Ccircle cx='950' cy='286' r='10' fill='rgba(74, 222, 155, 0.15)' stroke='%2338d9e8' stroke-opacity='0.2' /%3E%3Ccircle cx='950' cy='458' r='10' fill='rgba(74, 222, 155, 0.15)' stroke='%2338d9e8' stroke-opacity='0.2' /%3E%3Ccircle cx='800' cy='544' r='10' fill='rgba(74, 222, 155, 0.15)' stroke='%2338d9e8' stroke-opacity='0.2' /%3E%3Ccircle cx='650' cy='458' r='10' fill='rgba(74, 222, 155, 0.15)' stroke='%2338d9e8' stroke-opacity='0.2' /%3E%3Ccircle cx='650' cy='286' r='10' fill='rgba(74, 222, 155, 0.15)' stroke='%2338d9e8' stroke-opacity='0.2' /%3E%3C/g%3E%3C/svg%3E");
+  background-size: cover;
+}
+.wrapper[data-theme="challenges"] .glow1 {
+  background-color: var(--lagoon-glow);
+  opacity: 0.5;
+}
+.wrapper[data-theme="challenges"] .glow2 {
+  background-color: var(--palm-glow);
+  opacity: 0.5;
+}
+
+/* Opportunities Page (Professional: oceanic lagoon fluid lines) */
+.wrapper[data-theme="opportunities"] {
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(106, 168, 255, 0.12) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(56, 217, 232, 0.12) 0px, transparent 50%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1200' width='100%' height='100%'%3E%3Cg stroke='%2338d9e8' stroke-opacity='0.24' stroke-width='2' fill='none'%3E%3Cpath d='M -100 800 C 300 800, 600 400, 1000 300 C 1400 200, 1500 50, 1800 50' /%3E%3Cpath d='M -100 850 C 300 850, 620 440, 1020 340 C 1420 240, 1500 90, 1800 90' stroke-dasharray='12 12' /%3E%3Cpath d='M -100 900 C 300 900, 640 480, 1040 380 C 1440 280, 1500 130, 1800 130' /%3E%3Cpath d='M 100 1000 L 400 700 M 400 700 L 800 500 M 800 500 L 1200 400' /%3E%3Cpath d='M 200 1050 L 500 750 M 500 750 L 900 550 M 900 550 L 1300 450' stroke-dasharray='8 8' /%3E%3Cg stroke-width='1.5'%3E%3Crect x='350' y='650' width='140' height='90' rx='10' fill='rgba(56, 217, 232, 0.03)' /%3E%3Ccircle cx='385' cy='685' r='12' /%3E%3Cline x1='410' y1='685' x2='465' y2='685' /%3E%3Cline x1='385' y1='715' x2='465' y2='715' /%3E%3Crect x='750' y='450' width='160' height='100' rx='10' fill='rgba(56, 217, 232, 0.03)' stroke='%236aa8ff' stroke-opacity='0.2' /%3E%3Ccircle cx='790' cy='490' r='14' stroke='%236aa8ff' stroke-opacity='0.2' /%3E%3Cline x1='815' y1='490' x2='880' y2='490' stroke='%236aa8ff' stroke-opacity='0.2' /%3E%3Cline x1='790' y1='522' x2='880' y2='522' stroke='%236aa8ff' stroke-opacity='0.2' /%3E%3Crect x='1150' y='350' width='150' height='90' rx='10' stroke-dasharray='5 5' fill='rgba(56, 217, 232, 0.02)' /%3E%3Ccircle cx='1185' cy='385' r='12' /%3E%3Cline x1='1210' y1='385' x2='1275' y2='385' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: cover;
+}
+.wrapper[data-theme="opportunities"] .glow1 {
+  background-color: var(--sky-glow);
+  opacity: 0.42;
+}
+.wrapper[data-theme="opportunities"] .glow2 {
+  background-color: var(--lagoon-glow);
+  opacity: 0.42;
+}
+
+/* Same reasoning as the "about" override above: swap the dark wave
+   fill for a light-paper-coloured one so it doesn't smudge the page
+   in light mode. */
+html[data-color-scheme="light"] .wrapper[data-theme="opportunities"] {
+  background-image:
+    radial-gradient(at 0% 0%, rgba(106, 168, 255, 0.12) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(56, 217, 232, 0.12) 0px, transparent 50%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1200' width='100%' height='100%'%3E%3Cg stroke='%2338d9e8' stroke-opacity='0.24' stroke-width='2' fill='none'%3E%3Cpath d='M -100 800 C 300 800, 600 400, 1000 300 C 1400 200, 1500 50, 1800 50' /%3E%3Cpath d='M -100 850 C 300 850, 620 440, 1020 340 C 1420 240, 1500 90, 1800 90' stroke-dasharray='12 12' /%3E%3Cpath d='M -100 900 C 300 900, 640 480, 1040 380 C 1440 280, 1500 130, 1800 130' /%3E%3Cpath d='M 100 1000 L 400 700 M 400 700 L 800 500 M 800 500 L 1200 400' /%3E%3Cpath d='M 200 1050 L 500 750 M 500 750 L 900 550 M 900 550 L 1300 450' stroke-dasharray='8 8' /%3E%3Cg stroke-width='1.5'%3E%3Crect x='350' y='650' width='140' height='90' rx='10' fill='rgba(56, 217, 232, 0.03)' /%3E%3Ccircle cx='385' cy='685' r='12' /%3E%3Cline x1='410' y1='685' x2='465' y2='685' /%3E%3Cline x1='385' y1='715' x2='465' y2='715' /%3E%3Crect x='750' y='450' width='160' height='100' rx='10' fill='rgba(56, 217, 232, 0.03)' stroke='%236aa8ff' stroke-opacity='0.2' /%3E%3Ccircle cx='790' cy='490' r='14' stroke='%236aa8ff' stroke-opacity='0.2' /%3E%3Cline x1='815' y1='490' x2='880' y2='490' stroke='%236aa8ff' stroke-opacity='0.2' /%3E%3Cline x1='790' y1='522' x2='880' y2='522' stroke='%236aa8ff' stroke-opacity='0.2' /%3E%3Crect x='1150' y='350' width='150' height='90' rx='10' stroke-dasharray='5 5' fill='rgba(56, 217, 232, 0.02)' /%3E%3Ccircle cx='1185' cy='385' r='12' /%3E%3Cline x1='1210' y1='385' x2='1275' y2='385' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: cover;
+}
+
+/* Showcase Page (Creative: geometric diamond shapes and portfolio coordinates) */
+.wrapper[data-theme="showcase"] {
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(181, 140, 255, 0.12) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(255, 122, 144, 0.12) 0px, transparent 50%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1200' width='100%' height='100%'%3E%3Cg stroke='%23b58cff' stroke-opacity='0.24' stroke-width='2' fill='none'%3E%3Cpath d='M 800 600 C 600 300, 1000 300, 800 100' stroke-dasharray='6 6' /%3E%3Cpath d='M 800 600 C 1000 900, 600 900, 800 1100' /%3E%3Cg stroke-width='1.5'%3E%3Crect x='200' y='300' width='320' height='210' rx='14' fill='rgba(181, 140, 255, 0.03)' /%3E%3Ccircle cx='265' cy='370' r='32' /%3E%3Cline x1='315' y1='360' x2='475' y2='360' stroke-width='2.5' /%3E%3Cline x1='315' y1='390' x2='435' y2='390' /%3E%3Crect x='230' y='445' width='80' height='26' rx='13' /%3E%3Crect x='320' y='445' width='80' height='26' rx='13' /%3E%3Crect x='410' y='445' width='80' height='26' rx='13' /%3E%3C/g%3E%3Cg stroke-width='1.5'%3E%3Crect x='1080' y='600' width='340' height='250' rx='14' fill='rgba(255, 122, 144, 0.03)' stroke='%23ff7a90' stroke-opacity='0.2' /%3E%3Crect x='1110' y='630' width='280' height='120' rx='8' stroke-dasharray='5 5' stroke='%23ff7a90' stroke-opacity='0.2' /%3E%3Cline x1='1110' y1='775' x2='1370' y2='775' stroke-width='2.5' stroke='%23ff7a90' stroke-opacity='0.2' /%3E%3Cline x1='1110' y1='805' x2='1250' y2='805' stroke='%23ff7a90' stroke-opacity='0.2' /%3E%3C/g%3E%3Cg stroke-width='2'%3E%3Cpath d='M 800 300 M 760 300 H 840 M 800 300 V 335 M 780 335 H 820 M 765 220 C 765 270, 835 270, 835 220 V 180 H 765 Z' /%3E%3Cpath d='M 765 200 C 740 200 735 220 735 230 C 735 250 755 250 765 250' stroke-width='1.5' /%3E%3Cpath d='M 835 200 C 860 200 865 220 865 230 C 865 250 845 250 835 250' stroke-width='1.5' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: cover;
+}
+.wrapper[data-theme="showcase"] .glow1 {
+  background-color: var(--orchid-glow);
+  opacity: 0.5;
+}
+.wrapper[data-theme="showcase"] .glow2 {
+  background-color: var(--coral-glow);
+  opacity: 0.5;
+}
+
+/* Dashboard Theme (Productive: clean progress lines and nodes) */
+.wrapper[data-theme="dashboard"] {
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(106, 168, 255, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(74, 222, 155, 0.1) 0px, transparent 50%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1200'%3E%3Cpath d='M100,1000 Q400,900 800,600 T1500,200' fill='none' stroke='rgba(74,222,155,0.05)' stroke-width='3'/%3E%3Ccircle cx='800' cy='600' r='4' fill='%234ade9b' fill-opacity='0.5'/%3E%3Ccircle cx='1500' cy='200' r='4' fill='%234ade9b' fill-opacity='0.5'/%3E%3C/svg%3E");
+  background-size: cover;
+}
+.wrapper[data-theme="dashboard"] .glow1 {
+  background-color: var(--sky-glow);
+  opacity: 0.42;
+}
+.wrapper[data-theme="dashboard"] .glow2 {
+  background-color: var(--palm-glow);
+  opacity: 0.42;
+}
+
+/* Auth Pages (Focus: centered backlight framing rings) */
+.wrapper[data-theme="auth"] {
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(106, 168, 255, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(181, 140, 255, 0.1) 0px, transparent 50%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1200' width='100%' height='100%'%3E%3Cg stroke='%236aa8ff' stroke-opacity='0.24' stroke-width='2' fill='none'%3E%3Ccircle cx='800' cy='600' r='310' /%3E%3Ccircle cx='800' cy='600' r='340' stroke-dasharray='14 14' /%3E%3Ccircle cx='800' cy='600' r='190' /%3E%3Ccircle cx='800' cy='600' r='110' stroke-dasharray='6 6' /%3E%3Cpath d='M 800 380 C 860 380, 960 400, 960 450 V 620 C 960 750, 800 820, 800 820 C 800 820, 640 750, 640 620 V 450 C 640 400, 740 380, 800 380 Z' stroke-width='3' /%3E%3Cline x1='800' y1='80' x2='800' y2='380' stroke-dasharray='10 10' /%3E%3Cline x1='800' y1='820' x2='800' y2='1120' stroke-dasharray='10 10' /%3E%3Cline x1='150' y1='600' x2='640' y2='600' stroke-dasharray='10 10' /%3E%3Cline x1='960' y1='600' x2='1450' y2='600' stroke-dasharray='10 10' /%3E%3Crect x='130' y='585' width='30' height='30' rx='6' fill='rgba(106, 168, 255, 0.05)' stroke='%23b58cff' stroke-opacity='0.2' /%3E%3Ccircle cx='145' cy='600' r='6' stroke='%23b58cff' stroke-opacity='0.2' /%3E%3Crect x='1440' y='585' width='30' height='30' rx='6' fill='rgba(181, 140, 255, 0.05)' stroke='%23b58cff' stroke-opacity='0.2' /%3E%3Ccircle cx='1455' cy='600' r='6' stroke='%23b58cff' stroke-opacity='0.2' /%3E%3C/g%3E%3C/svg%3E");
+  background-size: cover;
+}
+.wrapper[data-theme="auth"] .glow1 {
+  background-color: var(--sky-glow);
+  opacity: 0.3;
+}
+.wrapper[data-theme="auth"] .glow2 {
+  background-color: var(--orchid-glow);
+  opacity: 0.3;
+}
+.wrapper[data-theme="auth"] .glow3 {
+  background-color: var(--lagoon-glow);
+  opacity: 0.38;
+}
+
+/* Default / Home page (Extremely subtle ambiance to respect the video hero) */
+.wrapper[data-theme="default"] .glow1 {
+  background-color: var(--sky-glow);
+  opacity: 0.16;
+}
+.wrapper[data-theme="default"] .glow2 {
+  background-color: var(--orchid-glow);
+  opacity: 0.16;
+}

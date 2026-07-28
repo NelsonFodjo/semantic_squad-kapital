@@ -1,0 +1,142 @@
+/* Styles for ShowcaseTile.tsx — the gallery tile.
+   This is where the reference site's look lives: a big image, a
+   restrained caption, and everything happening on hover. */
+
+.tile {
+  display: block;
+  /* Stops the zooming image spilling outside its rounded corners. */
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+/* ---------- Image frame ---------- */
+.frame {
+  position: relative;
+  /* A fixed 4:3 shape means every tile matches, whatever the image. */
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background-color: var(--paper-sunken);
+  border-radius: var(--radius-lg);
+}
+
+/* The wide variant, used for the first tile in the gallery.
+   This lives here rather than in the page's stylesheet because CSS
+   Modules scope class names per file: a `.frame` written in
+   page.module.css would be a different, unrelated class. */
+.frameWide {
+  aspect-ratio: 16 / 9;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  /* cover fills the frame and crops the overflow, rather than
+     squashing the picture out of shape. */
+  object-fit: cover;
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+
+/* The slow zoom. Scaling an image is cheap for the browser to
+   animate, unlike changing width or height. */
+.tile:hover .image {
+  transform: scale(1.05);
+}
+
+/* A dark wash that fades in, so the white overlay text stays legible
+   whatever the photo underneath looks like. */
+.veil {
+  position: absolute;
+  inset: 0; /* shorthand for top/right/bottom/left: 0 */
+  background: linear-gradient(
+    to top,
+    rgba(6, 6, 8, 0.78) 0%,
+    rgba(6, 6, 8, 0.25) 45%,
+    transparent 75%
+  );
+  opacity: 0;
+  transition: opacity var(--duration) var(--ease-out);
+}
+
+.tile:hover .veil {
+  opacity: 1;
+}
+
+/* The "read case study" prompt, sitting on the veil. It starts
+   slightly low and slides up as it fades in. */
+.overlay {
+  position: absolute;
+  left: var(--space-5);
+  right: var(--space-5);
+  bottom: var(--space-5);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity var(--duration) var(--ease-out),
+    transform var(--duration) var(--ease-out);
+}
+
+.tile:hover .overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Featured tiles get a small badge in the corner. */
+.featured {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  padding: 2px var(--space-3);
+  background-color: var(--paper);
+  border-radius: var(--radius-full);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* ---------- Caption below the image ---------- */
+.caption {
+  padding-top: var(--space-4);
+}
+
+.title {
+  font-size: var(--step-1);
+  color: var(--ink);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.tile:hover .title {
+  color: var(--accent);
+}
+
+.summary {
+  margin-top: var(--space-2);
+  font-size: var(--step--1);
+  color: var(--ink-faint);
+  /* Two lines maximum, so captions stay even across the row. */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+}
+
+.author {
+  font-weight: 600;
+  color: var(--ink-soft);
+}

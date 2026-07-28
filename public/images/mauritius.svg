@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#05050d" />
+      <stop offset="100%" stop-color="#051412" />
+    </linearGradient>
+    <linearGradient id="reefGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4ade9b" />
+      <stop offset="50%" stop-color="#38d9e8" />
+      <stop offset="100%" stop-color="#6aa8ff" />
+    </linearGradient>
+    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(74, 222, 155, 0.4)" />
+      <stop offset="100%" stop-color="rgba(106, 168, 255, 0.05)" />
+    </linearGradient>
+    <linearGradient id="glassGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255, 255, 255, 0.08)" />
+      <stop offset="100%" stop-color="rgba(255, 255, 255, 0.01)" />
+    </linearGradient>
+    
+    <!-- Glow filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="25" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="url(#bgGrad)" />
+
+  <!-- Grid overlay -->
+  <g stroke="rgba(255, 255, 255, 0.02)" stroke-width="1">
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" />
+    </pattern>
+    <rect width="100%" height="100%" fill="url(#grid)" />
+  </g>
+
+  <!-- Radial Glow Behind -->
+  <circle cx="400" cy="300" r="180" fill="url(#glowGrad)" filter="url(#glow)" opacity="0.6" />
+
+  <!-- Abstract wireframe Map of Mauritius -->
+  <g transform="translate(180, 50)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Outer boundary coordinates representing Mauritius -->
+    <polygon points="
+      220,50  240,60  260,80  255,110 270,130 280,160 260,195 285,225 
+      290,265 305,295 300,320 315,350 310,380 295,410 270,430 240,420 
+      210,435 180,445 155,420 135,435 110,410 95,385  80,360  100,330 
+      90,290  115,260 120,225 140,190 125,160 145,130 150,105 180,95 
+      190,75  200,60" 
+      stroke="rgba(255, 255, 255, 0.15)" stroke-width="2.5" />
+      
+    <!-- Interior Grid mesh / connecting lines across regions -->
+    <g stroke="rgba(255, 255, 255, 0.05)" stroke-width="1">
+      <line x1="220" y1="50" x2="180" y2="95" />
+      <line x1="260" y1="80" x2="200" y2="150" />
+      <line x1="280" y1="160" x2="200" y2="150" />
+      <line x1="260" y1="195" x2="200" y2="250" />
+      <line x1="285" y1="225" x2="220" y2="300" />
+      <line x1="290" y1="265" x2="220" y2="300" />
+      <line x1="305" y1="295" x2="250" y2="360" />
+      <line x1="315" y1="350" x2="250" y2="360" />
+      <line x1="295" y1="410" x2="210" y2="380" />
+      <line x1="210" y1="435" x2="210" y2="380" />
+      <line x1="155" y1="420" x2="160" y2="340" />
+      <line x1="110" y1="410" x2="160" y2="340" />
+      <line x1="90" y1="290" x2="150" y2="280" />
+      <line x1="120" y1="225" x2="150" y2="280" />
+      <line x1="125" y1="160" x2="180" y2="180" />
+      <line x1="145" y1="130" x2="180" y2="180" />
+    </g>
+
+    <!-- Glowing Tech Node Lines (Network paths) -->
+    <g stroke="url(#reefGrad)" stroke-width="2">
+      <!-- Port Louis to Ebène -->
+      <line x1="155" y1="135" x2="180" y2="185" />
+      <!-- Ebène to Moka -->
+      <line x1="180" y1="185" x2="210" y2="180" />
+      <!-- Ebène to Curepipe -->
+      <line x1="180" y1="185" x2="195" y2="260" />
+      <!-- Curepipe to Phoenix -->
+      <line x1="195" y1="260" x2="185" y2="230" />
+      <!-- Ebène to Grand Baie -->
+      <line x1="180" y1="185" x2="225" y2="70" />
+    </g>
+
+    <!-- City Nodes & Glowing Circles -->
+    <!-- Grand Baie -->
+    <circle cx="225" cy="70" r="5" fill="#4ade9b" filter="url(#glow)" />
+    <circle cx="225" cy="70" r="1.5" fill="#ffffff" />
+    
+    <!-- Port Louis -->
+    <circle cx="155" cy="135" r="7" fill="#38d9e8" filter="url(#glow)" />
+    <circle cx="155" cy="135" r="2.5" fill="#ffffff" />
+    
+    <!-- Ebène / Cybercity -->
+    <circle cx="180" cy="185" r="9" fill="#6aa8ff" filter="url(#glow)" />
+    <circle cx="180" cy="185" r="3.5" fill="#ffffff" />
+    
+    <!-- Moka -->
+    <circle cx="210" cy="180" r="5" fill="#b58cff" filter="url(#glow)" />
+    <circle cx="210" cy="180" r="1.5" fill="#ffffff" />
+    
+    <!-- Curepipe -->
+    <circle cx="195" cy="260" r="7" fill="#ff7a90" filter="url(#glow)" />
+    <circle cx="195" cy="260" r="2" fill="#ffffff" />
+
+    <!-- Labels for Cities -->
+    <g font-family="system-ui, sans-serif" font-size="11" fill="rgba(255, 255, 255, 0.6)" font-weight="600">
+      <text x="237" y="74">Grand Baie</text>
+      <text x="90" y="139">Port Louis</text>
+      <text x="110" y="190">Ebène Cybercity</text>
+      <text x="222" y="184">Moka</text>
+      <text x="207" y="265">Curepipe</text>
+    </g>
+  </g>
+
+  <!-- Side info overlay -->
+  <g transform="translate(40, 50)">
+    <rect width="180" height="150" rx="16" fill="url(#glassGrad)" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
+    <text x="20" y="30" font-family="system-ui, sans-serif" font-size="11" fill="rgba(255, 255, 255, 0.4)" letter-spacing="2">LOCAL NODES</text>
+    
+    <g transform="translate(20, 50)" font-family="system-ui, sans-serif" font-size="13" fill="#ffffff">
+      <circle cx="5" cy="8" r="4" fill="#38d9e8" />
+      <text x="18" y="12">14 Verified Orgs</text>
+      
+      <circle cx="5" cy="33" r="4" fill="#4ade9b" />
+      <text x="18" y="37">Ebène Hub</text>
+      
+      <circle cx="5" cy="58" r="4" fill="#ff7a90" />
+      <text x="18" y="62">Port Louis Hub</text>
+
+      <circle cx="5" cy="83" r="4" fill="#b58cff" />
+      <text x="18" y="87">Moka Connect</text>
+    </g>
+  </g>
+</svg>

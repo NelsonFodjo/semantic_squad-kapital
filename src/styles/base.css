@@ -1,0 +1,390 @@
+/* ============================================================
+   BASE — a small reset, dark-theme defaults, and .liquid-glass.
+   ============================================================
+   The aim: plain HTML should already look right before you add any
+   classes. */
+
+/* border-box stops padding from making elements wider than you asked
+   for. This one rule prevents a lot of layout pain. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Stops anchor links landing underneath the fixed navbar. */
+  scroll-padding-top: var(--space-9);
+  -webkit-text-size-adjust: 100%;
+  background-color: var(--paper);
+  /* Firefox scrollbar support */
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) var(--paper);
+}
+
+/* Custom Scrollbars for Chrome/Edge/Safari */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--paper);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border: 2px solid var(--paper);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-faint);
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink-soft);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* Video sections are full-bleed, so a stray horizontal scrollbar
+     from a transform would be very visible. */
+  overflow-x: hidden;
+  transition: background-color var(--duration) var(--ease-out),
+    color var(--duration) var(--ease-out);
+}
+
+/* The toggle in ThemeToggle.tsx flips [data-theme] on <html>, which
+   changes dozens of custom properties at once. Without this, disabling
+   transitions during that specific instant, every element that has its
+   own color/background/border transition (buttons, links, cards) would
+   replay it simultaneously — visually noisy. body above still animates
+   the base surface; this only mutes per-component transitions. */
+[data-theme-switching] * {
+  transition-duration: 0ms !important;
+}
+
+/* ---------- Headings ----------
+   Instrument Serif is a light, high-contrast face. It wants to be
+   BIG and it wants negative letter-spacing; at small sizes it just
+   looks thin, which is why body text stays sans. */
+h1,
+h2,
+h3,
+h4 {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  /* Stops a heading ending with one lonely word on its own line. */
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--step-5);
+}
+h2 {
+  font-size: var(--step-4);
+}
+h3 {
+  font-size: var(--step-2);
+}
+h4 {
+  font-size: var(--step-1);
+}
+
+/* The italic emphasis used in every display heading in this design. */
+em {
+  font-style: italic;
+  color: var(--ink-faint);
+}
+
+p {
+  max-width: var(--measure);
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Form controls do not inherit fonts by default. Fix that. */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+/* :focus-visible shows the ring for keyboard users but not on mouse
+   clicks. Never remove this — it is how keyboard and screen-reader
+   users know where they are. */
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ============================================================
+   LIQUID GLASS
+   ============================================================
+   The signature surface of this design, used on every panel, pill and
+   button. Three things stacked:
+
+     1. A barely-there white fill (0.01 alpha) so the panel reads as a
+        surface without hiding what is behind it.
+     2. backdrop-filter: blur() — blurs the VIDEO showing through,
+        which is what actually sells the glass effect.
+     3. A ::before ring whose gradient is bright at the top and bottom
+        and invisible in the middle, imitating light catching the
+        edges of a curved piece of glass.
+
+   The mask trick in ::before is how you draw a gradient BORDER: two
+   identical layers are composited so they cancel out everywhere
+   except the padding band, leaving only the 1.4px ring. */
+.liquid-glass {
+  background: var(--glass-fill);
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: none;
+  /* A single bright line inside the top edge — a highlight, like the
+     lit lip of a glass panel. */
+  box-shadow: inset 0 1px 1px var(--glass-highlight);
+  position: relative;
+  overflow: hidden;
+}
+
+.liquid-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* inherit means the ring follows whatever corner radius the element
+     itself has, so one class works on pills and on rounded cards. */
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(
+    180deg,
+    var(--glass-ring-bright) 0%,
+    var(--glass-ring-mid) 20%,
+    transparent 40%,
+    transparent 60%,
+    var(--glass-ring-mid) 80%,
+    var(--glass-ring-bright) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  /* Without this the ring would swallow clicks meant for the element
+     underneath it. */
+  pointer-events: none;
+}
+
+/* Glass that responds to a pointer. Kept separate so static panels do
+   not pick up hover states they should not have. */
+.liquid-glass-hover {
+  transition: background-color var(--duration) var(--ease-out);
+}
+
+.liquid-glass-hover:hover {
+  background-color: var(--glass-fill-hover);
+}
+
+/* ============================================================
+   UTILITIES — the only global classes in the project.
+   ============================================================ */
+
+/* Centres a page and gives it side padding. */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-5);
+}
+
+.container-narrow {
+  width: 100%;
+  max-width: var(--container-narrow);
+  margin-inline: auto;
+  padding-inline: var(--space-5);
+}
+
+/* Standard vertical rhythm between big page sections. */
+.section {
+  padding-block: var(--space-9);
+}
+
+/* Visible to screen readers, invisible on screen. Use it to label
+   things that are obvious visually but not in the markup. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============================================================
+   HUE SWATCHES
+   ============================================================
+   Put data-hue="coral" on any element and everything inside it that
+   reads var(--hue) recolours. That is how one <article> tag turns a
+   whole card from teal to coral without touching its stylesheet.
+
+   Add a new hue by adding a token pair in tokens.css and one block
+   here. Nothing else needs to know about it. */
+[data-hue="lagoon"] {
+  --hue: var(--lagoon);
+  --hue-wash: var(--lagoon-wash);
+  --hue-glow: var(--lagoon-glow);
+}
+
+[data-hue="coral"] {
+  --hue: var(--coral);
+  --hue-wash: var(--coral-wash);
+  --hue-glow: var(--coral-glow);
+}
+
+[data-hue="mango"] {
+  --hue: var(--mango);
+  --hue-wash: var(--mango-wash);
+  --hue-glow: var(--mango-glow);
+}
+
+[data-hue="palm"] {
+  --hue: var(--palm);
+  --hue-wash: var(--palm-wash);
+  --hue-glow: var(--palm-glow);
+}
+
+[data-hue="orchid"] {
+  --hue: var(--orchid);
+  --hue-wash: var(--orchid-wash);
+  --hue-glow: var(--orchid-glow);
+}
+
+[data-hue="sky"] {
+  --hue: var(--sky);
+  --hue-wash: var(--sky-wash);
+  --hue-glow: var(--sky-glow);
+}
+
+/* ============================================================
+   INTERACTION UTILITIES
+   ============================================================ */
+
+/* Paints text with a gradient instead of a flat colour.
+   How it works: the gradient is set as the background, then the text
+   itself is used as a mask so the background only shows through the
+   letterforms. `color: transparent` hides the real glyph colour. */
+.gradient-text {
+  background-image: var(--gradient-cool);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  /* Some browsers clip descenders on a masked inline element; a little
+     bottom padding gives the 'g' and 'y' room. */
+  padding-bottom: 0.08em;
+}
+
+.gradient-text-warm {
+  background-image: var(--gradient-warm);
+}
+
+/* Lifts an element on hover and throws its hue underneath it as a
+   soft glow. Used on every card in the app. */
+.hover-lift {
+  transition: transform var(--duration) var(--ease-out),
+    box-shadow var(--duration) var(--ease-out);
+}
+
+.hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 50px -12px var(--hue-glow);
+}
+
+/* A radial colour bleed, positioned by the element it sits in. Purely
+   decorative, so it never intercepts a click. */
+.aurora {
+  position: absolute;
+  border-radius: 50%;
+  /* A big blur turns the circle into an ambient wash rather than a
+     visible disc. */
+  filter: blur(90px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* The small uppercase label used above section headings. */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--step--1);
+  font-weight: 500;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* ---------- Reduced motion ----------
+   Some people get motion sickness from animation and set a system
+   preference asking for less of it. Honour it: near-instant
+   transitions rather than none, so state changes are still visible.
+
+   The video crossfades in the hero are driven by JavaScript, so they
+   are handled separately — see VideoHero.tsx. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Hide Next.js dev overlay button indicator, toast notifications, and backdrop overlays */
+nextjs-portal,
+[data-nextjs-dialog-overlay],
+[data-nextjs-toast],
+#next-route-announcer {
+  display: none !important;
+}

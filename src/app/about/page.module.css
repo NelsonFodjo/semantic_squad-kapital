@@ -1,0 +1,150 @@
+/* Styles for the about page */
+
+.section {
+  margin-bottom: var(--space-10);
+}
+
+.sectionTitle {
+  margin-bottom: var(--space-6);
+  font-size: var(--step-4);
+  background-image: var(--gradient-cool);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  width: fit-content;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-7);
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .grid {
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--space-8);
+  }
+  
+  .gridReverse {
+    grid-template-columns: 1fr 1.2fr;
+  }
+  
+  .gridReverse .textColumn {
+    order: 2;
+  }
+  
+  .gridReverse .imageColumn {
+    order: 1;
+  }
+}
+
+.list {
+  display: grid;
+  gap: var(--space-5);
+}
+
+/* Glassmorphic Cards for the list items */
+.item {
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.itemTitle {
+  margin-bottom: var(--space-2);
+  font-size: var(--step-2);
+  color: var(--ink);
+}
+
+.itemBody {
+  color: var(--ink-soft);
+  font-size: var(--step-0);
+  line-height: var(--leading-normal);
+}
+
+/* Image frame styling */
+.imageColumn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 24px 80px -15px var(--hue-glow);
+  transition: transform var(--duration) var(--ease-out), box-shadow var(--duration) var(--ease-out);
+}
+
+.imageFrame:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 32px 100px -10px var(--hue-glow);
+}
+
+.image {
+  object-fit: cover;
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.imageFrame:hover .image {
+  transform: scale(1.04);
+}
+
+.imageGlow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, var(--hue-glow) 0%, transparent 70%);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+/* ---------- Closing call to action ---------- */
+.cta {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-9) var(--space-6);
+  border-radius: var(--radius-xl);
+  justify-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ctaTitle {
+  color: var(--ink);
+  font-size: var(--step-4);
+  letter-spacing: var(--tracking-tight);
+}
+
+.ctaBody {
+  color: var(--ink-soft);
+  max-width: 48ch;
+  font-size: var(--step-1);
+}
+
+.ctaActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+  justify-content: center;
+}
+
+.ctaAurora {
+  width: 300px;
+  height: 300px;
+  background: var(--hue-glow);
+  top: -100px;
+  left: calc(50% - 150px);
+  filter: blur(120px);
+  opacity: 0.35;
+}

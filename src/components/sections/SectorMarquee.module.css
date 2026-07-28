@@ -1,0 +1,90 @@
+/* Styles for SectorMarquee.tsx */
+
+.section {
+  background-color: var(--paper);
+  padding-block: var(--space-6);
+  border-block: 1px solid var(--line);
+  /* The track is wider than the screen on purpose. */
+  overflow: hidden;
+}
+
+/* Fades the strip out at both edges so items appear and disappear
+   rather than being cut off by a hard boundary.
+   The mask is a gradient: transparent at the very edges, opaque in the
+   middle, so the element itself fades. */
+.viewport {
+  -webkit-mask: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 12%,
+    #000 88%,
+    transparent 100%
+  );
+  mask: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 12%,
+    #000 88%,
+    transparent 100%
+  );
+}
+
+/* The moving strip. The list is rendered twice, so by the time the
+   first copy has slid fully left, the second copy is exactly where the
+   first started — and the jump back to 0 is invisible. */
+.track {
+  display: flex;
+  gap: var(--space-3);
+  width: max-content;
+  animation: slide 42s linear infinite;
+}
+
+/* Pausing on hover lets someone actually read an item they spotted. */
+.section:hover .track {
+  animation-play-state: paused;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-full);
+  font-size: var(--step--1);
+  font-weight: 500;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+/* A small filled circle in the sector's own colour. */
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--hue);
+  /* A faint halo, which stops the dot looking flat against the glass. */
+  box-shadow: 0 0 12px var(--hue-glow);
+  flex-shrink: 0;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* -50% = exactly one copy of the list, because the list is
+       duplicated inside the track. */
+    transform: translateX(-50%);
+  }
+}
+
+/* An endlessly moving strip is exactly what a reduced-motion
+   preference is asking us not to do. Stop it and let it wrap. */
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+  }
+}

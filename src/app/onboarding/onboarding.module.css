@@ -1,0 +1,47 @@
+/* Shared styles for the two onboarding forms. */
+
+.card {
+  display: grid;
+  gap: var(--space-5);
+  padding: var(--space-6);
+  background-color: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+
+.form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+/* Two fields side by side on wider screens, stacked on phones. */
+.pair {
+  display: grid;
+  gap: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .pair {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.group {
+  display: grid;
+  gap: var(--space-4);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--line);
+}
+
+.groupTitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.smallPrint {
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+}

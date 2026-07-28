@@ -1,0 +1,15 @@
+/* Styles for ThemeToggle.tsx */
+
+.toggle {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radius-full);
+  color: var(--ink);
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.toggle:hover {
+  background-color: var(--glass-fill-hover);
+}

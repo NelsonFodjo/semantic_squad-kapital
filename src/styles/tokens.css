@@ -1,0 +1,252 @@
+/* ============================================================
+   DESIGN TOKENS — every colour, size and spacing value.
+   ============================================================
+   These are CSS custom properties (CSS variables). Declare them once
+   here, then use them anywhere with var():
+
+       color: var(--ink);
+       padding: var(--space-6);
+
+   Change a value here and it updates across the whole site. Never
+   hard-code a colour or a pixel value inside a component.
+
+   Surface, type, line and glass tokens are theme-aware: the values
+   below are the dark theme (the default), and [data-color-scheme="light"]
+   further down overrides them for light mode. Everything is expressed
+   as an alpha over the surface colour rather than a flat grey, so
+   panels keep layering correctly over video/images in either theme.
+   See ThemeToggle.tsx for how [data-color-scheme] gets set on <html>.
+   (This is unrelated to the [data-theme] attribute PageBackground.tsx
+   sets on its own wrapper div, which picks decorative colours per
+   route — same word, different purpose, different element.) */
+
+:root,
+[data-color-scheme="dark"] {
+  /* ---------- Surfaces ----------
+     There is only one real background: black. Everything that looks
+     like a "card" is translucent white sitting on top of it. */
+  --paper: #05050d;
+  --paper-raised: rgba(255, 255, 255, 0.03);
+  --paper-sunken: rgba(255, 255, 255, 0.02);
+
+  /* ---------- Type ---------- */
+  --ink: #ffffff;
+  --ink-soft: rgba(255, 255, 255, 0.7);
+  --ink-faint: rgba(255, 255, 255, 0.4);
+  --ink-ghost: rgba(255, 255, 255, 0.25);
+
+  /* ---------- Lines ---------- */
+  --line: rgba(255, 255, 255, 0.1);
+  --line-strong: rgba(255, 255, 255, 0.18);
+
+  /* ---------- Accent ----------
+     On black, white IS the accent — it is the brightest thing
+     available. The teal is kept for status only, never decoration. */
+  --accent: #ffffff;
+  --accent-hover: rgba(255, 255, 255, 0.85);
+  --accent-wash: rgba(255, 255, 255, 0.06);
+
+  /* Status colours, lightened so they read on black. */
+  --danger: #ff8a8a;
+  --danger-wash: rgba(255, 138, 138, 0.12);
+  --success: #7fe3ab;
+  --success-wash: rgba(127, 227, 171, 0.12);
+  --warning: #f5cd7b;
+  --warning-wash: rgba(245, 205, 123, 0.12);
+
+  /* ---------- Glass ----------
+     The "liquid glass" surface is built from a white alpha fill plus
+     a white-gradient ring — see .liquid-glass in base.css. On a dark
+     background, white glass reads as light catching curved glass. */
+  --glass-fill: rgba(255, 255, 255, 0.01);
+  --glass-fill-hover: rgba(255, 255, 255, 0.05);
+  --glass-highlight: rgba(255, 255, 255, 0.1);
+  --glass-ring-bright: rgba(255, 255, 255, 0.45);
+  --glass-ring-mid: rgba(255, 255, 255, 0.15);
+  /* Fully opaque and matched to --paper: the navbar is sticky, so it
+     needs to cleanly cover whatever scrolls underneath it (video,
+     page content) rather than letting it blur/blend through. */
+  --glass-header-backing: var(--paper);
+
+  /* Shadows read against a black page, so they can stay this dark in
+     both themes without going invisible on light surfaces — see the
+     shadow tokens below, which are shared rather than per-theme. */
+  color-scheme: dark;
+}
+
+/* ---------- Light theme ----------
+   A parallel set of surface/type/line/glass tokens. Same structure,
+   inverted: near-white paper, near-black ink, and glass built from a
+   black alpha instead of white so panels still read as "glass" rather
+   than turning into grey mud. */
+[data-color-scheme="light"] {
+  --paper: #f7f7fa;
+  --paper-raised: rgba(5, 5, 13, 0.03);
+  --paper-sunken: rgba(5, 5, 13, 0.02);
+
+  --ink: #0a0a12;
+  --ink-soft: rgba(10, 10, 18, 0.72);
+  --ink-faint: rgba(10, 10, 18, 0.45);
+  --ink-ghost: rgba(10, 10, 18, 0.28);
+
+  --line: rgba(10, 10, 18, 0.1);
+  --line-strong: rgba(10, 10, 18, 0.18);
+
+  --accent: #0a0a12;
+  --accent-hover: rgba(10, 10, 18, 0.85);
+  --accent-wash: rgba(10, 10, 18, 0.05);
+
+  --danger: #d13b3b;
+  --danger-wash: rgba(209, 59, 59, 0.1);
+  --success: #1f9e5c;
+  --success-wash: rgba(31, 158, 92, 0.1);
+  --warning: #b8860f;
+  --warning-wash: rgba(184, 134, 15, 0.1);
+
+  --glass-fill: rgba(255, 255, 255, 0.55);
+  --glass-fill-hover: rgba(255, 255, 255, 0.75);
+  --glass-highlight: rgba(10, 10, 18, 0.06);
+  --glass-ring-bright: rgba(10, 10, 18, 0.16);
+  --glass-ring-mid: rgba(10, 10, 18, 0.06);
+  --glass-header-backing: var(--paper);
+
+  color-scheme: light;
+}
+
+:root {
+  /* ---------- On-video ----------
+     Fixed colours for anything sitting directly on the hero video and
+     its dark scrim (VideoHero, and the navbar while it floats over
+     that video) — deliberately NOT theme-aware. The video is always
+     dark under a dark gradient regardless of --paper, so text there
+     must stay light in both themes rather than following --ink,
+     which would turn near-black in light mode and disappear. */
+  --on-video-ink: #ffffff;
+  --on-video-ink-soft: rgba(255, 255, 255, 0.78);
+  --on-video-line: rgba(255, 255, 255, 0.16);
+  --on-video-glass-fill: rgba(255, 255, 255, 0.08);
+  --on-video-glass-fill-hover: rgba(255, 255, 255, 0.16);
+
+  /* ---------- Colour ramp ----------
+     Six hues, all pitched at roughly the same lightness so no single
+     one jumps out of a row of cards. They are named after the island
+     rather than after the hue, which makes it obvious that they carry
+     meaning: a sector, a category, a state.
+
+     Each has a `-wash` (a tint for backgrounds) and a `-glow` (a
+     stronger alpha for shadows and radial bleeds). */
+  --lagoon: #38d9e8;
+  --lagoon-wash: rgba(56, 217, 232, 0.1);
+  --lagoon-glow: rgba(56, 217, 232, 0.35);
+
+  --coral: #ff7a90;
+  --coral-wash: rgba(255, 122, 144, 0.1);
+  --coral-glow: rgba(255, 122, 144, 0.35);
+
+  --mango: #ffb347;
+  --mango-wash: rgba(255, 179, 71, 0.1);
+  --mango-glow: rgba(255, 179, 71, 0.35);
+
+  --palm: #4ade9b;
+  --palm-wash: rgba(74, 222, 155, 0.1);
+  --palm-glow: rgba(74, 222, 155, 0.35);
+
+  --orchid: #b58cff;
+  --orchid-wash: rgba(181, 140, 255, 0.1);
+  --orchid-glow: rgba(181, 140, 255, 0.35);
+
+  --sky: #6aa8ff;
+  --sky-wash: rgba(106, 168, 255, 0.1);
+  --sky-glow: rgba(106, 168, 255, 0.35);
+
+  /* Per-element hue. Components set --hue / --hue-wash / --hue-glow on
+     themselves (see [data-hue] in base.css) and then everything inside
+     — border, glow, tag, arrow — just reads var(--hue). One attribute
+     recolours a whole card. */
+  --hue: var(--lagoon);
+  --hue-wash: var(--lagoon-wash);
+  --hue-glow: var(--lagoon-glow);
+
+  /* Multi-stop gradients for display type and big surfaces. */
+  --gradient-warm: linear-gradient(100deg, #ffb347 0%, #ff7a90 55%, #b58cff 100%);
+  --gradient-cool: linear-gradient(100deg, #38d9e8 0%, #6aa8ff 50%, #b58cff 100%);
+  --gradient-reef: linear-gradient(120deg, #4ade9b 0%, #38d9e8 60%, #6aa8ff 100%);
+
+  /* ---------- Fonts ----------
+     Instrument Serif is loaded in globals.css. It is a display face
+     only — long text stays in the system sans, which is far more
+     readable at small sizes. */
+  --font-display: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-sans: var(--font-body);
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* ---------- Type scale ----------
+     clamp(min, preferred, max) lets a size grow with the viewport, so
+     display type is huge on a laptop and still readable on a phone —
+     with no media queries. */
+  --step--1: 0.833rem;
+  --step-0: 1rem;
+  --step-1: 1.2rem;
+  --step-2: clamp(1.35rem, 1.2rem + 0.7vw, 1.6rem);
+  --step-3: clamp(1.6rem, 1.3rem + 1.4vw, 2.4rem);
+  --step-4: clamp(2rem, 1.4rem + 3vw, 3.75rem);
+  --step-5: clamp(2.5rem, 1.5rem + 4.6vw, 5.5rem);
+  --step-6: clamp(3rem, 1rem + 9vw, 8.5rem); /* hero only */
+
+  --leading-tight: 1.05;
+  --leading-snug: 1.25;
+  --leading-normal: 1.6;
+
+  --tracking-tight: -0.03em;
+  --tracking-wide: 0.14em;
+  --tracking-widest: 0.2em;
+
+  /* ---------- Spacing ----------
+     All multiples of 4px. Sticking to the scale is what makes a
+     layout look deliberate rather than accidental. */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+
+  /* ---------- Layout ---------- */
+  --measure: 68ch;
+  --container: 1152px;
+  --container-narrow: 760px;
+
+  /* ---------- Shape ---------- */
+  --radius-sm: 4px;
+  --radius: 10px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-full: 999px;
+
+  /* On black, a drop shadow is invisible. Depth comes from the glass
+     border and blur instead — see .liquid-glass in base.css. */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.6);
+
+  /* ---------- Motion ---------- */
+  --duration-fast: 140ms;
+  --duration: 280ms;
+  --duration-slow: 700ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ---------- Stacking order ----------
+     Named layers avoid the "z-index: 9999" arms race. */
+  --z-video: 0;
+  --z-content: 10;
+  --z-header: 100;
+  --z-dropdown: 200;
+  --z-modal: 300;
+}

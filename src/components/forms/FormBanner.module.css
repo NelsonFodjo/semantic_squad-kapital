@@ -1,0 +1,53 @@
+/* Styles for FormBanner.tsx */
+
+.banner {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid;
+  border-radius: var(--radius);
+  font-size: var(--step--1);
+}
+
+.icon {
+  flex-shrink: 0;
+  font-weight: 700;
+}
+
+.title {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.body {
+  margin-top: var(--space-1);
+  color: var(--ink-soft);
+}
+
+/* ---------- Tones ---------- */
+.error {
+  background-color: var(--danger-wash);
+  border-color: color-mix(in srgb, var(--danger) 30%, transparent);
+}
+
+.error .icon {
+  color: var(--danger);
+}
+
+.success {
+  background-color: var(--success-wash);
+  border-color: color-mix(in srgb, var(--success) 30%, transparent);
+}
+
+.success .icon {
+  color: var(--success);
+}
+
+.info {
+  background-color: var(--accent-wash);
+  border-color: color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+.info .icon {
+  color: var(--accent);
+}

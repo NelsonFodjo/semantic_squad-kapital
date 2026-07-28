@@ -1,0 +1,162 @@
+/* Styles for Navbar.tsx */
+
+/* Sticky on every page, including the landing page. height: 0 takes
+   this box out of normal document flow so it cannot push whatever
+   comes after it down the page — but padding still adds to a
+   height: 0 box's rendered size, so the spacing around the pill is
+   applied as margin on .pill below instead of as padding here. */
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  overflow: visible;
+  z-index: var(--z-header);
+}
+
+/* The glass pill itself. Margin (not the header's padding) is what
+   positions it — see the .header comment above. width: calc(100% -
+   ...) plus the same margin left/right replaces the horizontal inset
+   that used to come from the header's own padding. */
+.pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  width: calc(100% - var(--space-5) * 2);
+  max-width: 64rem;
+  margin: var(--space-5) auto 0;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-full);
+}
+
+/* ---------- Left group ---------- */
+.left {
+  display: flex;
+  align-items: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-1);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+/* Desktop-only link group beside the wordmark. */
+.links {
+  display: none;
+  align-items: center;
+  gap: var(--space-6);
+  margin-left: var(--space-6);
+}
+
+@media (min-width: 900px) {
+  .links {
+    display: flex;
+  }
+}
+
+/* ---------- Right group ---------- */
+.actions {
+  display: none;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+@media (min-width: 900px) {
+  .actions {
+    display: flex;
+  }
+}
+
+.textLink {
+  color: var(--ink);
+  font-size: var(--step--1);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* The glass "Login" button. */
+.pillButton {
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-full);
+  color: var(--ink);
+  font-size: var(--step--1);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* ---------- Burger ---------- */
+.burger {
+  display: grid;
+  place-items: center;
+  padding: var(--space-2);
+  color: var(--ink);
+}
+
+@media (min-width: 900px) {
+  .burger {
+    display: none;
+  }
+}
+
+/* ---------- Mobile panel ---------- */
+.mobilePanel {
+  display: grid;
+  gap: var(--space-2);
+  width: calc(100% - var(--space-5) * 2);
+  max-width: 64rem;
+  margin: var(--space-3) auto 0;
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  animation: dropIn var(--duration) var(--ease-out);
+}
+
+@media (min-width: 900px) {
+  .mobilePanel {
+    display: none;
+  }
+}
+
+.mobileLink {
+  padding: var(--space-3) 0;
+  color: var(--ink-soft);
+  font-size: var(--step-1);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.mobileLink:hover,
+.mobileLinkActive {
+  color: var(--ink);
+}
+
+.mobileDivider {
+  height: 1px;
+  margin-block: var(--space-2);
+  background-color: var(--line);
+  border: none;
+}
+
+.mobileThemeRow {
+  display: flex;
+  justify-content: flex-start;
+  padding-top: var(--space-2);
+}
+
+@keyframes dropIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

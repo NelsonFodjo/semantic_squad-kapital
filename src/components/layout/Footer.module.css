@@ -1,0 +1,108 @@
+/* Styles for Footer.tsx */
+
+.footer {
+  margin-top: var(--space-10);
+  border-top: 1px solid var(--line);
+  background-color: var(--paper);
+  padding-block: var(--space-8) var(--space-6);
+}
+
+/* Two columns on wide screens: a wordmark block and the link columns.
+   Stacks on phones. */
+.top {
+  display: grid;
+  gap: var(--space-7);
+}
+
+@media (min-width: 800px) {
+  .top {
+    grid-template-columns: 1.2fr 2fr;
+  }
+}
+
+.wordmark {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  color: var(--ink);
+  letter-spacing: var(--tracking-tight);
+}
+
+.tagline {
+  margin-top: var(--space-3);
+  max-width: 34ch;
+  font-size: var(--step--1);
+  color: var(--ink-faint);
+}
+
+/* The link columns arrange themselves — as many as fit, minimum 140px
+   each. No media queries needed. */
+.columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--space-6);
+}
+
+.columnTitle {
+  margin-bottom: var(--space-3);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.list {
+  display: grid;
+  gap: var(--space-2);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.link {
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.link:hover {
+  color: var(--ink);
+}
+
+/* ---------- Bottom strip ---------- */
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-8);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--line);
+  font-size: var(--step--1);
+  color: var(--ink-faint);
+}
+
+.socials {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.social {
+  display: grid;
+  place-items: center;
+  padding: var(--space-3);
+  border-radius: var(--radius-full);
+  color: var(--ink-faint);
+  transition: color var(--duration) var(--ease-out),
+    background-color var(--duration) var(--ease-out);
+}
+
+.social:hover {
+  color: var(--ink);
+  background-color: var(--glass-fill-hover);
+}

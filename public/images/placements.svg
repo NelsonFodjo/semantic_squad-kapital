@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#05050d" />
+      <stop offset="100%" stop-color="#0b0b1e" />
+    </linearGradient>
+    <linearGradient id="coolGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38d9e8" />
+      <stop offset="50%" stop-color="#6aa8ff" />
+      <stop offset="100%" stop-color="#b58cff" />
+    </linearGradient>
+    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(56, 217, 232, 0.4)" />
+      <stop offset="100%" stop-color="rgba(181, 140, 255, 0.05)" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255, 255, 255, 0.07)" />
+      <stop offset="100%" stop-color="rgba(255, 255, 255, 0.01)" />
+    </linearGradient>
+    <!-- Filters for Glow -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="30" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="cardBlur">
+      <feGaussianBlur stdDeviation="10" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="url(#bgGrad)" />
+
+  <!-- Grid overlay -->
+  <g stroke="rgba(255, 255, 255, 0.03)" stroke-width="1">
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" />
+    </pattern>
+    <rect width="100%" height="100%" fill="url(#grid)" />
+  </g>
+
+  <!-- Radial Glow Behind -->
+  <circle cx="400" cy="300" r="180" fill="url(#glowGrad)" filter="url(#glow)" opacity="0.6" />
+
+  <!-- Abstract Tech Elements -->
+  <g opacity="0.3">
+    <circle cx="200" cy="150" r="120" fill="none" stroke="rgba(56, 217, 232, 0.2)" stroke-width="1" stroke-dasharray="5 5" />
+    <circle cx="600" cy="450" r="150" fill="none" stroke="rgba(181, 140, 255, 0.15)" stroke-width="1" stroke-dasharray="10 5" />
+    <line x1="100" y1="400" x2="700" y2="200" stroke="rgba(106, 168, 255, 0.1)" stroke-width="2" />
+  </g>
+
+  <!-- Main Glass Card Container (Placements UI Mockup) -->
+  <g transform="translate(150, 100)">
+    <!-- Glass Panel Shadow/Border -->
+    <rect x="-1" y="-1" width="502" height="402" rx="24" fill="none" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1.5" />
+    <!-- Glass Panel Fill -->
+    <rect width="500" height="400" rx="24" fill="url(#cardGrad)" />
+    
+    <!-- Header of the Placement Card -->
+    <g transform="translate(30, 40)">
+      <!-- Company Logo Placeholder -->
+      <rect width="50" height="50" rx="12" fill="rgba(255, 255, 255, 0.05)" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
+      <circle cx="25" cy="25" r="12" fill="none" stroke="url(#coolGrad)" stroke-width="3" />
+      <circle cx="25" cy="25" r="4" fill="#38d9e8" />
+      
+      <!-- Text details -->
+      <text x="70" y="22" font-family="system-ui, sans-serif" font-weight="600" font-size="18" fill="#ffffff">Senior Software Engineer Intern</text>
+      <text x="70" y="42" font-family="system-ui, sans-serif" font-size="14" fill="rgba(255, 255, 255, 0.5)">Ebène, Mauritius · CloudFactory</text>
+    </g>
+
+    <!-- Stipend Badge -->
+    <g transform="translate(330, 40)">
+      <rect width="140" height="36" rx="18" fill="rgba(74, 222, 155, 0.1)" stroke="rgba(74, 222, 155, 0.3)" stroke-width="1" />
+      <text x="70" y="22" font-family="system-ui, sans-serif" font-weight="700" font-size="13" fill="#4ade9b" text-anchor="middle">MUR 25,000 / mo</text>
+    </g>
+
+    <!-- Details Divider -->
+    <line x1="30" y1="120" x2="470" y2="120" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1" />
+
+    <!-- Application Stats Mini-Card -->
+    <g transform="translate(30, 150)">
+      <rect width="200" height="90" rx="16" fill="rgba(255, 255, 255, 0.02)" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
+      <text x="20" y="30" font-family="system-ui, sans-serif" font-size="12" fill="rgba(255, 255, 255, 0.4)">APPLICATIONS</text>
+      <text x="20" y="65" font-family="system-ui, sans-serif" font-weight="700" font-size="32" fill="#ffffff">148</text>
+      <!-- Trend Arrow -->
+      <path d="M 150 45 L 165 30 L 165 42 M 165 30 L 145 50" fill="none" stroke="#38d9e8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+
+    <g transform="translate(250, 150)">
+      <rect width="220" height="90" rx="16" fill="rgba(255, 255, 255, 0.02)" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
+      <text x="20" y="30" font-family="system-ui, sans-serif" font-size="12" fill="rgba(255, 255, 255, 0.4)">MATCH SCORE</text>
+      <text x="20" y="65" font-family="system-ui, sans-serif" font-weight="700" font-size="32" fill="url(#coolGrad)">94%</text>
+      <circle cx="170" cy="50" r="22" fill="none" stroke="rgba(255, 255, 255, 0.05)" stroke-width="4" />
+      <path d="M 170 28 A 22 22 0 1 1 148 50" fill="none" stroke="#b58cff" stroke-width="4" stroke-linecap="round" />
+    </g>
+
+    <!-- Verification Checkmark and Label -->
+    <g transform="translate(30, 275)">
+      <rect width="440" height="85" rx="16" fill="rgba(255, 255, 255, 0.01)" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
+      
+      <!-- Check Icon in Circle -->
+      <circle cx="40" cy="42" r="16" fill="rgba(56, 217, 232, 0.1)" stroke="rgba(56, 217, 232, 0.3)" stroke-width="1" />
+      <path d="M 33 42 L 38 47 L 48 37" fill="none" stroke="#38d9e8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+
+      <text x="75" y="35" font-family="system-ui, sans-serif" font-weight="600" font-size="14" fill="#ffffff">Verified Mauritian Employer</text>
+      <text x="75" y="55" font-family="system-ui, sans-serif" font-size="12" fill="rgba(255, 255, 255, 0.4)" width="320">CloudFactory is registered with the BRN and verified by Kapital.</text>
+    </g>
+  </g>
+</svg>

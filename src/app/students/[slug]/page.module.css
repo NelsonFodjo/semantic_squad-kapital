@@ -1,0 +1,108 @@
+/* Styles for a public student profile */
+
+.header {
+  padding-bottom: var(--space-6);
+  margin-bottom: var(--space-7);
+  border-bottom: 1px solid var(--line);
+}
+
+.name {
+  font-size: var(--step-5);
+  margin-bottom: var(--space-3);
+}
+
+.headline {
+  font-size: var(--step-1);
+  color: var(--ink-soft);
+  max-width: 50ch;
+  margin-bottom: var(--space-5);
+}
+
+/* The verified pill. Only shown when the student confirmed a
+   university email address. */
+.verified {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  background-color: var(--success-wash);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--success);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--space-5);
+  padding: var(--space-5);
+  margin-bottom: var(--space-8);
+  border-radius: var(--radius-lg);
+}
+
+.fact {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.factLabel {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.factValue {
+  font-size: var(--step-0);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* ---------- Sections ---------- */
+.section {
+  margin-bottom: var(--space-8);
+}
+
+.sectionTitle {
+  margin-bottom: var(--space-4);
+  font-size: var(--step-2);
+}
+
+.bio {
+  white-space: pre-line;
+  max-width: var(--measure);
+  color: var(--ink-soft);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius);
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--ink);
+  transition: transform var(--duration) var(--ease-out),
+    box-shadow var(--duration) var(--ease-out);
+}
+
+.link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -8px var(--orchid-glow);
+}
+
+/* ---------- Their published work ---------- */
+.workGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-6) var(--space-5);
+}

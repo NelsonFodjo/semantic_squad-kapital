@@ -1,0 +1,29 @@
+/* Styles for SectionHeading.tsx */
+
+.heading {
+  display: grid;
+  gap: var(--space-3);
+  margin-bottom: var(--space-7);
+}
+
+/* On wide screens the title sits left and the action sits right. */
+.withAction {
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: var(--space-5);
+}
+
+.title {
+  font-size: var(--step-3);
+}
+
+.description {
+  font-size: var(--step-0);
+  color: var(--ink-faint);
+  max-width: 52ch;
+}
+
+/* Keeps the eyebrow tight against the title. */
+.eyebrowSpacing {
+  margin-bottom: var(--space-2);
+}

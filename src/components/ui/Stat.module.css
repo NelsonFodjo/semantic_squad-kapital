@@ -1,0 +1,37 @@
+/* Styles for Stat.tsx */
+
+.stat {
+  padding-block: var(--space-5);
+  border-top: 1px solid var(--line);
+}
+
+/* The big number. Tabular figures keep digits the same width, so a
+   row of numbers lines up vertically instead of looking ragged. */
+.value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--step-4);
+  line-height: 1;
+  letter-spacing: var(--tracking-tight);
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The leading zero, e.g. the "0" in "050+". Dimmed so the real
+   number reads first — this is the trick that makes stat rows look
+   designed rather than typed. */
+.prefix {
+  color: var(--ink-faint);
+}
+
+.suffix {
+  color: var(--accent);
+}
+
+.label {
+  display: block;
+  margin-top: var(--space-3);
+  font-size: var(--step--1);
+  color: var(--ink-faint);
+  max-width: 22ch;
+}

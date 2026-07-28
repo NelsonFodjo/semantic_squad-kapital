@@ -1,0 +1,150 @@
+/* Shared styles for the dashboard pages. */
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--space-5);
+  padding-bottom: var(--space-5);
+  margin-bottom: var(--space-7);
+  border-bottom: 1px solid var(--line);
+}
+
+.greeting {
+  font-size: var(--step-3);
+}
+
+.subtitle {
+  margin-top: var(--space-2);
+  font-size: var(--step--1);
+  color: var(--ink-faint);
+}
+
+/* ---------- Summary tiles ---------- */
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+.tile {
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+}
+
+.tileValue {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--step-4);
+  line-height: 1;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.tileLabel {
+  display: block;
+  margin-top: var(--space-2);
+  font-size: var(--step--1);
+  color: var(--ink-faint);
+}
+
+/* ---------- Sections ---------- */
+.section {
+  margin-bottom: var(--space-9);
+}
+
+.sectionHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.sectionTitle {
+  font-size: var(--step-2);
+}
+
+/* ---------- Row list ----------
+   A list of applications or proposals. Rows rather than cards,
+   because a dashboard is for scanning. */
+.rows {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.row {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  border-radius: var(--radius);
+  transition: transform var(--duration) var(--ease-out),
+    box-shadow var(--duration) var(--ease-out);
+}
+
+.row:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -10px var(--lagoon-glow);
+}
+
+/* Title on the left, status tag on the right. */
+.rowTop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.rowTitle {
+  font-family: var(--font-sans);
+  font-size: var(--step-0);
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0;
+}
+
+.rowTitle:hover {
+  color: var(--accent);
+}
+
+.rowMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  font-size: var(--step--1);
+  color: var(--ink-faint);
+}
+
+/* An excerpt of the cover note or proposal, clipped to two lines. */
+.rowExcerpt {
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---------- Setup prompt ---------- */
+.prompt {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-7);
+  border-radius: var(--radius-lg);
+  justify-items: start;
+  box-shadow: var(--shadow-sm);
+}
+
+.promptTitle {
+  font-size: var(--step-2);
+}
+
+.promptBody {
+  font-size: var(--step-0);
+  color: var(--ink-soft);
+  max-width: 52ch;
+}

@@ -1,0 +1,115 @@
+/* Shared styles for the login and signup pages.
+   Both are narrow, centred, single-purpose screens. */
+
+.page {
+  display: grid;
+  justify-items: center;
+  padding-block: var(--space-8) var(--space-9);
+}
+
+.panel {
+  width: 100%;
+  max-width: 480px;
+}
+
+.heading {
+  margin-bottom: var(--space-6);
+  text-align: center;
+}
+
+.title {
+  font-size: var(--step-4);
+  margin-bottom: var(--space-3);
+}
+
+.subtitle {
+  margin-inline: auto;
+  font-size: var(--step-0);
+  color: var(--ink-faint);
+}
+
+.card {
+  display: grid;
+  gap: var(--space-5);
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+.form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+/* ---------- Role chooser on the signup page ---------- */
+.roles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.role {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-4);
+  text-align: left;
+  background-color: var(--paper);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out);
+}
+
+.role:hover {
+  border-color: var(--ink-faint);
+}
+
+/* The chosen role. aria-pressed on the button tells screen readers
+   the same thing this border says visually. */
+.roleActive {
+  border-color: var(--accent);
+  background-color: var(--accent-wash);
+}
+
+.roleName {
+  font-size: var(--step-0);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.roleHint {
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+}
+
+/* ---------- Footer link ---------- */
+.switch {
+  margin-top: var(--space-5);
+  text-align: center;
+  font-size: var(--step--1);
+  color: var(--ink-faint);
+}
+
+.switchLink {
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.switchLink:hover {
+  color: var(--accent-hover);
+}
+
+.legal {
+  margin-top: var(--space-4);
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  text-align: center;
+}
+
+.legal a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

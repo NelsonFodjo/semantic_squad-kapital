@@ -1,0 +1,46 @@
+/* Styles for NavLink.tsx.
+   Because this file ends in .module.css, the class name `.link`
+   below is renamed to something unique at build time. No other
+   component can accidentally clash with it. */
+
+.link {
+  position: relative;
+  padding: var(--space-2) 0;
+  font-size: var(--step--1);
+  font-weight: 500;
+  color: var(--ink-soft);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.link:hover {
+  color: var(--ink);
+}
+
+/* The underline. We draw it as a pseudo-element scaled to 0 width,
+   then scale it up on hover — animating transform is much smoother
+   than animating width. */
+.link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration) var(--ease-out);
+}
+
+.link:hover::after {
+  transform: scaleX(1);
+}
+
+/* The page you are currently on: darker, with the line always shown. */
+.active {
+  color: var(--ink);
+}
+
+.active::after {
+  transform: scaleX(1);
+}

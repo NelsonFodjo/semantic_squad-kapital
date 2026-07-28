@@ -1,0 +1,17 @@
+/* ============================================================
+   GLOBAL STYLESHEET — imported once by src/app/layout.tsx.
+   ============================================================
+   Order matters. @import rules must come before any other rule in a
+   stylesheet, and tokens must be defined before base.css uses them.
+
+   Nothing else belongs in this file. Styles for a component live in a
+   .module.css next to that component, which stops class names from
+   clashing across the app. */
+
+/* Instrument Serif, in upright and italic. The italic is doing real
+   work in this design — it marks the emphasised word in every
+   heading — so both are loaded. */
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap");
+
+@import "../styles/tokens.css";
+@import "../styles/base.css";

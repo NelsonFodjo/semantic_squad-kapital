@@ -1,0 +1,57 @@
+/* Styles for SpotlightCard.tsx */
+
+.card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  /* Fallback position for the spotlight before the pointer has moved,
+     so it starts centred rather than in the corner. */
+  --spot-x: 50%;
+  --spot-y: 0%;
+  transition: transform var(--duration) var(--ease-out),
+    box-shadow var(--duration) var(--ease-out);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px -20px var(--hue-glow);
+}
+
+/* The moving light. Its centre is wherever the two CSS variables say,
+   which the component updates on mousemove. */
+.spotlight {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    380px circle at var(--spot-x) var(--spot-y),
+    var(--hue-wash) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity var(--duration) var(--ease-out);
+  pointer-events: none;
+}
+
+.card:hover .spotlight {
+  opacity: 1;
+}
+
+/* Content sits above the glow. */
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Touch devices have no hovering cursor, so the spotlight would never
+   appear and the lift would trigger on tap and stick. Turn both off
+   and let the static glass do the work. */
+@media (hover: none) {
+  .card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .spotlight {
+    display: none;
+  }
+}

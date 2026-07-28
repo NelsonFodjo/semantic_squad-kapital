@@ -1,0 +1,179 @@
+/* Styles for VideoHero.tsx */
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* The video is scaled to cover, so anything spilling past the edges
+     must be clipped. */
+  overflow: hidden;
+}
+
+/* ---------- Background video ----------
+   Sits behind everything. object-fit: cover fills the viewport and
+   crops the overflow rather than squashing the picture; object-position
+   bottom keeps the interesting part of the frame in view when the
+   crop is tall. */
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom;
+  z-index: var(--z-video);
+  /* Starts invisible. JavaScript fades it in on canplay — see the
+     component. No CSS transition here on purpose: the fades are
+     driven frame by frame so the crossfade can be timed against the
+     video's own clock. */
+  opacity: 0;
+}
+
+/* A wash over the video so light text stays legible whatever frame is
+   showing. Without it, headings vanish on light frames. */
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.25) 35%,
+    rgba(0, 0, 0, 0.35) 70%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+  pointer-events: none;
+}
+
+/* ---------- Hero content ----------
+   The video and its scrim above are always dark, in both site themes,
+   so everything below reads var(--on-video-*) rather than var(--ink) /
+   var(--paper) — those flip with the theme and would go dark-on-dark
+   here. See the comment on --on-video-ink in tokens.css. */
+.content {
+  position: relative;
+  z-index: var(--z-content);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-5);
+  padding: var(--space-9) var(--space-5) var(--space-7);
+  text-align: center;
+  color: var(--on-video-ink);
+}
+
+.title {
+  font-size: var(--step-6);
+  color: var(--on-video-ink);
+  letter-spacing: var(--tracking-tight);
+  line-height: 0.95;
+  /* The design calls for one unbroken line. On phones that would
+     overflow, so nowrap is only applied once there is room — see the
+     media query at the bottom. */
+  max-width: 20ch;
+}
+
+.titleEm {
+  font-style: italic;
+  color: var(--on-video-ink);
+}
+
+.subtitle {
+  max-width: 52ch;
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+  font-size: var(--step-1);
+  line-height: var(--leading-normal);
+  color: var(--on-video-ink-soft);
+}
+
+/* ---------- Quick filters ----------
+   Real links into filtered results, not decoration — replacing what
+   used to be a newsletter signup. Visitors land here to find a role,
+   not to hand over an email address before seeing what's on offer. */
+.filterPrompt {
+  color: var(--on-video-ink-soft);
+  font-size: var(--step--1);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  margin-top: var(--space-3);
+}
+
+.highlights {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+  max-width: 44rem;
+  list-style: none;
+  padding: 0;
+}
+
+.highlight {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  background-color: var(--on-video-glass-fill);
+  color: var(--on-video-ink-soft);
+  font-size: var(--step--1);
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.highlight:hover {
+  color: var(--on-video-ink);
+}
+
+/* ---------- Calls to action ---------- */
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.primaryCta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-full);
+  background-color: var(--on-video-ink);
+  color: #05050d;
+  font-size: var(--step--1);
+  font-weight: 600;
+  transition: transform var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out);
+}
+
+.primaryCta:hover {
+  transform: translateY(-1px);
+  background-color: var(--on-video-ink-soft);
+}
+
+.secondaryCta {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-full);
+  color: var(--on-video-ink);
+  font-size: var(--step--1);
+  font-weight: 500;
+  background-color: var(--on-video-glass-fill);
+}
+
+/* One unbroken headline once the viewport can take it. */
+@media (min-width: 900px) {
+  .title {
+    white-space: nowrap;
+    max-width: none;
+  }
+}

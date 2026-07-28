@@ -1,0 +1,29 @@
+/* Styles for EmptyState.tsx */
+
+.empty {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: center;
+  padding: var(--space-9) var(--space-5);
+  text-align: center;
+  background-color: var(--paper-raised);
+  /* A dashed border reads as "nothing here yet" rather than
+     "here is a thing", which is exactly the message. */
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-lg);
+}
+
+.title {
+  font-size: var(--step-1);
+  color: var(--ink);
+}
+
+.body {
+  max-width: 44ch;
+  font-size: var(--step--1);
+  color: var(--ink-faint);
+}
+
+.action {
+  margin-top: var(--space-3);
+}

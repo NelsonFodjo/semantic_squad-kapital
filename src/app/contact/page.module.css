@@ -1,0 +1,83 @@
+/* Styles for the contact page and its form */
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-7);
+  align-items: flex-start;
+}
+
+@media (min-width: 992px) {
+  .wrapper {
+    grid-template-columns: 1.1fr 1fr;
+    gap: var(--space-8);
+  }
+}
+
+.infoColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.imageFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 24px 80px -15px var(--hue-glow);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform var(--duration) var(--ease-out), box-shadow var(--duration) var(--ease-out);
+}
+
+.imageFrame:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 32px 100px -10px var(--hue-glow);
+}
+
+.image {
+  object-fit: cover;
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.imageFrame:hover .image {
+  transform: scale(1.03);
+}
+
+.imageGlow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, var(--hue-glow) 0%, transparent 70%);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.formColumn {
+  width: 100%;
+}
+
+.card {
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+/* Two fields per row on wider screens, stacked on phones. */
+.pair {
+  display: grid;
+  gap: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .pair {
+    grid-template-columns: 1fr 1fr;
+  }
+}

@@ -1,0 +1,121 @@
+/* Styles for ChallengeCard.tsx */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  /* A left edge in the accent colour distinguishes challenges from
+     opportunity cards at a glance. */
+  border-left: 3px solid var(--accent);
+  transition:
+    transform var(--duration) var(--ease-out),
+    box-shadow var(--duration) var(--ease-out);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.card:not(.openSource):hover {
+  box-shadow: 0 16px 40px -12px rgba(56, 217, 232, 0.25); /* Lagoon glow */
+}
+
+.openSource:hover {
+  box-shadow: 0 16px 40px -12px rgba(255, 179, 71, 0.25); /* Mango glow */
+}
+
+/* Open-source projects get a different edge colour, so the two kinds
+   are told apart without reading the tag. */
+.openSource {
+  border-left-color: var(--warning);
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.org {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.verified {
+  color: var(--accent);
+}
+
+.title {
+  font-size: var(--step-2);
+}
+
+.summary {
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+}
+
+/* ---------- Reward ---------- */
+.reward {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--accent-wash);
+  border-radius: var(--radius);
+}
+
+.rewardLabel {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.rewardValue {
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: auto;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--line);
+  font-size: var(--step--1);
+}
+
+.deadline {
+  color: var(--ink-faint);
+}
+
+.deadlineUrgent {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.team {
+  color: var(--ink-faint);
+}
+
+.arrow {
+  font-weight: 600;
+  color: var(--ink);
+  transition: transform var(--duration) var(--ease-out);
+}
+
+.card:hover .arrow {
+  transform: translateX(4px);
+}

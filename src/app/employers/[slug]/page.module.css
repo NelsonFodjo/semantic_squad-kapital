@@ -1,0 +1,39 @@
+/* Styles for a public employer page */
+
+.header {
+  padding-bottom: var(--space-6);
+  margin-bottom: var(--space-8);
+  border-bottom: 1px solid var(--line);
+}
+
+.name {
+  font-size: var(--step-5);
+  margin-bottom: var(--space-4);
+}
+
+.about {
+  margin-top: var(--space-5);
+  font-size: var(--step-1);
+  color: var(--ink-soft);
+  max-width: 60ch;
+}
+
+.website {
+  display: inline-block;
+  margin-top: var(--space-5);
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.website:hover {
+  color: var(--accent-hover);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-5);
+}

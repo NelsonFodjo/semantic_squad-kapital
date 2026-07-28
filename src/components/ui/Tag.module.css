@@ -1,0 +1,78 @@
+/* Styles for Tag.tsx — small labels for skills, sectors, statuses. */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 2px var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+/* ---------- Tones ---------- */
+
+/* Default: a quiet skill or sector tag. */
+.neutral {
+  background-color: var(--paper-sunken);
+  color: var(--ink-soft);
+  border-color: var(--line);
+}
+
+/* Outline: same weight as neutral but see-through, for use on top of
+   an image or a dark panel. */
+.outline {
+  background-color: transparent;
+  color: var(--ink-soft);
+  border-color: var(--line-strong);
+}
+
+.accent {
+  background-color: var(--accent-wash);
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+/* Inherits whatever colour its parent card is. This is the one to use
+   inside a [data-hue] element — the tag then matches the card's spine
+   and glow without anyone naming a colour twice. */
+.hue {
+  background-color: var(--hue-wash);
+  color: var(--hue);
+  border-color: color-mix(in srgb, var(--hue) 30%, transparent);
+}
+
+.success {
+  background-color: var(--success-wash);
+  color: var(--success);
+  border-color: color-mix(in srgb, var(--success) 22%, transparent);
+}
+
+.warning {
+  background-color: var(--warning-wash);
+  color: var(--warning);
+  border-color: color-mix(in srgb, var(--warning) 25%, transparent);
+}
+
+.danger {
+  background-color: var(--danger-wash);
+  color: var(--danger);
+  border-color: color-mix(in srgb, var(--danger) 22%, transparent);
+}
+
+/* Solid dark, for the one tag that must be read first. */
+.solid {
+  background-color: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+/* A row of tags that wraps neatly. Used wherever tags appear in bulk. */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}

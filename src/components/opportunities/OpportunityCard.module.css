@@ -1,0 +1,161 @@
+/* Styles for OpportunityCard.tsx
+   The card takes its colour from a data-hue attribute set by the
+   component, based on the sector. Everything below reads var(--hue),
+   so one attribute recolours the whole card. */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  height: 100%;
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  /* A coloured spine down the left edge — the fastest way to tell two
+     sectors apart when scanning a grid. */
+  border-left: 3px solid var(--hue);
+  transition: transform var(--duration) var(--ease-out),
+    box-shadow var(--duration) var(--ease-out);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  /* The glow is the sector's own colour, so hovering reinforces the
+     colour coding rather than overriding it. */
+  box-shadow: 0 22px 60px -18px var(--hue-glow);
+}
+
+/* ---------- Top row ---------- */
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.org {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--ink-soft);
+  /* Long employer names must not push the tag off the card. */
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.verified {
+  flex-shrink: 0;
+  color: var(--hue);
+}
+
+/* ---------- Title and summary ---------- */
+.title {
+  font-size: var(--step-2);
+  color: var(--ink);
+  transition: color var(--duration-fast) var(--ease-out);
+  /* Cards sit in a grid, so a very long title has to be capped or the
+     row heights go ragged. */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card:hover .title {
+  color: var(--hue);
+}
+
+.summary {
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+  max-width: none;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---------- Facts ---------- */
+.facts {
+  display: grid;
+  gap: var(--space-2);
+  margin: var(--space-2) 0 0;
+  font-size: var(--step--1);
+}
+
+.fact {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.factLabel {
+  color: var(--ink-faint);
+}
+
+.factValue {
+  color: var(--ink);
+  font-weight: 500;
+  text-align: right;
+}
+
+/* The stipend is what people scan for, so it gets the colour. */
+.stipend {
+  color: var(--hue);
+  font-weight: 700;
+}
+
+/* Unpaid roles say so plainly rather than hiding it. */
+.unpaid {
+  color: var(--warning);
+  font-weight: 600;
+}
+
+/* ---------- Footer ----------
+   margin-top:auto pins this to the bottom, so footers line up across
+   cards even when the text above differs in length. */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: auto;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--line);
+  font-size: var(--step--1);
+}
+
+.deadline {
+  color: var(--ink-faint);
+}
+
+.deadlineUrgent {
+  color: var(--coral);
+  font-weight: 600;
+}
+
+.arrow {
+  display: grid;
+  place-items: center;
+  padding: var(--space-2);
+  border-radius: var(--radius-full);
+  background-color: var(--hue-wash);
+  color: var(--hue);
+  transition: transform var(--duration) var(--ease-out);
+}
+
+.card:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* Touch devices have no hover, so the lift would fire on tap and get
+   stuck. Leave the static colour doing the work. */
+@media (hover: none) {
+  .card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}

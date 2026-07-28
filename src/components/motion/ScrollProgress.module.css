@@ -1,0 +1,15 @@
+/* Styles for ScrollProgress.tsx */
+
+.bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  /* Above the navbar, so it reads as chrome for the whole window. */
+  z-index: calc(var(--z-header) + 10);
+  background: var(--gradient-reef);
+  /* scaleX scales from the centre by default; this makes it grow from
+     the left edge like a progress bar should. */
+  transform-origin: 0%;
+}

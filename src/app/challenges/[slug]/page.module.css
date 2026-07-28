@@ -1,0 +1,176 @@
+/* Styles for one challenge's page */
+
+.back {
+  display: inline-block;
+  margin-bottom: var(--space-5);
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--ink-faint);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.back:hover {
+  color: var(--accent);
+}
+
+/* ---------- Header ---------- */
+.header {
+  padding-bottom: var(--space-6);
+  margin-bottom: var(--space-7);
+  border-bottom: 1px solid var(--line);
+}
+
+.org {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.verified {
+  color: var(--accent);
+}
+
+.title {
+  max-width: 30ch;
+  font-size: var(--step-5);
+  margin-bottom: var(--space-4);
+}
+
+.summary {
+  font-size: var(--step-1);
+  color: var(--ink-soft);
+  margin-bottom: var(--space-5);
+}
+
+/* ---------- Key facts strip ----------
+   Deadline, reward and team size sit above the brief, because those
+   three decide whether someone reads any further. */
+.keyFacts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-5);
+  padding: var(--space-5);
+  margin-bottom: var(--space-7);
+  border-radius: var(--radius-lg);
+}
+
+.fact {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.factLabel {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.factValue {
+  font-size: var(--step-0);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.factUrgent {
+  color: var(--danger);
+}
+
+/* ---------- The brief ---------- */
+.layout {
+  display: grid;
+  gap: var(--space-8);
+  align-items: start;
+}
+
+@media (min-width: 1000px) {
+  .layout {
+    grid-template-columns: 1fr 420px;
+  }
+}
+
+.briefHeading {
+  margin-bottom: var(--space-4);
+  font-size: var(--step-2);
+}
+
+/* pre-line preserves the line breaks and blank lines the employer
+   typed, so the brief keeps its structure without a rich editor. */
+.brief {
+  white-space: pre-line;
+  font-size: var(--step-0);
+  line-height: var(--leading-normal);
+  color: var(--ink-soft);
+  max-width: var(--measure);
+}
+
+.repoLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--ink);
+  color: var(--paper);
+  border-radius: var(--radius);
+  font-size: var(--step--1);
+  font-weight: 600;
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.repoLink:hover {
+  background-color: var(--accent);
+}
+
+.skillsBlock {
+  margin-top: var(--space-7);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--line);
+}
+
+.skillsLabel {
+  margin-bottom: var(--space-3);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* ---------- Sidebar notices ---------- */
+.sidebar {
+  display: grid;
+  gap: var(--space-5);
+}
+
+@media (min-width: 1000px) {
+  .sidebar {
+    position: sticky;
+    top: calc(68px + var(--space-5));
+  }
+}
+
+.notice {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  justify-items: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.noticeTitle {
+  font-size: var(--step-1);
+  color: var(--ink);
+}
+
+.noticeBody {
+  font-size: var(--step--1);
+  color: var(--ink-faint);
+}

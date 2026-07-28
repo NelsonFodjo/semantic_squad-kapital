@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1200" width="100%" height="100%">
+  <!-- Algorithm / Code structures and bracket symbols -->
+  <g stroke="#4ade9b" stroke-opacity="0.24" stroke-width="2" fill="none">
+    <!-- Hexagonal Matrix Network -->
+    <path d="M 800 200 L 950 286 L 950 458 L 800 544 L 650 458 L 650 286 Z" stroke-dasharray="10 10" />
+    <path d="M 800 544 L 950 630 L 950 802 L 800 888 L 650 802 L 650 630 Z" />
+    <path d="M 500 372 L 650 286 M 950 286 L 1100 372 M 950 458 L 1100 544 M 650 458 L 500 544" />
+    
+    <!-- Code Bracket { } Overlays -->
+    <path d="M 250 150 C 200 150 170 170 170 220 L 170 320 C 170 350 150 370 120 370 C 150 370 170 390 170 420 L 170 520 C 170 570 200 590 250 590" stroke-width="3" />
+    <path d="M 1350 150 C 1400 150 1430 170 1430 220 L 1430 320 C 1430 350 1450 370 1480 370 C 1450 370 1430 390 1430 420 L 1430 520 C 1430 570 1400 590 1350 590" stroke-width="3" />
+
+    <!-- Terminal Code lines -->
+    <line x1="230" y1="240" x2="370" y2="240" />
+    <line x1="230" y1="290" x2="420" y2="290" />
+    <line x1="270" y1="340" x2="400" y2="340" />
+    <line x1="270" y1="390" x2="470" y2="390" stroke-dasharray="6 6" />
+    
+    <!-- Nodes inside hex network -->
+    <circle cx="800" cy="200" r="10" fill="rgba(74, 222, 155, 0.15)" stroke="#38d9e8" stroke-opacity="0.2" />
+    <circle cx="950" cy="286" r="10" fill="rgba(74, 222, 155, 0.15)" stroke="#38d9e8" stroke-opacity="0.2" />
+    <circle cx="950" cy="458" r="10" fill="rgba(74, 222, 155, 0.15)" stroke="#38d9e8" stroke-opacity="0.2" />
+    <circle cx="800" cy="544" r="10" fill="rgba(74, 222, 155, 0.15)" stroke="#38d9e8" stroke-opacity="0.2" />
+    <circle cx="650" cy="458" r="10" fill="rgba(74, 222, 155, 0.15)" stroke="#38d9e8" stroke-opacity="0.2" />
+    <circle cx="650" cy="286" r="10" fill="rgba(74, 222, 155, 0.15)" stroke="#38d9e8" stroke-opacity="0.2" />
+  </g>
+</svg>

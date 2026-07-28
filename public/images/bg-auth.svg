@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1200" width="100%" height="100%">
+  <!-- Security gates / concentric safety rings -->
+  <g stroke="#6aa8ff" stroke-opacity="0.24" stroke-width="2" fill="none">
+    <!-- Big central lock focus overlay -->
+    <circle cx="800" cy="600" r="310" />
+    <circle cx="800" cy="600" r="340" stroke-dasharray="14 14" />
+    <circle cx="800" cy="600" r="190" />
+    <circle cx="800" cy="600" r="110" stroke-dasharray="6 6" />
+    
+    <!-- Shield / Gate outline -->
+    <path d="M 800 380 C 860 380, 960 400, 960 450 V 620 C 960 750, 800 820, 800 820 C 800 820, 640 750, 640 620 V 450 C 640 400, 740 380, 800 380 Z" stroke-width="3" />
+    
+    <!-- Tech security lines -->
+    <line x1="800" y1="80" x2="800" y2="380" stroke-dasharray="10 10" />
+    <line x1="800" y1="820" x2="800" y2="1120" stroke-dasharray="10 10" />
+    <line x1="150" y1="600" x2="640" y2="600" stroke-dasharray="10 10" />
+    <line x1="960" y1="600" x2="1450" y2="600" stroke-dasharray="10 10" />
+    
+    <!-- Small security node boxes -->
+    <rect x="130" y="585" width="30" height="30" rx="6" fill="rgba(106, 168, 255, 0.05)" stroke="#b58cff" stroke-opacity="0.2" />
+    <circle cx="145" cy="600" r="6" stroke="#b58cff" stroke-opacity="0.2" />
+    
+    <rect x="1440" y="585" width="30" height="30" rx="6" fill="rgba(181, 140, 255, 0.05)" stroke="#b58cff" stroke-opacity="0.2" />
+    <circle cx="1455" cy="600" r="6" stroke="#b58cff" stroke-opacity="0.2" />
+  </g>
+</svg>

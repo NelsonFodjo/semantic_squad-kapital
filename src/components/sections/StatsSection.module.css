@@ -1,0 +1,75 @@
+/* Styles for StatsSection.tsx */
+
+.section {
+  position: relative;
+  background-color: var(--paper);
+  padding-block: var(--space-8);
+  overflow: hidden;
+}
+
+/* Two colour bleeds behind the row, placed off to either side so the
+   black never looks completely flat. */
+.auroraLeft {
+  top: -30%;
+  left: -10%;
+  width: 34rem;
+  height: 34rem;
+  background: var(--lagoon-glow);
+}
+
+.auroraRight {
+  bottom: -40%;
+  right: -8%;
+  width: 30rem;
+  height: 30rem;
+  background: var(--orchid-glow);
+  opacity: 0.35;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* auto-fit + minmax is the whole responsive story: four across on a
+   laptop, two on a tablet, one on a phone, no media queries. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-4);
+}
+
+.tile {
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  /* The hue is inherited from the data-hue attribute on the element. */
+  border-top: 2px solid var(--hue);
+}
+
+.value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--step-4);
+  line-height: 1;
+  color: var(--ink);
+  /* Tabular figures keep every digit the same width, so a counting
+     number does not shuffle the layout as it ticks up. */
+  font-variant-numeric: tabular-nums;
+}
+
+/* The dimmed leading zero. */
+.prefix {
+  color: var(--hue);
+  opacity: 0.6;
+}
+
+.suffix {
+  color: var(--hue);
+}
+
+.label {
+  display: block;
+  margin-top: var(--space-3);
+  font-size: var(--step--1);
+  color: var(--ink-faint);
+}

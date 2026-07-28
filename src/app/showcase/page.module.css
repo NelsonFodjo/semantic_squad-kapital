@@ -1,0 +1,22 @@
+/* Styles for the showcase gallery */
+
+/* The gallery grid. Generous gaps and a wide minimum — this section
+   is meant to feel spacious rather than dense. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-7) var(--space-5);
+}
+
+/* The first tile spans two columns, so the gallery opens with
+   something that holds the eye. Only once there is room for two
+   columns, hence the media query.
+
+   The matching 16:9 image shape is set by the tile's own `wide` prop
+   rather than from here — CSS Modules scope class names per file, so
+   this stylesheet cannot reach inside ShowcaseTile.module.css. */
+@media (min-width: 1100px) {
+  .featured {
+    grid-column: span 2;
+  }
+}
