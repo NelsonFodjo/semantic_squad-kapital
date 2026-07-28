@@ -21,7 +21,7 @@ const problems = [
   },
   {
     title: "Nobody says what the stipend is",
-    body: "Students apply, interview, and only then find out a placement is unpaid or pays less than the bus fare to get there. Every listing here states the figure before you click.",
+    body: "Students apply, interview, and only then find out a placement is unpaid — or pays less than the bus fare to get there. Every listing here states the figure before you click.",
   },
   {
     title: "A CV cannot show what you can do",
@@ -36,7 +36,7 @@ const principles = [
   },
   {
     title: "Employers are verified",
-    body: "A verified tick means that someone checked the Business Registration Number. Unverified employers can still post, and students can see the difference.",
+    body: "A verified tick means someone checked the Business Registration Number. Unverified employers can still post, and students can see the difference.",
   },
   {
     title: "Your work stays yours",
