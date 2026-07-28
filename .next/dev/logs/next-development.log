@@ -1,1 +1,23 @@
-{"timestamp":"00:00:02.131","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:00.963","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:10.034","source":"Server","level":"LOG","message":"○ Compiling / ..."}
+{"timestamp":"00:00:12.088","source":"Server","level":"ERROR","message":"Invalid DOM property `stop-color`. Did you mean `stopColor`?"}
+{"timestamp":"00:00:12.089","source":"Server","level":"ERROR","message":"Invalid DOM property `stroke-width`. Did you mean `strokeWidth`?"}
+{"timestamp":"00:00:12.090","source":"Server","level":"ERROR","message":"Invalid DOM property `stroke-linecap`. Did you mean `strokeLinecap`?"}
+{"timestamp":"00:00:12.090","source":"Server","level":"ERROR","message":"Invalid DOM property `stroke-linejoin`. Did you mean `strokeLinejoin`?"}
+{"timestamp":"00:00:14.457","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:00:14.721","source":"Browser","level":"ERROR","message":"Invalid DOM property `%s`. Did you mean `%s`? stop-color stopColor"}
+{"timestamp":"00:00:14.722","source":"Browser","level":"ERROR","message":"Invalid DOM property `%s`. Did you mean `%s`? stroke-width strokeWidth"}
+{"timestamp":"00:00:14.722","source":"Browser","level":"ERROR","message":"Invalid DOM property `%s`. Did you mean `%s`? stroke-linecap strokeLinecap"}
+{"timestamp":"00:00:14.723","source":"Browser","level":"ERROR","message":"Invalid DOM property `%s`. Did you mean `%s`? stroke-linejoin strokeLinejoin"}
+{"timestamp":"00:00:14.844","source":"Server","level":"ERROR","message":"[browser] \"Invalid DOM property `stop-color`. Did you mean `stopColor`?\" \"\""}
+{"timestamp":"00:00:14.845","source":"Browser","level":"ERROR","message":"Invalid DOM property `stop-color`. Did you mean `stopColor`? \"\""}
+{"timestamp":"00:00:14.846","source":"Server","level":"ERROR","message":"[browser] \"Invalid DOM property `stroke-width`. Did you mean `strokeWidth`?\" \"\""}
+{"timestamp":"00:00:14.847","source":"Browser","level":"ERROR","message":"Invalid DOM property `stroke-width`. Did you mean `strokeWidth`? \"\""}
+{"timestamp":"00:00:14.847","source":"Server","level":"ERROR","message":"[browser] \"Invalid DOM property `stroke-linecap`. Did you mean `strokeLinecap`?\" \"\""}
+{"timestamp":"00:00:14.847","source":"Browser","level":"ERROR","message":"Invalid DOM property `stroke-linecap`. Did you mean `strokeLinecap`? \"\""}
+{"timestamp":"00:00:14.848","source":"Server","level":"ERROR","message":"[browser] \"Invalid DOM property `stroke-linejoin`. Did you mean `strokeLinejoin`?\" \"\""}
+{"timestamp":"00:00:14.848","source":"Browser","level":"ERROR","message":"Invalid DOM property `stroke-linejoin`. Did you mean `strokeLinejoin`? \"\""}
+{"timestamp":"00:01:05.627","source":"Server","level":"LOG","message":"✓ Compiled in 32ms"}
+{"timestamp":"00:01:13.682","source":"Browser","level":"WARN","message":"Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior"}
+{"timestamp":"00:01:13.919","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mDetected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\\\"smooth\\\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior\\u001b[39m\""}
+{"timestamp":"00:01:13.921","source":"Browser","level":"WARN","message":"\u001b[33mDetected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior\u001b[39m"}

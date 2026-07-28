@@ -44,10 +44,9 @@ async function updateSession(request) {
     });
     // If Supabase is not configured yet, do nothing. This lets the
     // site run before anyone has created a project.
-    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-        return response;
-    }
-    const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$semantic_squad$2d$kapital$2f$node_modules$2f40$supabase$2f$ssr$2f$dist$2f$module$2f$createServerClient$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["createServerClient"])(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY, {
+    if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+    ;
+    const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$semantic_squad$2d$kapital$2f$node_modules$2f40$supabase$2f$ssr$2f$dist$2f$module$2f$createServerClient$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["createServerClient"])(("TURBOPACK compile-time value", "https://pvwcicxjtlhqrdiaweuw.supabase.co"), ("TURBOPACK compile-time value", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB2d2NpY3hqdGxocXJkaWF3ZXV3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODUxNjM2NTcsImV4cCI6MjEwMDczOTY1N30.XWEr42XDBb1BPayeuyE7kNAzUZeOSBP3nXxXmMIrsXE"), {
         cookies: {
             getAll () {
                 return request.cookies.getAll();

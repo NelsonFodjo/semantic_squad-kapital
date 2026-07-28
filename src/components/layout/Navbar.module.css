@@ -4,10 +4,11 @@
    this box out of normal document flow so it cannot push whatever
    comes after it down the page — but padding still adds to a
    height: 0 box's rendered size, so the spacing around the pill is
-   applied as margin on .pill below instead of as padding here. */
+   provided by the header's own top offset instead of the pill's
+   margin. */
 .header {
   position: sticky;
-  top: 0;
+  top: var(--space-5);
   left: 0;
   right: 0;
   height: 0;
@@ -15,10 +16,8 @@
   z-index: var(--z-header);
 }
 
-/* The glass pill itself. Margin (not the header's padding) is what
-   positions it — see the .header comment above. width: calc(100% -
-   ...) plus the same margin left/right replaces the horizontal inset
-   that used to come from the header's own padding. */
+/* The glass pill itself. The header handles the vertical gap now, so
+   the pill only needs horizontal centering. */
 .pill {
   display: flex;
   align-items: center;
@@ -26,7 +25,7 @@
   gap: var(--space-5);
   width: calc(100% - var(--space-5) * 2);
   max-width: 64rem;
-  margin: var(--space-5) auto 0;
+  margin: 0 auto 0;
   padding: var(--space-3) var(--space-5);
   border-radius: var(--radius-full);
 }
