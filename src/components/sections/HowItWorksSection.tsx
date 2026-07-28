@@ -68,7 +68,7 @@ export default function HowItWorksSection() {
                         className={styles.step}
                         animate={{
                           scale: isHovered ? 1.15 : 1,
-                          rotate: isHovered ? [0, -5, 5, 0] : 0,
+                          rotate: isHovered ? -5 : 0,
                         }}
                         transition={{ type: "spring", stiffness: 300 }}
                       >

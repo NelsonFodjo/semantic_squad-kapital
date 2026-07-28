@@ -22,31 +22,27 @@
 
 :root,
 [data-color-scheme="dark"] {
-  /* ---------- Surfaces ----------
-     There is only one real background: black. Everything that looks
-     like a "card" is translucent white sitting on top of it. */
+  /* ---------- Surfaces ---------- */
   --paper: #05050d;
-  --paper-raised: rgba(255, 255, 255, 0.03);
+  --paper-raised: rgba(255, 255, 255, 0.04);
   --paper-sunken: rgba(255, 255, 255, 0.02);
 
   /* ---------- Type ---------- */
   --ink: #ffffff;
-  --ink-soft: rgba(255, 255, 255, 0.7);
-  --ink-faint: rgba(255, 255, 255, 0.4);
-  --ink-ghost: rgba(255, 255, 255, 0.25);
+  --ink-soft: rgba(255, 255, 255, 0.78);
+  --ink-faint: rgba(255, 255, 255, 0.45);
+  --ink-ghost: rgba(255, 255, 255, 0.28);
 
   /* ---------- Lines ---------- */
   --line: rgba(255, 255, 255, 0.1);
   --line-strong: rgba(255, 255, 255, 0.18);
 
-  /* ---------- Accent ----------
-     On black, white IS the accent — it is the brightest thing
-     available. The teal is kept for status only, never decoration. */
+  /* ---------- Accent ---------- */
   --accent: #ffffff;
   --accent-hover: rgba(255, 255, 255, 0.85);
   --accent-wash: rgba(255, 255, 255, 0.06);
 
-  /* Status colours, lightened so they read on black. */
+  /* Status colours, lightened so they read on dark backgrounds. */
   --danger: #ff8a8a;
   --danger-wash: rgba(255, 138, 138, 0.12);
   --success: #7fe3ab;
@@ -54,47 +50,34 @@
   --warning: #f5cd7b;
   --warning-wash: rgba(245, 205, 123, 0.12);
 
-  /* ---------- Glass ----------
-     The "liquid glass" surface is built from a white alpha fill plus
-     a white-gradient ring — see .liquid-glass in base.css. On a dark
-     background, white glass reads as light catching curved glass. */
-  --glass-fill: rgba(255, 255, 255, 0.01);
-  --glass-fill-hover: rgba(255, 255, 255, 0.05);
-  --glass-highlight: rgba(255, 255, 255, 0.1);
-  --glass-ring-bright: rgba(255, 255, 255, 0.45);
-  --glass-ring-mid: rgba(255, 255, 255, 0.15);
-  /* Fully opaque and matched to --paper: the navbar is sticky, so it
-     needs to cleanly cover whatever scrolls underneath it (video,
-     page content) rather than letting it blur/blend through. */
-  --glass-header-backing: var(--paper);
+  /* ---------- Glass ---------- */
+  --glass-fill: rgba(255, 255, 255, 0.03);
+  --glass-fill-hover: rgba(255, 255, 255, 0.08);
+  --glass-highlight: rgba(255, 255, 255, 0.15);
+  --glass-ring-bright: rgba(255, 255, 255, 0.4);
+  --glass-ring-mid: rgba(255, 255, 255, 0.12);
+  --glass-header-backing: rgba(5, 5, 13, 0.7);
 
-  /* Shadows read against a black page, so they can stay this dark in
-     both themes without going invisible on light surfaces — see the
-     shadow tokens below, which are shared rather than per-theme. */
   color-scheme: dark;
 }
 
-/* ---------- Light theme ----------
-   A parallel set of surface/type/line/glass tokens. Same structure,
-   inverted: near-white paper, near-black ink, and glass built from a
-   black alpha instead of white so panels still read as "glass" rather
-   than turning into grey mud. */
+/* ---------- Light theme ---------- */
 [data-color-scheme="light"] {
-  --paper: #f7f7fa;
-  --paper-raised: rgba(5, 5, 13, 0.03);
-  --paper-sunken: rgba(5, 5, 13, 0.02);
+  --paper: #f0f2f7;
+  --paper-raised: rgba(255, 255, 255, 0.75);
+  --paper-sunken: rgba(255, 255, 255, 0.45);
 
-  --ink: #0a0a12;
-  --ink-soft: rgba(10, 10, 18, 0.72);
-  --ink-faint: rgba(10, 10, 18, 0.45);
-  --ink-ghost: rgba(10, 10, 18, 0.28);
+  --ink: #0a0d18;
+  --ink-soft: rgba(10, 13, 24, 0.82);
+  --ink-faint: rgba(10, 13, 24, 0.52);
+  --ink-ghost: rgba(10, 13, 24, 0.3);
 
-  --line: rgba(10, 10, 18, 0.1);
-  --line-strong: rgba(10, 10, 18, 0.18);
+  --line: rgba(10, 13, 24, 0.12);
+  --line-strong: rgba(10, 13, 24, 0.2);
 
-  --accent: #0a0a12;
-  --accent-hover: rgba(10, 10, 18, 0.85);
-  --accent-wash: rgba(10, 10, 18, 0.05);
+  --accent: #0a0d18;
+  --accent-hover: rgba(10, 13, 24, 0.85);
+  --accent-wash: rgba(10, 13, 24, 0.06);
 
   --danger: #d13b3b;
   --danger-wash: rgba(209, 59, 59, 0.1);
@@ -103,12 +86,12 @@
   --warning: #b8860f;
   --warning-wash: rgba(184, 134, 15, 0.1);
 
-  --glass-fill: rgba(255, 255, 255, 0.55);
-  --glass-fill-hover: rgba(255, 255, 255, 0.75);
-  --glass-highlight: rgba(10, 10, 18, 0.06);
-  --glass-ring-bright: rgba(10, 10, 18, 0.16);
-  --glass-ring-mid: rgba(10, 10, 18, 0.06);
-  --glass-header-backing: var(--paper);
+  --glass-fill: rgba(255, 255, 255, 0.65);
+  --glass-fill-hover: rgba(255, 255, 255, 0.82);
+  --glass-highlight: rgba(255, 255, 255, 0.9);
+  --glass-ring-bright: rgba(10, 13, 24, 0.2);
+  --glass-ring-mid: rgba(10, 13, 24, 0.08);
+  --glass-header-backing: rgba(240, 242, 247, 0.75);
 
   color-scheme: light;
 }

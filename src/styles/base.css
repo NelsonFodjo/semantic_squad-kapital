@@ -21,10 +21,10 @@ html {
   /* Stops anchor links landing underneath the fixed navbar. */
   scroll-padding-top: var(--space-9);
   -webkit-text-size-adjust: 100%;
-  background-color: var(--paper);
+  background-color: transparent;
   /* Firefox scrollbar support */
   scrollbar-width: thin;
-  scrollbar-color: var(--line-strong) var(--paper);
+  scrollbar-color: var(--line-strong) transparent;
 }
 
 /* Custom Scrollbars for Chrome/Edge/Safari */
@@ -34,12 +34,12 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--paper);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--line-strong);
-  border: 2px solid var(--paper);
+  border: 2px solid transparent;
   border-radius: var(--radius-full);
 }
 
@@ -48,7 +48,7 @@ html {
 }
 
 body {
-  background-color: var(--paper);
+  background-color: transparent;
   color: var(--ink-soft);
   font-family: var(--font-body);
   font-size: var(--step-0);
@@ -58,8 +58,7 @@ body {
   /* Video sections are full-bleed, so a stray horizontal scrollbar
      from a transform would be very visible. */
   overflow-x: hidden;
-  transition: background-color var(--duration) var(--ease-out),
-    color var(--duration) var(--ease-out);
+  transition: color var(--duration) var(--ease-out);
 }
 
 /* The toggle in ThemeToggle.tsx flips [data-theme] on <html>, which
@@ -174,9 +173,8 @@ button:disabled {
    except the padding band, leaving only the 1.4px ring. */
 .liquid-glass {
   background: var(--glass-fill);
-  background-blend-mode: luminosity;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: none;
   /* A single bright line inside the top edge — a highlight, like the
      lit lip of a glass panel. */
