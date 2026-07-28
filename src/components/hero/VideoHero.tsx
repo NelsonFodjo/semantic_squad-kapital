@@ -181,7 +181,6 @@ export default function VideoHero() {
         preload="auto"
         aria-hidden="true"
       >
-        <source src="/videos/hero.mp4" type="video/mp4" />
         <source src={VIDEO_SRC} type="video/mp4" />
       </video>
 

@@ -16,29 +16,29 @@
   z-index: var(--z-header);
 }
 
-/* The glass pill itself — compact capsule that wraps around links cleanly. */
+/* The glass pill itself — spacious, elegant floating capsule. */
 .pill {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-4);
-  width: fit-content;
-  max-width: calc(100vw - var(--space-5) * 2);
+  gap: var(--space-5);
+  width: calc(100% - var(--space-4) * 2);
+  max-width: 68rem;
   margin: 0 auto;
-  padding: 0.45rem var(--space-4);
+  padding: 0.6rem var(--space-6);
   border-radius: var(--radius-full);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 12px 36px -10px rgba(0, 0, 0, 0.45);
   transition: padding var(--duration) var(--ease-out),
     background-color var(--duration) var(--ease-out),
     box-shadow var(--duration) var(--ease-out);
 }
 
 .pillScrolled {
-  padding: 0.32rem 1.1rem;
+  padding: 0.45rem var(--space-5);
   background-color: var(--glass-header-backing);
-  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 12px 32px -5px rgba(0, 0, 0, 0.55);
 }
 
 /* ---------- Left group ---------- */

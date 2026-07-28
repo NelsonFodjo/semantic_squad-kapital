@@ -40,6 +40,7 @@ export default function Navbar() {
   // Undefined = "still checking", so the bar renders neither state
   // until we actually know — avoids a flash of the wrong links.
   const [isScrolled, setIsScrolled] = useState(false);
+  const [user, setUser] = useState<User | null | undefined>(undefined);
 
   const close = () => setIsOpen(false);
 

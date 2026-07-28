@@ -18,8 +18,6 @@ import { redirect } from "next/navigation";
 import VideoHero from "@/components/hero/VideoHero";
 import StatsSection from "@/components/sections/StatsSection";
 import SectorMarquee from "@/components/sections/SectorMarquee";
-import AboutSection from "@/components/sections/AboutSection";
-import FeaturedVideoSection from "@/components/sections/FeaturedVideoSection";
 import HowItWorksSection from "@/components/sections/HowItWorksSection";
 import PhilosophySection from "@/components/sections/PhilosophySection";
 import ServicesSection from "@/components/sections/ServicesSection";
@@ -32,9 +30,6 @@ export default async function HomePage() {
   const userId = await getCurrentUserId();
   if (userId) redirect("/dashboard");
 
-  // Promise.all runs all three at once rather than waiting for each in
-  // turn. Every one of them returns a safe empty value if Supabase is
-  // not reachable, so the page renders either way.
   const [openOpportunities, openChallenges, showcase] = await Promise.all([
     countOpenOpportunities(),
     countOpenChallenges(),
@@ -52,8 +47,6 @@ export default async function HomePage() {
       />
 
       <SectorMarquee />
-      <AboutSection />
-      <FeaturedVideoSection />
       <HowItWorksSection />
       <PhilosophySection />
       <ServicesSection />
