@@ -3,13 +3,10 @@
 .section {
   position: relative;
   background-color: var(--paper);
-  padding: var(--space-10) var(--space-5) var(--space-7);
+  padding: var(--space-9) var(--space-5);
   overflow: hidden;
 }
 
-/* A very faint glow bleeding down from the top edge, which stops the
-   join between the video hero and the flat black below reading as a
-   hard seam. */
 .glow {
   position: absolute;
   inset: 0;
@@ -21,30 +18,48 @@
   pointer-events: none;
 }
 
+.auroraCenter {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40rem;
+  height: 25rem;
+  background: var(--mango-glow);
+  opacity: 0.18;
+}
+
 .inner {
   position: relative;
   z-index: 1;
 }
 
-.heading {
-  margin-top: var(--space-5);
-  font-size: var(--step-4);
-  line-height: 1.1;
-  letter-spacing: var(--tracking-tight);
-  color: var(--ink);
-  max-width: 40ch;
+.glassBanner {
+  padding: var(--space-8) var(--space-8);
+  border-radius: var(--radius-2xl);
 }
 
-/* The dimmed italic phrases. Setting them back from white is what
-   makes the upright words read as the point of the sentence. */
+.heading {
+  margin-top: var(--space-4);
+  font-size: var(--step-4);
+  line-height: 1.15;
+  letter-spacing: var(--tracking-tight);
+  color: var(--ink);
+  max-width: 42ch;
+}
+
 .em {
   font-style: italic;
   color: var(--ink-soft);
 }
 
-/* The design breaks this heading across two lines on desktop. On a
-   phone that break would land mid-phrase, so it is hidden there and
-   the text wraps naturally instead. */
+.emHighlight {
+  font-style: italic;
+  background: linear-gradient(135deg, var(--mango) 0%, var(--coral) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 .lineBreak {
   display: none;
 }

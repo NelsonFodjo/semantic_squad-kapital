@@ -17,12 +17,25 @@ import Footer from "@/components/layout/Footer";
 import PageBackground from "@/components/layout/PageBackground";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://semantic-squad-kapital.vercel.app"),
   title: {
     default: "Kapital — Internships & industry challenges in Mauritius",
     template: "%s · Kapital",
   },
   description:
     "Where Mauritian university students meet professionals: internships, real industry challenges, and open-source projects worth building.",
+  openGraph: {
+    title: "Kapital — Build and Connect in Mauritius",
+    description:
+      "Kapital connects Mauritian university students with employers offering internships, industry challenges, and open-source work.",
+    url: "https://semantic-squad-kapital.vercel.app",
+    siteName: "Kapital",
+    locale: "en_US",
+    type: "website",
+  },
+  alternates: {
+    canonical: "https://semantic-squad-kapital.vercel.app",
+  },
 };
 
 // Sets data-color-scheme on <html> before the browser paints, so a

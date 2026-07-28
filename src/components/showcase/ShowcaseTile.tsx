@@ -30,15 +30,14 @@ export default function ShowcaseTile({
             picture, which matters a lot on mobile data. It needs
             either width/height or `fill` — fill makes the image cover
             its container, which is what we want here. */}
-        {item.cover_image_url && (
-          <Image
-            src={item.cover_image_url}
-            alt=""
-            fill
-            sizes={sizes}
-            className={styles.image}
-          />
-        )}
+        <Image
+          src={item.cover_image_url || "/images/showcase.svg"}
+          alt={item.title || "Showcase case study"}
+          fill
+          unoptimized
+          sizes={sizes}
+          className={styles.image}
+        />
 
         {item.is_featured && <span className={styles.featured}>Featured</span>}
 

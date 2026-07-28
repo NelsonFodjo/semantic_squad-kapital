@@ -38,19 +38,6 @@
   color: var(--ink);
 }
 
-/* Hidden on phones — it is a secondary label and the row gets cramped. */
-.headerLabel {
-  display: none;
-  font-size: var(--step--1);
-  color: var(--ink-faint);
-}
-
-@media (min-width: 768px) {
-  .headerLabel {
-    display: block;
-  }
-}
-
 /* ---------- Cards ---------- */
 .grid {
   display: grid;
@@ -65,35 +52,43 @@
   }
 }
 
-.card {
+.cardLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  outline: none;
+}
+
+.cardInner {
   border-radius: var(--radius-xl);
+  height: 100%;
 }
 
 .videoFrame {
   position: relative;
   aspect-ratio: 16 / 9;
   overflow: hidden;
+  border-top-left-radius: var(--radius-xl);
+  border-top-right-radius: var(--radius-xl);
 }
 
-/* The slow zoom on hover. Scaling is cheap for the browser to animate,
-   unlike width or height, so this stays smooth even over video. */
+.imageWrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .video {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--duration-slow) var(--ease-out);
-}
-
-/* .card:hover .video — the parent's hover state drives the child. This
-   is what the group-hover utility does in Tailwind. */
-.card:hover .video {
-  transform: scale(1.05);
 }
 
 .videoGradient {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, transparent 60%);
+  background: linear-gradient(to top, rgba(5, 5, 13, 0.6) 0%, transparent 65%);
   pointer-events: none;
 }
 
@@ -109,12 +104,26 @@
   margin-bottom: var(--space-4);
 }
 
+.tagWrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  background: var(--hue-wash);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tagIcon {
+  color: var(--hue);
+}
+
 .tag {
-  font-size: 0.7rem;
-  font-weight: 500;
+  font-size: 0.72rem;
+  font-weight: 600;
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: var(--ink-faint);
+  color: var(--ink);
 }
 
 /* The little circled arrow in the corner. */
@@ -122,14 +131,12 @@
   display: grid;
   place-items: center;
   flex-shrink: 0;
-  padding: var(--space-2);
+  width: 36px;
+  height: 36px;
   border-radius: var(--radius-full);
   color: var(--ink);
-  transition: transform var(--duration) var(--ease-out);
-}
-
-.card:hover .arrow {
-  transform: translate(2px, -2px);
+  background: var(--glass-fill);
+  border: 1px solid var(--glass-highlight);
 }
 
 .cardTitle {
@@ -139,7 +146,7 @@
   color: var(--ink);
 }
 
-.cardText {
+.text {
   font-size: var(--step--1);
   line-height: var(--leading-normal);
   color: var(--ink-faint);

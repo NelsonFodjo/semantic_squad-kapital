@@ -3,6 +3,8 @@
 > **Where Mauritius builds.**  
 > Kapital connects Mauritian university students with employers offering internships, industry challenges, and open-source work — so what you build here becomes a portfolio, not just a line on a CV.
 
+🌐 **Live Website**: [https://semantic-squad-kapital.vercel.app/](https://semantic-squad-kapital.vercel.app/)
+
 ---
 
 ## 🌟 Overview
@@ -21,7 +23,7 @@
 - **🎯 Industry Challenges**: Real-world business problems posted by companies, allowing students to skip resume screening through sheer work quality.
 - **🌐 Collaborative Open Source**: Hands-on teamwork on open software projects to build production-level code experience.
 - **🌟 Public Student Portfolios**: Shareable case studies highlighting problem framing, architectural decisions, and shipped products.
-- **🎨 Luminous Glassmorphic Design**: A custom design system featuring responsive glassmorphic UI, route-specific dynamic space mesh backdrops, SVG wireframe illustrations, and smooth Framer Motion animations.
+- **🎨 Luminous Glassmorphic Design**: A custom design system featuring responsive glassmorphic UI, route-specific dynamic space mesh backdrops, 3D magnetic tilt cards, SVG wireframe illustrations, and smooth Framer Motion animations.
 - **🔐 Secure Authentication**: Integrated Supabase SSR authentication supporting student and employer onboarding flows.
 
 ---
@@ -30,13 +32,14 @@
 
 | Layer | Technology |
 | :--- | :--- |
+| **Live URL** | [semantic-squad-kapital.vercel.app](https://semantic-squad-kapital.vercel.app/) |
 | **Framework** | [Next.js 16 (App Router)](https://nextjs.org/) |
 | **Language** | [TypeScript](https://www.typescriptlang.org/) |
 | **UI & Styling** | CSS Modules, Glassmorphism design system, Vanilla CSS variables |
 | **Animations** | [Framer Motion](https://www.framer.com/motion/) |
 | **Icons** | [Lucide React](https://lucide.dev/) |
 | **Database & Auth** | [Supabase](https://supabase.com/) (`@supabase/ssr`, `@supabase/supabase-js`) |
-| **Package Manager** | `pnpm` / `npm` |
+| **Deployment** | [Vercel](https://vercel.com/) |
 
 ---
 
@@ -58,12 +61,13 @@ semantic_squad-kapital/
 │   │   ├── opportunities/    # Internship & job listings directory
 │   │   ├── showcase/         # Student portfolio case studies
 │   │   ├── students/         # Student resources page
-│   │   ├── layout.tsx        # Global app layout & theme provider
+│   │   ├── layout.tsx        # Global app layout & metadata configuration
 │   │   └── page.tsx          # Homepage with Video Hero & Services
 │   ├── components/           # Reusable UI components
 │   │   ├── hero/             # Video Hero & Search filters
 │   │   ├── layout/           # Navbar, Footer, PageBackground system
-│   │   └── sections/         # Homepage & feature showcase sections
+│   │   ├── motion/           # SpotlightCard, Reveal, Counter animations
+│   │   └── sections/         # Interactive homepage sections
 │   ├── data/                 # Static mock data & constants
 │   ├── hooks/                # Custom React hooks
 │   ├── lib/                  # Utility functions & Supabase client setup
@@ -80,13 +84,10 @@ semantic_squad-kapital/
 
 ## 🚀 Getting Started
 
-### Prerequisites
+### Live Deployment
+Access the live site at: **[https://semantic-squad-kapital.vercel.app/](https://semantic-squad-kapital.vercel.app/)**
 
-Ensure you have the following installed on your machine:
-- **Node.js**: `v20.0.0` or higher
-- **Package Manager**: `pnpm` (recommended) or `npm`
-
-### Installation
+### Local Development
 
 1. **Clone the repository**:
    ```bash
@@ -117,29 +118,6 @@ Ensure you have the following installed on your machine:
 
 5. **Open in Browser**:
    Navigate to [http://localhost:3000](http://localhost:3000) to view the app locally.
-
----
-
-## 📜 Available Scripts
-
-In the project directory, you can run:
-
-- `npm run dev` / `pnpm dev`: Runs the app in development mode with HMR.
-- `npm run build` / `pnpm build`: Builds the application for production.
-- `npm run start` / `pnpm start`: Starts the production server after building.
-- `npm run lint` / `pnpm lint`: Runs ESLint to check for code quality issues.
-
----
-
-## 🗺️ Key Routes
-
-- **`/`**: Homepage featuring the main video hero, quick filters, and services overview.
-- **`/opportunities`**: Directory of internships and graduate job opportunities.
-- **`/challenges`**: Live business challenges and open-source projects.
-- **`/showcase`**: Public showcase of student portfolios and completed case studies.
-- **`/about`**: Our mission, story, and operational principles.
-- **`/contact`**: Direct communication channel for students and prospective employer partners.
-- **`/login` & `/register`**: Authentication entry points for students and employers.
 
 ---
 

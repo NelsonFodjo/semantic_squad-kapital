@@ -3,6 +3,7 @@
 // ============================================================
 
 import Link from "next/link";
+import Image from "next/image";
 import Tag, { TagRow } from "@/components/ui/Tag";
 import { formatDeadline, labelChallengeKind } from "@/lib/format";
 import type { ChallengeWithOrg } from "@/types/database";
@@ -27,6 +28,17 @@ export default function ChallengeCard({ challenge }: Props) {
       href={`/challenges/${challenge.slug}`}
       className={`liquid-glass ${styles.card} ${isOpenSource ? styles.openSource : ""}`}
     >
+      <div className={styles.imageFrame}>
+        <Image
+          src={challenge.cover_image_url || (isOpenSource ? "/images/opensource.svg" : "/images/challenges.svg")}
+          alt={challenge.title}
+          fill
+          unoptimized
+          style={{ objectFit: "cover" }}
+          className={styles.image}
+        />
+      </div>
+
       <div className={styles.top}>
         <span className={styles.org}>
           {org?.name ?? "Organisation"}

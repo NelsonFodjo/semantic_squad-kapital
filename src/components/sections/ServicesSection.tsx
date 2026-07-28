@@ -1,16 +1,14 @@
 "use client";
 
 // ============================================================
-// ServicesSection — "What we do", as two video cards.
+// ServicesSection — "What we do", as interactive 3D video/SVG cards.
 // ============================================================
-// The cards are staggered: index * 0.15 means card one animates at
-// 0.2s and card two at 0.35s. Multiplying the delay by the index is
-// the standard way to stagger a list without hand-writing each value.
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Sparkles, Code2, Briefcase, Trophy } from "lucide-react";
 import Image from "next/image";
+import SpotlightCard from "@/components/motion/SpotlightCard";
 import styles from "./ServicesSection.module.css";
 
 const cards = [
@@ -20,7 +18,8 @@ const cards = [
     text: "Apply to verified, paid internships and graduate roles in Mauritius. Stipends are always stated upfront, so you know exactly what to expect before applying.",
     href: "/opportunities",
     image: "/images/placements.svg",
-    hue: "lagoon",
+    hue: "lagoon" as const,
+    icon: Briefcase,
   },
   {
     tag: "Challenges",
@@ -28,7 +27,8 @@ const cards = [
     text: "Submit solutions to real-world business challenges. Build your reputation and skip the resume screening based on the sheer quality of your reasoning.",
     href: "/challenges",
     image: "/images/challenges.svg",
-    hue: "coral",
+    hue: "coral" as const,
+    icon: Trophy,
   },
   {
     tag: "Open Source",
@@ -36,7 +36,8 @@ const cards = [
     text: "Contribute to open-source software with other students. Gain production-level coding experience, master version control, and build products worth building.",
     href: "/challenges?kind=open_source",
     image: "/images/opensource.svg",
-    hue: "palm",
+    hue: "palm" as const,
+    icon: Code2,
   },
   {
     tag: "Showcase",
@@ -44,13 +45,15 @@ const cards = [
     text: "Publish comprehensive case studies of your completed work. Showcase the problem, the decisions you made, and what you learned to get noticed by top employers.",
     href: "/showcase",
     image: "/images/showcase.svg",
-    hue: "orchid",
+    hue: "orchid" as const,
+    icon: Sparkles,
   },
 ];
 
 export default function ServicesSection() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [activeCard, setActiveCard] = useState<string | null>(null);
 
   return (
     <section className={styles.section}>
@@ -63,49 +66,79 @@ export default function ServicesSection() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.7 }}
         >
+          <motion.p
+            className="eyebrow"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.5 }}
+          >
+            Our services
+          </motion.p>
           <h2 className={styles.title}>What we do</h2>
-          <p className={styles.headerLabel}>Our services</p>
         </motion.div>
 
         <div className={styles.grid}>
-          {cards.map((card, index) => (
-            <motion.a
-              key={card.title}
-              href={card.href}
-              className={`liquid-glass hover-lift ${styles.card}`}
-              data-hue={card.hue}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-              // Each card waits a little longer than the one before it.
-              transition={{ duration: 0.8, delay: 0.2 + index * 0.15 }}
-            >
-              <div className={styles.videoFrame}>
-                <Image
-                  className={styles.video}
-                  src={card.image}
-                  alt={card.title}
-                  fill
-                  unoptimized
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  style={{ objectFit: "cover" }}
-                />
-                <div className={styles.videoGradient} aria-hidden="true" />
-              </div>
+          {cards.map((card, index) => {
+            const Icon = card.icon;
+            const isHovered = activeCard === card.title;
 
-              <div className={styles.body}>
-                <div className={styles.bodyTop}>
-                  <span className={styles.tag}>{card.tag}</span>
+            return (
+              <motion.a
+                key={card.title}
+                href={card.href}
+                className={styles.cardLink}
+                onMouseEnter={() => setActiveCard(card.title)}
+                onMouseLeave={() => setActiveCard(null)}
+                initial={{ opacity: 0, y: 50 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                transition={{ duration: 0.8, delay: 0.15 + index * 0.12 }}
+              >
+                <SpotlightCard hue={card.hue} className={styles.cardInner}>
+                  <div className={styles.videoFrame}>
+                    <motion.div
+                      animate={{ scale: isHovered ? 1.08 : 1 }}
+                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                      className={styles.imageWrapper}
+                    >
+                      <Image
+                        className={styles.video}
+                        src={card.image}
+                        alt={card.title}
+                        fill
+                        unoptimized
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        style={{ objectFit: "cover" }}
+                      />
+                    </motion.div>
+                    <div className={styles.videoGradient} aria-hidden="true" />
+                  </div>
 
-                  <span className={`liquid-glass ${styles.arrow}`}>
-                    <ArrowUpRight size={16} />
-                  </span>
-                </div>
+                  <div className={styles.body}>
+                    <div className={styles.bodyTop}>
+                      <div className={styles.tagWrapper}>
+                        <Icon size={14} className={styles.tagIcon} />
+                        <span className={styles.tag}>{card.tag}</span>
+                      </div>
 
-                <h3 className={styles.cardTitle}>{card.title}</h3>
-                <p className={styles.cardText}>{card.text}</p>
-              </div>
-            </motion.a>
-          ))}
+                      <motion.span
+                        className={`liquid-glass ${styles.arrow}`}
+                        animate={{
+                          rotate: isHovered ? 45 : 0,
+                          scale: isHovered ? 1.15 : 1,
+                        }}
+                        transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                      >
+                        <ArrowUpRight size={16} />
+                      </motion.span>
+                    </div>
+
+                    <h3 className={styles.cardTitle}>{card.title}</h3>
+                    <p className={styles.text}>{card.text}</p>
+                  </div>
+                </SpotlightCard>
+              </motion.a>
+            );
+          })}
         </div>
       </div>
     </section>

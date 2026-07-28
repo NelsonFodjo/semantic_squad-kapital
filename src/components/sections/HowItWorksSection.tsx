@@ -1,39 +1,43 @@
-// ============================================================
-// HowItWorksSection — the three steps, as spotlight cards.
-// ============================================================
-// Each card gets its own colour and a glow that follows the cursor
-// (see SpotlightCard). The colours run cool to warm across the row,
-// which gives the three steps a sense of direction.
+"use client";
 
-import { UserCircle, Send, Sparkles } from "lucide-react";
+// ============================================================
+// HowItWorksSection — interactive three-step journey.
+// ============================================================
+
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { UserCircle, Send, Sparkles, ArrowRight } from "lucide-react";
 import Reveal from "@/components/motion/Reveal";
 import SpotlightCard from "@/components/motion/SpotlightCard";
 import styles from "./HowItWorksSection.module.css";
 
-// `as const` on the hue keeps TypeScript happy: it narrows the type
-// from `string` to the exact hue names SpotlightCard accepts.
 const steps = [
   {
     hue: "lagoon" as const,
     Icon: UserCircle,
+    stepNum: "01",
     title: "Build your profile",
     body: "Verify with your university email, list your skills, attach your CV once. After that, applying to anything takes two clicks.",
   },
   {
     hue: "orchid" as const,
     Icon: Send,
+    stepNum: "02",
     title: "Apply or propose",
     body: "Go for a posted internship, or answer an open industry challenge with your own proposal — solo or as a team.",
   },
   {
     hue: "mango" as const,
     Icon: Sparkles,
+    stepNum: "03",
     title: "Ship something real",
     body: "Selected work gets published in the showcase with your name on it. That becomes the portfolio employers actually read.",
   },
 ];
 
 export default function HowItWorksSection() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   return (
     <section className={styles.section}>
       <span className={`aurora ${styles.aurora1}`} aria-hidden="true" />
@@ -47,20 +51,65 @@ export default function HowItWorksSection() {
         </Reveal>
 
         <div className={styles.grid}>
-          {steps.map((step, index) => (
-            <Reveal key={step.title} delay={index * 0.1}>
-              <SpotlightCard hue={step.hue} className={styles.card}>
-                {/* CSS adds no numbering here because each card needs
-                    its own colour, which a counter cannot carry. */}
-                <span className={styles.step}>0{index + 1}</span>
+          {steps.map((step, index) => {
+            const StepIcon = step.Icon;
+            const isHovered = hoveredIndex === index;
 
-                <h3 className={styles.title}>{step.title}</h3>
-                <p className={styles.body}>{step.body}</p>
+            return (
+              <Reveal key={step.title} delay={index * 0.12}>
+                <div
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                  className={styles.cardContainer}
+                >
+                  <SpotlightCard hue={step.hue} className={styles.card}>
+                    <div className={styles.cardHeader}>
+                      <motion.span
+                        className={styles.step}
+                        animate={{
+                          scale: isHovered ? 1.15 : 1,
+                          rotate: isHovered ? [0, -5, 5, 0] : 0,
+                        }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        {step.stepNum}
+                      </motion.span>
 
-                <step.Icon className={styles.icon} size={20} />
-              </SpotlightCard>
-            </Reveal>
-          ))}
+                      <motion.div
+                        className={styles.iconContainer}
+                        animate={{
+                          scale: isHovered ? 1.2 : 1,
+                          rotate: isHovered ? 12 : 0,
+                        }}
+                        transition={{ type: "spring", stiffness: 250 }}
+                      >
+                        <StepIcon className={styles.stepIcon} size={24} />
+                      </motion.div>
+                    </div>
+
+                    <h3 className={styles.title}>{step.title}</h3>
+                    <p className={styles.body}>{step.body}</p>
+
+                    <div className={styles.cardFooter}>
+                      <span className={styles.learnMore}>Step {step.stepNum}</span>
+                      <motion.div
+                        animate={{ x: isHovered ? 6 : 0 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        <ArrowRight size={18} className={styles.arrowIcon} />
+                      </motion.div>
+                    </div>
+                  </SpotlightCard>
+
+                  {index < steps.length - 1 && (
+                    <div className={styles.connector} aria-hidden="true">
+                      <div className={styles.connectorLine} />
+                    </div>
+                  )}
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>

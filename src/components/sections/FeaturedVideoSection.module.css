@@ -6,14 +6,17 @@
   overflow: hidden;
 }
 
+.frameContainer {
+  position: relative;
+}
+
 .frame {
   position: relative;
-  /* aspect-ratio reserves the right height before the video loads, so
-     the page does not jump when it arrives. */
   aspect-ratio: 16 / 9;
   border-radius: var(--radius-xl);
   overflow: hidden;
   background-color: var(--paper-sunken);
+  min-height: 420px;
 }
 
 .video {
@@ -22,16 +25,13 @@
   object-fit: cover;
 }
 
-/* Darkens the lower half so the overlay card and button stay legible
-   over a moving image. */
 .gradient {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(0, 0, 0, 0.6) 0%,
-    transparent 55%,
-    transparent 100%
+    rgba(5, 5, 13, 0.75) 0%,
+    transparent 60%
   );
   pointer-events: none;
 }
@@ -47,10 +47,9 @@
   align-items: flex-start;
   gap: var(--space-5);
   padding: var(--space-5);
+  z-index: 10;
 }
 
-/* Card left, button right — but only once there is room. On a phone
-   they stack, with the card first. */
 @media (min-width: 768px) {
   .overlay {
     flex-direction: row;
@@ -61,18 +60,28 @@
 }
 
 .card {
-  max-width: 28rem;
+  max-width: 32rem;
   padding: var(--space-6);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
+}
+
+.labelWrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: var(--space-3);
+}
+
+.sparkleIcon {
+  color: var(--palm);
 }
 
 .cardLabel {
-  margin-bottom: var(--space-3);
-  font-size: 0.7rem;
-  font-weight: 500;
+  font-size: 0.72rem;
+  font-weight: 600;
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--palm);
 }
 
 .cardBody {
@@ -83,10 +92,17 @@
 }
 
 .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
   flex-shrink: 0;
   padding: var(--space-3) var(--space-6);
   border-radius: var(--radius-full);
   color: var(--ink);
-  font-size: var(--step--1);
-  font-weight: 500;
+  font-size: var(--step-0);
+  font-weight: 600;
+  text-decoration: none;
+  background: var(--hue-wash);
+  border: 1px solid var(--hue);
+  box-shadow: 0 0 20px -4px var(--hue-glow);
 }

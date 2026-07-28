@@ -3,55 +3,78 @@
 .card {
   position: relative;
   border-radius: var(--radius-lg);
-  /* Fallback position for the spotlight before the pointer has moved,
-     so it starts centred rather than in the corner. */
+  /* Fallback position for the spotlight before the pointer has moved */
   --spot-x: 50%;
   --spot-y: 0%;
-  transition: transform var(--duration) var(--ease-out),
-    box-shadow var(--duration) var(--ease-out);
+  transition: box-shadow var(--duration) var(--ease-out);
+  will-change: transform;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 60px -20px var(--hue-glow);
+  box-shadow: 0 24px 70px -15px var(--hue-glow), 0 0 25px 0 var(--hue-wash);
 }
 
-/* The moving light. Its centre is wherever the two CSS variables say,
-   which the component updates on mousemove. */
+/* The moving radial light spotlight */
 .spotlight {
   position: absolute;
   inset: 0;
   border-radius: inherit;
   background: radial-gradient(
-    380px circle at var(--spot-x) var(--spot-y),
+    420px circle at var(--spot-x) var(--spot-y),
     var(--hue-wash) 0%,
-    transparent 70%
+    rgba(255, 255, 255, 0.03) 40%,
+    transparent 75%
   );
   opacity: 0;
   transition: opacity var(--duration) var(--ease-out);
   pointer-events: none;
+  z-index: 1;
 }
 
 .card:hover .spotlight {
   opacity: 1;
 }
 
+/* Ambient light sweep beam along top edge */
+.ambientBeam {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--hue) 50%,
+    transparent 100%
+  );
+  opacity: 0;
+  transform: scaleX(0.2);
+  transition: opacity var(--duration) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.ambientBeam[data-hover="true"] {
+  opacity: 0.9;
+  transform: scaleX(1);
+}
+
 /* Content sits above the glow. */
 .content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
-/* Touch devices have no hovering cursor, so the spotlight would never
-   appear and the lift would trigger on tap and stick. Turn both off
-   and let the static glass do the work. */
+/* Touch devices */
 @media (hover: none) {
   .card:hover {
-    transform: none;
     box-shadow: none;
   }
 
-  .spotlight {
+  .spotlight,
+  .ambientBeam {
     display: none;
   }
 }
