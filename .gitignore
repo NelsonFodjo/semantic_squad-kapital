@@ -3,3 +3,4 @@
 .git-auto-commit/
 node_modules
 .env
+.next
