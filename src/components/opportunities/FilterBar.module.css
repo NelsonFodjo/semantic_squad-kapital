@@ -1,24 +1,26 @@
 /* Styles for FilterBar.tsx */
 
 .bar {
-  display: grid;
-  gap: var(--space-5);
-  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
   margin-bottom: var(--space-6);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
+  transition: padding var(--duration) var(--ease-out);
 }
 
-/* ---------- Search row ---------- */
+/* ---------- Primary Controls Row ---------- */
 .searchRow {
   display: grid;
+  grid-template-columns: 1fr;
   gap: var(--space-3);
+  align-items: center;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 768px) {
   .searchRow {
-    /* Search takes the space, the count sits at its natural width. */
     grid-template-columns: 1fr auto;
-    align-items: center;
   }
 }
 
@@ -37,7 +39,6 @@
 
 .search {
   width: 100%;
-  /* Left padding leaves room for the icon sitting on top. */
   padding: var(--space-3) var(--space-4) var(--space-3) var(--space-9);
   background-color: var(--paper-sunken);
   border: 1px solid var(--line-strong);
@@ -58,11 +59,20 @@
   box-shadow: 0 0 0 3px var(--lagoon-wash);
 }
 
+.topRightControls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
 .count {
   font-size: var(--step--1);
   color: var(--ink-faint);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
+  padding-left: var(--space-2);
+  border-left: 1px solid var(--line);
 }
 
 .countValue {
@@ -70,15 +80,130 @@
   font-weight: 600;
 }
 
-/* ---------- Chip groups ---------- */
+/* ---------- Expand/Collapse Button ---------- */
+.expandBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background-color: var(--paper-raised);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-full);
+  color: var(--ink-soft);
+  font-size: var(--step--1);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.expandBtn:hover {
+  color: var(--ink);
+  border-color: var(--glass-ring-bright);
+  background-color: var(--glass-fill-hover);
+}
+
+.expandBtnActive {
+  color: var(--lagoon);
+  border-color: var(--lagoon);
+  background-color: var(--lagoon-wash);
+}
+
+.activeBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding-inline: 5px;
+  border-radius: 999px;
+  background-color: var(--lagoon);
+  color: #05050d;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.chevronWrapper {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ---------- Active Filters Strip ---------- */
+.activeStrip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+
+.activeStripLabel {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.activeTags {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.activeTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: var(--lagoon-wash);
+  border: 1px solid var(--lagoon);
+  border-radius: var(--radius-full);
+  color: var(--lagoon);
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.activeTag:hover {
+  opacity: 0.8;
+  transform: scale(0.97);
+}
+
+.clearAllBtn {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: var(--ink-faint);
+  font-size: var(--step--1);
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.clearAllBtn:hover {
+  color: var(--danger);
+}
+
+/* ---------- Collapsible Content ---------- */
+.collapsibleWrapper {
+  overflow: hidden;
+}
+
 .groups {
   display: grid;
   gap: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--line);
 }
 
 .group {
   display: grid;
-  gap: var(--space-3);
+  gap: var(--space-2);
 }
 
 .groupLabel {
@@ -89,14 +214,11 @@
   color: var(--ink-faint);
 }
 
-/* The chip row scrolls sideways on a phone rather than wrapping into
-   four tall lines. */
 .chips {
   display: flex;
   gap: var(--space-2);
   overflow-x: auto;
   padding-bottom: var(--space-2);
-  /* Hide the scrollbar but keep the scrolling. */
   scrollbar-width: none;
 }
 
@@ -112,8 +234,6 @@
   }
 }
 
-/* A chip. position: relative so the sliding highlight can sit behind
-   its label. */
 .chip {
   position: relative;
   flex-shrink: 0;
@@ -126,6 +246,8 @@
   white-space: nowrap;
   transition: color var(--duration-fast) var(--ease-out),
     border-color var(--duration-fast) var(--ease-out);
+  cursor: pointer;
+  background: transparent;
 }
 
 .chip:hover {
@@ -133,15 +255,11 @@
   border-color: var(--glass-ring-bright);
 }
 
-/* The selected chip. Its colour comes from data-hue, so choosing
-   "Ocean Economy" highlights in the same teal its cards use. */
 .chipActive {
   color: var(--hue);
   border-color: var(--hue);
 }
 
-/* The moving fill behind the active chip, animated by framer-motion's
-   layoutId. Sits under the label. */
 .chipGlow {
   position: absolute;
   inset: 0;
@@ -155,16 +273,7 @@
   z-index: 1;
 }
 
-/* ---------- Bottom row ---------- */
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-4);
-  padding-top: var(--space-4);
-  border-top: 1px solid var(--line);
-}
-
+/* ---------- Switch Toggle ---------- */
 .toggle {
   display: flex;
   align-items: center;
@@ -175,8 +284,6 @@
   cursor: pointer;
 }
 
-/* A custom switch, because a native checkbox cannot be styled to match
-   the glass. The real input is hidden but still focusable. */
 .toggleInput {
   position: absolute;
   opacity: 0;
@@ -186,7 +293,7 @@
 
 .switch {
   position: relative;
-  width: 40px;
+  width: 38px;
   height: 22px;
   border-radius: var(--radius-full);
   background-color: var(--glass-highlight);
@@ -203,43 +310,17 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background-color: var(--ink-faint);
+  background-color: var(--ink-soft);
   transition: transform var(--duration) var(--ease-out),
     background-color var(--duration) var(--ease-out);
 }
 
-/* :checked + span targets the switch that follows the hidden input. */
-.toggleInput:checked + .switch {
-  background-color: var(--palm-wash);
-  border-color: var(--palm);
+.toggleActive .switch {
+  background-color: var(--lagoon-wash);
+  border-color: var(--lagoon);
 }
 
-.toggleInput:checked + .switch .knob {
-  transform: translateX(18px);
-  background-color: var(--palm);
-}
-
-/* Focus ring on the switch when the hidden input is focused by
-   keyboard — otherwise tabbing to it would show nothing at all. */
-.toggleInput:focus-visible + .switch {
-  outline: 2px solid var(--ink);
-  outline-offset: 2px;
-}
-
-.toggleActive {
-  color: var(--palm);
-}
-
-.reset {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  margin-left: auto;
-  font-size: var(--step--1);
-  font-weight: 600;
-  color: var(--coral);
-}
-
-.reset:hover {
-  color: var(--ink);
+.toggleActive .knob {
+  transform: translateX(16px);
+  background-color: var(--lagoon);
 }

@@ -1,25 +1,13 @@
 "use client";
 
 // ============================================================
-// FilterBar — the filters above the opportunity board.
+// FilterBar — collapsible glass filter panel.
 // ============================================================
-// The chosen filters live in the URL, not in React state:
-//
-//     /opportunities?sector=Fintech&paid=1
-//
-// which means a filtered board can be bookmarked and shared, the back
-// button works, and the FILTERING HAPPENS IN THE DATABASE rather than
-// shipping every row to the browser and hiding some.
-//
-// The interactive part is the chip highlight. Each active chip renders
-// a <motion.span layoutId>, and framer-motion animates that element
-// between positions when the selection changes — so the fill appears to
-// slide from the old chip to the new one. That is all layoutId does:
-// "this is the same element, animate it to its new place".
 
+import { useState } from "react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import { motion } from "framer-motion";
-import { Search, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Search, X, SlidersHorizontal, ChevronDown, Sparkles } from "lucide-react";
 import { sectors, localities } from "@/data/taxonomy";
 import { hueForSector } from "@/lib/hues";
 import styles from "./FilterBar.module.css";
@@ -28,7 +16,6 @@ type Props = {
   resultCount: number;
 };
 
-// The database stores "part_time"; a person should read "Part-time".
 const kindChips = [
   { value: "internship", label: "Internship" },
   { value: "part_time", label: "Part-time" },
@@ -45,14 +32,9 @@ export default function FilterBar({ resultCount }: Props) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const [isExpanded, setIsExpanded] = useState(false);
 
-  /**
-   * Set one filter in the URL, leaving the others alone. Passing the
-   * value that is already active clears it, so tapping a chip twice
-   * turns it off.
-   */
   function setFilter(key: string, value: string) {
-    // The live searchParams is read-only, so copy it before editing.
     const params = new URLSearchParams(searchParams.toString());
 
     if (!value || params.get(key) === value) {
@@ -61,21 +43,30 @@ export default function FilterBar({ resultCount }: Props) {
       params.set(key, value);
     }
 
-    // scroll: false keeps the page where it is, so the list updates
-    // beneath the filters instead of jumping to the top.
     router.push(`${pathname}?${params.toString()}`, { scroll: false });
   }
 
-  const activeCount = Array.from(searchParams.keys()).length;
+  const activeKeys = Array.from(searchParams.keys());
+  const activeCount = activeKeys.length;
   const isPaidOnly = searchParams.get("paid") === "1";
 
-  /**
-   * Renders one row of chips.
-   *
-   * `group` is also the layoutId prefix, which matters: each row needs
-   * its own sliding highlight. Sharing one id across rows would make
-   * the fill fly between groups.
-   */
+  // Build active filter tags for quick removal
+  const activeTags: { key: string; label: string; value: string }[] = [];
+  searchParams.forEach((value, key) => {
+    if (key === "q") activeTags.push({ key, label: `Search: "${value}"`, value });
+    else if (key === "kind") {
+      const match = kindChips.find((c) => c.value === value);
+      activeTags.push({ key, label: match?.label || value, value });
+    } else if (key === "mode") {
+      const match = modeChips.find((c) => c.value === value);
+      activeTags.push({ key, label: match?.label || value, value });
+    } else if (key === "paid" && value === "1") {
+      activeTags.push({ key, label: "Paid only", value });
+    } else if (key === "sector" || key === "locality") {
+      activeTags.push({ key, label: value, value });
+    }
+  });
+
   function ChipRow({
     group,
     label,
@@ -106,9 +97,6 @@ export default function FilterBar({ resultCount }: Props) {
                 data-hue={hueFor ? hueFor(option.value) : "lagoon"}
                 aria-pressed={isActive}
               >
-                {/* Only the active chip renders the fill. When the
-                    selection moves, framer-motion sees the same
-                    layoutId in a new position and animates it there. */}
                 {isActive && (
                   <motion.span
                     layoutId={`chip-${group}`}
@@ -128,7 +116,7 @@ export default function FilterBar({ resultCount }: Props) {
 
   return (
     <div className={`liquid-glass ${styles.bar}`}>
-      {/* ---------- Search and count ---------- */}
+      {/* ---------- Primary Controls Row ---------- */}
       <div className={styles.searchRow}>
         <div className={styles.searchField}>
           <Search size={17} className={styles.searchIcon} />
@@ -139,8 +127,6 @@ export default function FilterBar({ resultCount }: Props) {
             placeholder="Search by title or keyword…"
             defaultValue={searchParams.get("q") ?? ""}
             aria-label="Search opportunities"
-            // Filter on Enter rather than on every keystroke — otherwise
-            // we fire a database query per letter typed.
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 setFilter("q", (e.target as HTMLInputElement).value.trim());
@@ -149,63 +135,106 @@ export default function FilterBar({ resultCount }: Props) {
           />
         </div>
 
-        <p className={styles.count}>
-          <span className={styles.countValue}>{resultCount}</span>{" "}
-          {resultCount === 1 ? "role" : "roles"}
-        </p>
-      </div>
+        <div className={styles.topRightControls}>
+          <label className={`${styles.toggle} ${isPaidOnly ? styles.toggleActive : ""}`}>
+            <input
+              type="checkbox"
+              className={styles.toggleInput}
+              checked={isPaidOnly}
+              onChange={(e) => setFilter("paid", e.target.checked ? "1" : "")}
+            />
+            <span className={styles.switch}>
+              <span className={styles.knob} />
+            </span>
+            <span className={styles.toggleLabel}>Paid only</span>
+          </label>
 
-      {/* ---------- Chip groups ---------- */}
-      <div className={styles.groups}>
-        <ChipRow group="kind" label="Type" options={kindChips} />
-        <ChipRow group="mode" label="How you work" options={modeChips} />
-
-        {/* Sector chips colour themselves with the sector's own hue, so
-            the filters teach the colour coding used on the cards. */}
-        <ChipRow
-          group="sector"
-          label="Sector"
-          options={sectors.map((s) => ({ value: s, label: s }))}
-          hueFor={hueForSector}
-        />
-
-        <ChipRow
-          group="locality"
-          label="Where"
-          options={localities.map((l) => ({ value: l, label: l }))}
-        />
-      </div>
-
-      {/* ---------- Toggle and reset ---------- */}
-      <div className={styles.actions}>
-        <label className={`${styles.toggle} ${isPaidOnly ? styles.toggleActive : ""}`}>
-          {/* The real checkbox is visually hidden but still focusable,
-              so the keyboard and screen readers behave normally. The
-              span next to it is what you actually see. */}
-          <input
-            type="checkbox"
-            className={styles.toggleInput}
-            checked={isPaidOnly}
-            onChange={(e) => setFilter("paid", e.target.checked ? "1" : "")}
-          />
-          <span className={styles.switch}>
-            <span className={styles.knob} />
-          </span>
-          Paid roles only
-        </label>
-
-        {/* Only offer a reset when there is something to reset. */}
-        {activeCount > 0 && (
           <button
             type="button"
-            className={styles.reset}
+            className={`${styles.expandBtn} ${isExpanded ? styles.expandBtnActive : ""}`}
+            onClick={() => setIsExpanded(!isExpanded)}
+            aria-expanded={isExpanded}
+            aria-label="Toggle filter options"
+          >
+            <SlidersHorizontal size={15} />
+            <span>Filters</span>
+            {activeCount > 0 && (
+              <span className={styles.activeBadge}>{activeCount}</span>
+            )}
+            <motion.span
+              animate={{ rotate: isExpanded ? 180 : 0 }}
+              transition={{ duration: 0.25 }}
+              className={styles.chevronWrapper}
+            >
+              <ChevronDown size={16} />
+            </motion.span>
+          </button>
+
+          <p className={styles.count}>
+            <span className={styles.countValue}>{resultCount}</span>{" "}
+            {resultCount === 1 ? "role" : "roles"}
+          </p>
+        </div>
+      </div>
+
+      {/* ---------- Active Filters Strip ---------- */}
+      {activeTags.length > 0 && (
+        <div className={styles.activeStrip}>
+          <span className={styles.activeStripLabel}>Active:</span>
+          <div className={styles.activeTags}>
+            {activeTags.map((tag) => (
+              <button
+                key={`${tag.key}-${tag.value}`}
+                type="button"
+                className={styles.activeTag}
+                onClick={() => setFilter(tag.key, tag.value)}
+              >
+                <span>{tag.label}</span>
+                <X size={12} />
+              </button>
+            ))}
+          </div>
+
+          <button
+            type="button"
+            className={styles.clearAllBtn}
             onClick={() => router.push(pathname, { scroll: false })}
           >
-            <X size={14} />
-            Clear {activeCount} filter{activeCount === 1 ? "" : "s"}
+            Clear all
           </button>
+        </div>
+      )}
+
+      {/* ---------- Collapsible Filter Groups ---------- */}
+      <AnimatePresence initial={false}>
+        {isExpanded && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className={styles.collapsibleWrapper}
+          >
+            <div className={styles.groups}>
+              <ChipRow group="kind" label="Type" options={kindChips} />
+              <ChipRow group="mode" label="How you work" options={modeChips} />
+
+              <ChipRow
+                group="sector"
+                label="Sector"
+                options={sectors.map((s) => ({ value: s, label: s }))}
+                hueFor={hueForSector}
+              />
+
+              <ChipRow
+                group="locality"
+                label="Where"
+                options={localities.map((l) => ({ value: l, label: l }))}
+              />
+            </div>
+          </motion.div>
         )}
-      </div>
+      </AnimatePresence>
     </div>
   );
 }
