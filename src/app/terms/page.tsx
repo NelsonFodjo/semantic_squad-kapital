@@ -1,6 +1,5 @@
-// ============================================================
-// TERMS  ->  the "/terms" route
-// ============================================================
+
+// TERMS  
 
 import SectionHeading from "@/components/ui/SectionHeading";
 import styles from "../legal.module.css";

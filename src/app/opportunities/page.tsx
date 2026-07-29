@@ -1,9 +1,5 @@
-// ============================================================
-// OPPORTUNITIES BOARD  ->  the "/opportunities" route
-// ============================================================
-// A server component. It reads the filters out of the URL, asks the
-// database for matching rows, and renders them. The browser gets HTML
-// with the results already in it.
+
+// OPPORTUNITIES BOARD  
 
 import SectionHeading from "@/components/ui/SectionHeading";
 import EmptyState from "@/components/ui/EmptyState";

@@ -1,10 +1,6 @@
-// ============================================================
-// PUBLIC STUDENT PROFILE  ->  "/students/<slug>"
-// ============================================================
-// The page a student sends an employer instead of a CV. Only visible
-// when the profile is marked public — that rule is enforced by the
-// RLS policy on `profiles`, not by an if-statement here.
 
+// PUBLIC STUDENT PROFILE 
+ 
 import { notFound } from "next/navigation";
 import Tag, { TagRow } from "@/components/ui/Tag";
 import ShowcaseTile from "@/components/showcase/ShowcaseTile";
