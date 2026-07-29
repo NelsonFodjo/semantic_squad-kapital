@@ -1,12 +1,4 @@
-// ============================================================
 // SUPABASE — the server client.
-// ============================================================
-// Use this inside server components and route handlers, for reading
-// data while a page renders. It reads the session from cookies, so
-// Row Level Security knows who is asking.
-//
-//     const supabase = await createServerSupabase();
-//     const { data } = await supabase.from("opportunities").select();
 
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { cookies } from "next/headers";

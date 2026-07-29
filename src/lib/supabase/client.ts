@@ -1,13 +1,4 @@
-// ============================================================
 // SUPABASE — the browser client.
-// ============================================================
-// Use this in components marked "use client", for anything the user
-// triggers: logging in, submitting a form, uploading a CV.
-//
-//     const supabase = createClient();
-//     const { error } = await supabase.auth.signInWithPassword({...});
-//
-// For reading data while rendering a page, use ./server.ts instead.
 
 import { createBrowserClient } from "@supabase/ssr";
 

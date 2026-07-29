@@ -1,20 +1,5 @@
-// ============================================================
-// PATTERNS — every regular expression the app uses, in one place.
-// ============================================================
-// A regex is a pattern for text. We ask "does this text match?" with
-// pattern.test(value).
-//
-// Reading the symbols:
-//   ^      start of the text        $     end of the text
-//   \d     any digit 0-9            \s    a space
-//   [A-Z]  any uppercase letter     {2,5} between 2 and 5 of them
-//   ?      optional                 +     one or more
-//   *      zero or more             |     or
-//   (...)  a group                  (?:)  a group we don't capture
-//   \.     a literal dot (a bare . means "any character")
-//
-// Most patterns start with ^ and end with $ so they must match the
-// WHOLE value, not just some piece hiding inside it.
+
+// PATTERNS — Regex patterns used in the app
 
 export const patterns = {
   /* ---------- People ---------- */
@@ -75,7 +60,6 @@ export const patterns = {
 
   // A date as YYYY-MM-DD. Month must be 01-12, day 01-31.
   // This checks the SHAPE only — see isRealDate in rules.ts for the
-  // "does 31 February exist" question, which regex cannot answer.
   date: /^\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\d|3[01])$/,
 
   // Academic year of study, 1 to 6.
@@ -98,10 +82,7 @@ export const patterns = {
   // real line of defence.
   looksLikeHtml: /<\/?[a-z][\s\S]*>/i,
 
-  /* ---------- Password composition ----------
-     These are NOT anchored, because here we are asking "does this
-     character appear ANYWHERE in the text", not "is the whole text
-     this character". */
+  /* ---------- Password composition ----------*/
   hasUppercase: /[A-Z]/,
   hasLowercase: /[a-z]/,
   hasNumber: /\d/,
@@ -109,7 +90,6 @@ export const patterns = {
   hasSpace: /\s/,
 
   // Three or more of the same character in a row: "aaa", "111".
-  // \1 means "the same thing the first group matched".
   hasRepeat: /(.)\1{2,}/,
 
   // Obvious keyboard runs and sequences people use in weak passwords.

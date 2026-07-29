@@ -1,9 +1,4 @@
-// ============================================================
 // FORMAT — one place for turning data into readable text.
-// ============================================================
-// Every page uses these, so money and dates look the same everywhere
-// and you only fix a format once.
-
 import type { OpportunityKind, WorkMode, ChallengeKind } from "@/types/database";
 
 /** 15000 -> "Rs 15,000" */

@@ -1,31 +1,17 @@
-// ============================================================
+
 // RULES — turn a pattern into a friendly error message.
-// ============================================================
-// THE ONE RULE TO REMEMBER:
-//   returns null  ->  the value is GOOD
-//   returns text  ->  that text is the error to show the user
-//
-// Every form in the app follows this, so a form only has to ask
-// "is there an error?" — it never needs to know about regexes.
 
 import { patterns } from "./patterns";
 
 /** The shape every rule below follows. */
 export type Rule = (value: string) => string | null;
 
-/* ------------------------------------------------------------ *
- * Building blocks
- * ------------------------------------------------------------ */
 
 /** Value must not be empty. */
 export const isRequired: Rule = (value) =>
   value.trim() === "" ? "This field is required." : null;
 
-/**
- * Build a rule from one pattern.
- * Empty values pass — that is isRequired's job, not this one's.
- * Combining them means "optional, but valid if filled in" comes free.
- */
+
 export function checkPattern(pattern: RegExp, message: string): Rule {
   return (value) => (value.trim() === "" || pattern.test(value.trim()) ? null : message);
 }
@@ -63,9 +49,6 @@ export function checkAll(...rules: Rule[]): Rule {
   };
 }
 
-/* ------------------------------------------------------------ *
- * Things regex genuinely cannot do
- * ------------------------------------------------------------ */
 
 /**
  * A regex can confirm "2026-02-31" has the right SHAPE, but it has no
@@ -90,9 +73,6 @@ export function isFutureDate(iso: string): boolean {
   return new Date(iso) >= today;
 }
 
-/* ------------------------------------------------------------ *
- * Ready-made rules used by the forms
- * ------------------------------------------------------------ */
 
 export const emailRule = checkAll(
   isRequired,

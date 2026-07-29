@@ -1,14 +1,4 @@
-// ============================================================
 // DB — opportunity queries.
-// ============================================================
-// Every database read about opportunities lives here. Pages import
-// these functions and never build a query themselves, which means:
-//   - a query bug is fixed in one place
-//   - you can read this file to see everything the app asks for
-//
-// All of these run on the server. Row Level Security still applies,
-// so a closed or draft posting will not come back to a stranger even
-// if the query asks for it.
 
 import { createServerSupabase } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/client";

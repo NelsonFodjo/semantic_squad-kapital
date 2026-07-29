@@ -1,16 +1,4 @@
-// ============================================================
 // HUES — decides which colour a thing gets.
-// ============================================================
-// The rule: a given sector is ALWAYS the same colour, everywhere in
-// the app. Colour that shifts between pages is just noise; colour that
-// holds still becomes something people can navigate by.
-//
-// Use the result as a data attribute:
-//
-//     <article data-hue={hueForSector(o.sector)}>
-//
-// The [data-hue] blocks in base.css then set --hue on that element,
-// and everything inside it recolours.
 
 export type Hue = "lagoon" | "coral" | "mango" | "palm" | "orchid" | "sky";
 

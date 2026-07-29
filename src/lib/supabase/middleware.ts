@@ -1,12 +1,4 @@
-// ============================================================
 // SUPABASE — session refresh, used by the root middleware.ts.
-// ============================================================
-// Middleware runs before every page. Two jobs here:
-//   1. Refresh the login session so it does not silently expire
-//   2. Send anonymous visitors away from the dashboard
-//
-// The logic lives in this file and the root middleware.ts just calls
-// it, which keeps the Supabase details out of the app's front door.
 
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";

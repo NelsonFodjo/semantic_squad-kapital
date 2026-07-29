@@ -1,6 +1,4 @@
-// ============================================================
 // DB — profile and organisation queries.
-// ============================================================
 
 import { createServerSupabase } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/client";

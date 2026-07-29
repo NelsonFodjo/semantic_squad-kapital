@@ -1,7 +1,4 @@
-// ============================================================
 // DB — challenge queries.
-// ============================================================
-// Same pattern as opportunities.ts: every challenge read lives here.
 
 import { createServerSupabase } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/client";
