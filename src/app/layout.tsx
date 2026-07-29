@@ -1,14 +1,4 @@
-// ============================================================
 // ROOT LAYOUT — wraps every page in the app.
-// ============================================================
-// Anything that must appear on all pages goes here: the navbar, the
-// footer, and the browser tab title. `children` is whichever page the
-// visitor asked for.
-//
-// A note on fonts: Instrument Serif is loaded by an @import at the top
-// of globals.css, and wired to --font-display in tokens.css. Body text
-// deliberately uses the fonts already on the device — Instrument Serif
-// is a light display face that looks thin below about 20px.
 
 import type { Metadata } from "next";
 import "./globals.css";
@@ -62,10 +52,6 @@ export default function RootLayout({
 }) {
   return (
     // suppressHydrationWarning: themeInitScript below sets
-    // data-color-scheme on this element before React hydrates, so the
-    // attribute React sees on the client legitimately differs from
-    // what the server rendered. That mismatch is expected and safe —
-    // without this prop React logs a hydration warning for it anyway.
     <html lang="en" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
