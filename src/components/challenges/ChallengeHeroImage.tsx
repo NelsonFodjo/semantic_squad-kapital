@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+import Image from "next/image";
 import { getChallengeCoverImage } from "@/lib/format";
 import styles from "@/app/challenges/[slug]/page.module.css";
 
