@@ -220,6 +220,8 @@ button:disabled {
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   /* Without this the ring would swallow clicks meant for the element
