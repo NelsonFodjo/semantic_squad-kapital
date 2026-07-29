@@ -50,8 +50,7 @@ export default async function ShowcasePage() {
               <ShowcaseTile
                 item={item}
                 wide={index === 0}
-                // The wide first tile needs a bigger image than the rest,
-                // so we tell the browser that up front.
+                index={index}
                 sizes={
                   index === 0
                     ? "(max-width: 1100px) 100vw, 66vw"

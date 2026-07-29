@@ -5,7 +5,7 @@
 // ============================================================
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { UserCircle, Send, Sparkles, ArrowRight } from "lucide-react";
 import Reveal from "@/components/motion/Reveal";
 import SpotlightCard from "@/components/motion/SpotlightCard";
@@ -37,13 +37,14 @@ const steps = [
 
 export default function HowItWorksSection() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <section className={styles.section}>
       <span className={`aurora ${styles.aurora1}`} aria-hidden="true" />
 
       <div className={`container ${styles.inner}`}>
-        <Reveal>
+        <Reveal gravity>
           <p className="eyebrow">How it works</p>
           <h2 className={styles.heading}>
             Three steps, <em>no gatekeeping</em>.
@@ -56,11 +57,19 @@ export default function HowItWorksSection() {
             const isHovered = hoveredIndex === index;
 
             return (
-              <Reveal key={step.title} delay={index * 0.12}>
-                <div
+              <Reveal key={step.title} delay={index * 0.1} gravity>
+                <motion.div
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                   className={styles.cardContainer}
+                  whileHover={
+                    shouldReduceMotion
+                      ? {}
+                      : {
+                          y: -6,
+                          transition: { type: "spring", stiffness: 400, damping: 17 },
+                        }
+                  }
                 >
                   <SpotlightCard hue={step.hue} className={styles.card}>
                     <div className={styles.cardHeader}>
@@ -106,7 +115,7 @@ export default function HowItWorksSection() {
                       <div className={styles.connectorLine} />
                     </div>
                   )}
-                </div>
+                </motion.div>
               </Reveal>
             );
           })}

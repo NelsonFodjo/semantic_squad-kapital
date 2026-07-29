@@ -5,7 +5,7 @@
 // ============================================================
 
 import { useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Sparkles, Code2, Briefcase, Trophy } from "lucide-react";
 import Image from "next/image";
 import SpotlightCard from "@/components/motion/SpotlightCard";
@@ -53,6 +53,7 @@ const cards = [
 export default function ServicesSection() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const shouldReduceMotion = useReducedMotion();
   const [activeCard, setActiveCard] = useState<string | null>(null);
 
   return (
@@ -62,9 +63,21 @@ export default function ServicesSection() {
       <div ref={ref} className={`container ${styles.inner}`}>
         <motion.div
           className={styles.header}
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.7 }}
+          initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -40 }}
+          animate={
+            isInView
+              ? shouldReduceMotion
+                ? { opacity: 1 }
+                : { opacity: 1, y: 0 }
+              : shouldReduceMotion
+              ? { opacity: 0 }
+              : { opacity: 0, y: -40 }
+          }
+          transition={
+            shouldReduceMotion
+              ? { duration: 0.4 }
+              : { type: "spring", stiffness: 120, damping: 14, mass: 0.9 }
+          }
         >
           <motion.p
             className="eyebrow"
@@ -89,9 +102,33 @@ export default function ServicesSection() {
                 className={styles.cardLink}
                 onMouseEnter={() => setActiveCard(card.title)}
                 onMouseLeave={() => setActiveCard(null)}
-                initial={{ opacity: 0, y: 50 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                transition={{ duration: 0.8, delay: 0.15 + index * 0.12 }}
+                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -40 }}
+                whileInView={
+                  shouldReduceMotion
+                    ? { opacity: 1 }
+                    : { opacity: 1, y: 0 }
+                }
+                viewport={{ once: true, amount: 0.3 }}
+                whileHover={
+                  shouldReduceMotion
+                    ? {}
+                    : {
+                        y: -6,
+                        transition: { type: "spring", stiffness: 400, damping: 17 },
+                      }
+                }
+                whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
+                transition={
+                  shouldReduceMotion
+                    ? { duration: 0.3, delay: index * 0.08 }
+                    : {
+                        type: "spring",
+                        stiffness: 120,
+                        damping: 14,
+                        mass: 0.9,
+                        delay: index * 0.08,
+                      }
+                }
               >
                 <SpotlightCard hue={card.hue} className={styles.cardInner}>
                   <div className={styles.videoFrame}>

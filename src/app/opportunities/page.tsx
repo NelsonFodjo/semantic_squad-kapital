@@ -73,8 +73,8 @@ export default async function OpportunitiesPage({ searchParams }: Props) {
         />
       ) : (
         <div className={styles.grid}>
-          {opportunities.map((opportunity) => (
-            <OpportunityCard key={opportunity.id} opportunity={opportunity} />
+          {opportunities.map((opportunity, index) => (
+            <OpportunityCard key={opportunity.id} opportunity={opportunity} index={index} />
           ))}
         </div>
       )}

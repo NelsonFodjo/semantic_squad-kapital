@@ -5,7 +5,7 @@
 // ============================================================
 
 import { useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { GraduationCap, Building2, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 import SpotlightCard from "@/components/motion/SpotlightCard";
@@ -31,6 +31,7 @@ const blocks = [
 export default function PhilosophySection() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const shouldReduceMotion = useReducedMotion();
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   return (
@@ -38,9 +39,21 @@ export default function PhilosophySection() {
       <div ref={ref} className="container">
         <motion.h2
           className={styles.heading}
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-          transition={{ duration: 0.8 }}
+          initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -40 }}
+          animate={
+            isInView
+              ? shouldReduceMotion
+                ? { opacity: 1 }
+                : { opacity: 1, y: 0 }
+              : shouldReduceMotion
+              ? { opacity: 0 }
+              : { opacity: 0, y: -40 }
+          }
+          transition={
+            shouldReduceMotion
+              ? { duration: 0.4 }
+              : { type: "spring", stiffness: 120, damping: 14, mass: 0.9 }
+          }
         >
           Students <em className={styles.em}>x</em> Employers
         </motion.h2>
@@ -49,9 +62,21 @@ export default function PhilosophySection() {
           {/* Left Column: Image with magnetic 3D frame */}
           <motion.div
             className={styles.videoFrameContainer}
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-            transition={{ duration: 0.8, delay: 0.15 }}
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -40 }}
+            animate={
+              isInView
+                ? shouldReduceMotion
+                  ? { opacity: 1 }
+                  : { opacity: 1, y: 0 }
+                : shouldReduceMotion
+                ? { opacity: 0 }
+                : { opacity: 0, y: -40 }
+            }
+            transition={
+              shouldReduceMotion
+                ? { duration: 0.4, delay: 0.1 }
+                : { type: "spring", stiffness: 120, damping: 14, mass: 0.9, delay: 0.1 }
+            }
           >
             <SpotlightCard hue="coral" className={styles.videoFrameCard}>
               <div className={styles.videoFrameInner}>
@@ -81,9 +106,35 @@ export default function PhilosophySection() {
               return (
                 <motion.div
                   key={block.label}
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-                  transition={{ duration: 0.8, delay: 0.2 + index * 0.15 }}
+                  initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -40 }}
+                  animate={
+                    isInView
+                      ? shouldReduceMotion
+                        ? { opacity: 1 }
+                        : { opacity: 1, y: 0 }
+                      : shouldReduceMotion
+                      ? { opacity: 0 }
+                      : { opacity: 0, y: -40 }
+                  }
+                  whileHover={
+                    shouldReduceMotion
+                      ? {}
+                      : {
+                          y: -6,
+                          transition: { type: "spring", stiffness: 400, damping: 17 },
+                        }
+                  }
+                  transition={
+                    shouldReduceMotion
+                      ? { duration: 0.4, delay: 0.15 + index * 0.1 }
+                      : {
+                          type: "spring",
+                          stiffness: 120,
+                          damping: 14,
+                          mass: 0.9,
+                          delay: 0.15 + index * 0.1,
+                        }
+                  }
                   onMouseEnter={() => setHoveredCard(block.label)}
                   onMouseLeave={() => setHoveredCard(null)}
                 >
@@ -100,7 +151,7 @@ export default function PhilosophySection() {
                     <div className={styles.perksList}>
                       {block.perks.map((perk) => (
                         <div key={perk} className={styles.perkItem}>
-                          <CheckCircle2 size={14} className={styles.checkIcon} />
+                          <CheckCircle2 size={15} className={styles.perkIcon} />
                           <span>{perk}</span>
                         </div>
                       ))}

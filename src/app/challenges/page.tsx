@@ -79,8 +79,8 @@ export default async function ChallengesPage({ searchParams }: Props) {
         />
       ) : (
         <div className={styles.grid}>
-          {challenges.map((challenge) => (
-            <ChallengeCard key={challenge.id} challenge={challenge} />
+          {challenges.map((challenge, index) => (
+            <ChallengeCard key={challenge.id} challenge={challenge} index={index} />
           ))}
         </div>
       )}
