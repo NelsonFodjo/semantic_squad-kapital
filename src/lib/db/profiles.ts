@@ -24,7 +24,22 @@ export async function getMyProfile(): Promise<Profile | null> {
     .eq("id", user.id)
     .maybeSingle();
 
-  return data as Profile | null;
+  if (data) return data as Profile;
+
+  // Fallback profile object for authenticated user missing DB row
+  const name = user.user_metadata?.full_name || user.email?.split("@")[0] || "User";
+  const role = user.user_metadata?.role || "student";
+  const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
+  return {
+    id: user.id,
+    role,
+    full_name: name,
+    slug,
+    avatar_url: null,
+    bio: null,
+    created_at: new Date().toISOString(),
+  } as Profile;
 }
 
 /**

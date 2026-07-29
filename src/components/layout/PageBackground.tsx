@@ -6,7 +6,6 @@ import styles from "./PageBackground.module.css";
 export default function PageBackground() {
   const pathname = usePathname();
 
-  // Determine what theme/colors to use based on the path
   let theme = "default";
   
   if (pathname === "/about") {
@@ -29,6 +28,18 @@ export default function PageBackground() {
       <div className={`${styles.glow} ${styles.glow1}`} />
       <div className={`${styles.glow} ${styles.glow2}`} />
       <div className={`${styles.glow} ${styles.glow3}`} />
+
+      {/* Shooting Stars Container (Down & Up cosmic trails) */}
+      <div className={styles.starsContainer} aria-hidden="true">
+        <span className={`${styles.star} ${styles.starDown1}`} />
+        <span className={`${styles.star} ${styles.starDown2}`} />
+        <span className={`${styles.star} ${styles.starDown3}`} />
+        <span className={`${styles.star} ${styles.starUp1}`} />
+        <span className={`${styles.star} ${styles.starUp2}`} />
+        <span className={`${styles.star} ${styles.starDown4}`} />
+        <span className={`${styles.star} ${styles.starUp3}`} />
+        <span className={`${styles.star} ${styles.starDown5}`} />
+      </div>
     </div>
   );
 }

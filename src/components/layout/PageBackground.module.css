@@ -244,3 +244,195 @@ html[data-color-scheme="light"] .wrapper[data-theme="opportunities"] {
   background-color: var(--orchid-glow);
   opacity: 0.16;
 }
+
+/* ---------- Shooting Stars Particles (Down & Up cosmic trails) ---------- */
+
+.starsContainer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.star {
+  position: absolute;
+  height: 2px;
+  border-radius: 999px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Star Down 1: Top-Left to Bottom-Right */
+.starDown1 {
+  top: 10%;
+  left: -10%;
+  width: 140px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), #38d9e8, rgba(255, 255, 255, 0));
+  box-shadow: 0 0 10px #38d9e8, 0 0 20px #38d9e8;
+  transform: rotate(35deg);
+  animation: shootDown 4.5s ease-in-out 0.5s infinite;
+}
+
+/* Star Down 2: Top-Center to Bottom-Right */
+.starDown2 {
+  top: 5%;
+  left: 35%;
+  width: 160px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), #b58cff, rgba(255, 255, 255, 0));
+  box-shadow: 0 0 10px #b58cff, 0 0 20px #b58cff;
+  transform: rotate(40deg);
+  animation: shootDown 6s ease-in-out 2.8s infinite;
+}
+
+/* Star Down 3: Top-Right to Bottom-Left */
+.starDown3 {
+  top: 15%;
+  right: -5%;
+  width: 120px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), #ff7a90, rgba(255, 255, 255, 0));
+  box-shadow: 0 0 10px #ff7a90;
+  transform: rotate(140deg);
+  animation: shootDownOpposite 5.2s ease-in-out 1.2s infinite;
+}
+
+/* Star Up 1: Bottom-Left to Top-Right (Shooting UP!) */
+.starUp1 {
+  bottom: 15%;
+  left: -5%;
+  width: 150px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), #4ade9b, rgba(255, 255, 255, 0));
+  box-shadow: 0 0 12px #4ade9b, 0 0 24px #4ade9b;
+  transform: rotate(-35deg);
+  animation: shootUp 5.8s ease-in-out 3.5s infinite;
+}
+
+/* Star Up 2: Bottom-Right to Top-Left (Shooting UP!) */
+.starUp2 {
+  bottom: 20%;
+  right: -10%;
+  width: 170px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), #ffb347, rgba(255, 255, 255, 0));
+  box-shadow: 0 0 12px #ffb347;
+  transform: rotate(-145deg);
+  animation: shootUpOpposite 6.5s ease-in-out 4.2s infinite;
+}
+
+/* Star Down 4: Mid-Left to Bottom-Right */
+.starDown4 {
+  top: 40%;
+  left: -5%;
+  width: 130px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), #6aa8ff, rgba(255, 255, 255, 0));
+  box-shadow: 0 0 10px #6aa8ff;
+  transform: rotate(30deg);
+  animation: shootDown 7s ease-in-out 5.5s infinite;
+}
+
+/* Star Up 3: Mid-Right to Top-Left (Shooting UP!) */
+.starUp3 {
+  bottom: 35%;
+  right: -5%;
+  width: 140px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), #38d9e8, rgba(255, 255, 255, 0));
+  box-shadow: 0 0 10px #38d9e8;
+  transform: rotate(-140deg);
+  animation: shootUpOpposite 8s ease-in-out 6.8s infinite;
+}
+
+/* Star Down 5: Top-Right Corner */
+.starDown5 {
+  top: 2%;
+  right: 15%;
+  width: 180px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), #ffffff, rgba(255, 255, 255, 0));
+  box-shadow: 0 0 14px #ffffff, 0 0 28px #b58cff;
+  transform: rotate(42deg);
+  animation: shootDown 6.2s ease-in-out 8.1s infinite;
+}
+
+/* Keyframes for Shooting Down (Top -> Bottom) */
+@keyframes shootDown {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(35deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 0.85;
+  }
+  70% {
+    transform: translate3d(850px, 600px, 0) rotate(35deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(850px, 600px, 0) rotate(35deg);
+    opacity: 0;
+  }
+}
+
+@keyframes shootDownOpposite {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(140deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 0.85;
+  }
+  70% {
+    transform: translate3d(-850px, 600px, 0) rotate(140deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(-850px, 600px, 0) rotate(140deg);
+    opacity: 0;
+  }
+}
+
+/* Keyframes for Shooting UP (Bottom -> Top) */
+@keyframes shootUp {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(-35deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 0.85;
+  }
+  70% {
+    transform: translate3d(850px, -600px, 0) rotate(-35deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(850px, -600px, 0) rotate(-35deg);
+    opacity: 0;
+  }
+}
+
+@keyframes shootUpOpposite {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(-140deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 0.85;
+  }
+  70% {
+    transform: translate3d(-850px, -600px, 0) rotate(-140deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(-850px, -600px, 0) rotate(-140deg);
+    opacity: 0;
+  }
+}

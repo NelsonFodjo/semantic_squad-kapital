@@ -21,7 +21,7 @@ export default function ContactPage() {
     <div className="container section">
       <div className={styles.wrapper}>
         <div className={styles.infoColumn}>
-          <Reveal>
+          <Reveal gravity>
             <SectionHeading
               as="h1"
               eyebrow="Contact"
@@ -30,7 +30,7 @@ export default function ContactPage() {
             />
           </Reveal>
 
-          <Reveal delay={0.15}>
+          <Reveal delay={0.15} gravity>
             <div className={`liquid-glass ${styles.imageFrame}`} data-hue="palm">
               <Image
                 src="/images/opensource.svg"
@@ -46,7 +46,7 @@ export default function ContactPage() {
         </div>
 
         <div className={styles.formColumn}>
-          <Reveal delay={0.1}>
+          <Reveal delay={0.1} gravity>
             <ContactForm />
           </Reveal>
         </div>

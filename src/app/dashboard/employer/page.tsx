@@ -33,7 +33,7 @@ export default async function EmployerDashboard() {
         <header className={styles.header}>
           <div>
             <h1 className={styles.greeting}>
-              Hello, {profile.full_name.split(" ")[0]}
+              Hello, {profile.full_name?.split(" ")[0] ?? "Professional"}
             </h1>
             <p className={styles.subtitle}>One step before you can post.</p>
           </div>

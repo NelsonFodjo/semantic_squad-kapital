@@ -48,7 +48,7 @@ export default async function StudentDashboard() {
         <div>
           {/* Just the first name — friendlier, and it fits. */}
           <h1 className={styles.greeting}>
-            Hello, {profile.full_name.split(" ")[0]}
+            Hello, {profile.full_name?.split(" ")[0] ?? "Student"}
           </h1>
           <p className={styles.subtitle}>
             Everything you have sent, and where it stands.

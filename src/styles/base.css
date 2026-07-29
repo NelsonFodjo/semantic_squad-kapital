@@ -133,6 +133,24 @@ textarea,
 select {
   font: inherit;
   color: inherit;
+  color-scheme: dark light;
+}
+
+select option {
+  background-color: var(--paper-raised, #161c2b);
+  color: var(--ink, #f1f5f9);
+}
+
+html[data-color-scheme="dark"] select option,
+[data-color-scheme="dark"] select option {
+  background-color: #161c2b !important;
+  color: #f1f5f9 !important;
+}
+
+html[data-color-scheme="light"] select option,
+[data-color-scheme="light"] select option {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
 }
 
 button {

@@ -80,6 +80,24 @@
   padding-right: var(--space-8);
 }
 
+.select option {
+  background-color: var(--paper-raised, #161c2b);
+  color: var(--ink, #f1f5f9);
+  padding: 0.6rem 1rem;
+}
+
+:global(html[data-color-scheme="dark"]) .select option,
+:global([data-color-scheme="dark"]) .select option {
+  background-color: #161c2b !important;
+  color: #f1f5f9 !important;
+}
+
+:global(html[data-color-scheme="light"]) .select option,
+:global([data-color-scheme="light"]) .select option {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
 /* ---------- The line under the box ---------- */
 
 /* min-height reserves the space, so the layout does not jump up and
